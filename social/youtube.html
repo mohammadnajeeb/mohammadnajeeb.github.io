@@ -4,7 +4,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>YouTube - Mohammad Najeeb</title>
-        <!-- Google Fonts -->
+        <!-- Google Fonts --><script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
         <!-- MD Bootstrap CSS -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css" rel="stylesheet">
@@ -15,19 +16,20 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg sticky-top">
-            <div class="container">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
+    <div class="container">
+        <!-- Add navbar-dark class to make toggler icon visible -->
+        <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item"><a class="nav-link" href="publications.html">Publications</a></li>
-                        <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
-                        <li class="nav-item"><a class="nav-link" href="experience.html">Experience</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../pages/publications.html">Publications</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../pages/projects.html">Projects</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../pages/experience.html">Experience</a></li>
                         <!-- <li class="nav-item"><a class="nav-link" href="../social/instagram.html">Photography</a></li> -->
                         <li class="nav-item"><a class="nav-link" href="../social/youtube.html">YouTube</a></li>
                         <li class="nav-item"><a class="nav-link" href="../blog/index.html">Blog</a></li>
-                        <li class="nav-item"><a class="nav-link" href="../assets/Mohammad_Najeeb_CV_Nov_16_24.pdf" target="_blank">CV</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../assets/Mohammad_Najeeb_CV_Nov_16_24.pdf" target="_blank">Download Profile</a></li>
                     </ul>
                     <form class="d-flex">
                         <div class="input-group">
@@ -51,9 +53,14 @@
     <main class="container my-5">
         <section class="youtube-content">
             <div class="row mb-4">
-                <div class="col-12">
-                    <h2>My YouTube Channel</h2>
-                    <p class="lead">Here are my latest videos about technology, programming, and more.</p>
+                <div class="col-12 d-flex justify-content-between align-items-center">
+                    <p class="lead mb-0">Latest video</p>
+                    <a href="https://www.youtube.com/@pixellements" 
+                       class="btn btn-danger d-flex align-items-center" 
+                       target="_blank">
+                        <i class="fab fa-youtube fa-lg me-2"></i>
+                        Visit My Channel
+                    </a>
                 </div>
             </div>
             
@@ -77,8 +84,8 @@
         <ul class="list-inline mb-0">
             <li class="list-inline-item"><a href="https://github.com/mohammadnajeeb" class="text-white"><i class="fab fa-github fa-lg"></i></a></li>
             <li class="list-inline-item"><a href="https://linkedin.com/in/mohammadnajeeb" class="text-white"><i class="fab fa-linkedin fa-lg"></i></a></li>
-            <li class="list-inline-item"><a href="https://twitter.com/yourusername" class="text-white"><i class="fab fa-twitter fa-lg"></i></a></li>
-            <li class="list-inline-item"><a href="https://instagram.com/yourusername" class="text-white"><i class="fab fa-instagram fa-lg"></i></a></li>
+            <li class="list-inline-item"><a href="https://twitter.com/md__najeeb" class="text-white"><i class="fab fa-twitter fa-lg"></i></a></li>
+            <li class="list-inline-item"><a href="https://instagram.com/pixellements" class="text-white"><i class="fab fa-instagram fa-lg"></i></a></li>
         </ul>
     </footer>
     

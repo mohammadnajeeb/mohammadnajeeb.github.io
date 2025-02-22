@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&display=swap');
+
+/* Variables */
+:root {
+    --navbar-color: #005555;
+    --navbar-text-color: #ffffff;
+    --background-color: #ffffff;
+    --text-color: #2f2f2f;
+    --link-color: #005555;
+    --link-hover-color: #003333;
+    --card-border-color: #e5e5e5;
+    --transition-speed: 0.3s;
+}
+
+/* Base Styles */
+body {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: var(--navbar-color);
+    font-weight: 300;
+    letter-spacing: 0.8px;
+    padding: 1rem 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar .nav-link {
+    color: var(--navbar-text-color) !important;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem !important;
+    position: relative;
+    opacity: 0.9;
+    transition: opacity var(--transition-speed) ease;
+}
+
+.navbar .nav-link:hover {
+    opacity: 1;
+}
+
+.navbar .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: 0;
+    left: 50%;
+    background-color: var(--navbar-text-color);
+    transition: all var(--transition-speed) ease;
+    transform: translateX(-50%);
+}
+
+.navbar .nav-link:hover::after {
+    width: 80%;
+}
+
+/* Search Bar Styles */
+.navbar .form-control {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: var(--navbar-text-color);
+    width: 200px;
+    border-radius: 20px;
+    font-weight: 300;
+}
+
+.navbar .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.navbar .btn-outline-light {
+    border-color: rgba(255, 255, 255, 0.5);
+    transition: all var(--transition-speed) ease;
+}
+
+.navbar .btn-outline-light:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Card Styles */
+.card {
+    border: 1px solid var(--card-border-color);
+    border-radius: 4px;
+    box-shadow: none;
+    transition: transform var(--transition-speed) ease,
+                box-shadow var(--transition-speed) ease;
+    background-color: var(--background-color);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.card-title {
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    color: var(--text-color);
+}
+
+.card-text {
+    font-weight: 300;
+    color: #6c757d;
+    font-size: 0.95rem;
+    line-height: 1.8;
+}
+
+/* Publication & Timeline Styles */
+.publication-list .card,
+.timeline .card {
+    border-left: 3px solid var(--navbar-color);
+}
+
+.publication-list .card:hover,
+.timeline .card:hover {
+    transform: translateX(5px);
+}
+
+/* Gallery Styles */
+.gallery-item img {
+    height: 250px;
+    object-fit: cover;
+    transition: all var(--transition-speed) ease;
+}
+
+.gallery-item:hover img {
+    opacity: 0.9;
+    transform: scale(1.02);
+}
+
+/* Badge Styles */
+.badge {
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    padding: 0.5em 1em;
+}
+
+/* Footer Styles */
+footer {
+    background-color: var(--navbar-color);
+    color: var(--navbar-text-color);
+    padding: 2rem 0;
+    margin-top: auto;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+}
+
+footer a {
+    color: var(--navbar-text-color);
+    opacity: 0.9;
+    transition: opacity var(--transition-speed) ease;
+}
+
+footer a:hover {
+    color: var(--navbar-text-color);
+    opacity: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        font-size: 0.95rem;
+    }
+    
+    .nav-link {
+        font-size: 0.85rem;
+    }
+    
+    .card-title {
+        font-size: 1.25rem;
+    }
+
+    .navbar .form-control {
+        width: 150px;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar .form-control {
+        width: 100%;
+    }
+}

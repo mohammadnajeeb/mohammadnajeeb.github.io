@@ -1,0 +1,43 @@
+/* Blog styles */
+.blog-post {
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.blog-post h2 {
+    font-size: 24px;
+    color: #333;
+}
+
+.blog-post p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #666;
+}
+
+.blog-post a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.blog-post a:hover {
+    text-decoration: underline;
+}
+
+.blog-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.blog-header h1 {
+    font-size: 36px;
+    color: #333;
+}
+
+.blog-header p {
+    font-size: 18px;
+    color: #666;
+}

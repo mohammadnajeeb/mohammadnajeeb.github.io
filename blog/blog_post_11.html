@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MLOps Best Practices: From Experimentation to Production - Mohammad Najeeb</title>
+    
+    <meta name="description" content="A comprehensive guide to MLOps best practices. Learn about experiment tracking with MLflow, model versioning, CI/CD pipelines, and deploying ML models to production.">
+    <meta name="keywords" content="MLOps, Machine Learning Operations, MLflow, Model Deployment, CI/CD, Docker, Kubernetes, Model Versioning, Production ML, Mohammad Najeeb">
+    <meta name="author" content="Mohammad Najeeb">
+    <meta name="robots" content="index, follow">
+    
+    <meta property="og:title" content="MLOps Best Practices: From Experimentation to Production">
+    <meta property="og:description" content="Learn MLOps best practices for deploying ML models to production.">
+    <meta property="og:url" content="https://mohammadnajeeb.github.io/blog/blog_post_11.html">
+    <meta property="og:type" content="article">
+    
+    <meta name="google-site-verification" content="s9wkPDxJlx_Dvk8KiR2W2GkyQGBKSCU_EGImxA7Zmn0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WVBGG8N5CE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-WVBGG8N5CE');
+</script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg sticky-top">
+            <div class="container">
+                <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item"><a class="nav-link" href="../pages/publications.html">Publications</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../pages/projects.html">Projects</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../pages/experience.html">Experience</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../social/youtube.html">YouTube</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.html">Blog</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <nav aria-label="breadcrumb" class="container mt-3">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="index.html">Blog</a></li>
+                <li class="breadcrumb-item active">MLOps Best Practices</li>
+            </ol>
+        </nav>
+    </header>
+    <main class="container my-5">
+        <article>
+            <h1>MLOps Best Practices: From Experimentation to Production</h1>
+            <p class="text-muted">Published on December 15, 2025</p>
+            
+            <p>Building a model is just 20% of the ML journey—the real challenge is deploying, monitoring, and maintaining it in production. <strong>MLOps</strong> brings DevOps principles to machine learning, enabling reproducible experiments, automated pipelines, and reliable deployments.</p>
+            
+            <h2>The MLOps Lifecycle</h2>
+            <p>A mature MLOps practice covers four key areas:</p>
+            <ol>
+                <li><strong>Experiment Tracking:</strong> Logging parameters, metrics, and artifacts</li>
+                <li><strong>Model Registry:</strong> Versioning and managing model lifecycles</li>
+                <li><strong>CI/CD Pipelines:</strong> Automated testing and deployment</li>
+                <li><strong>Monitoring:</strong> Detecting drift and performance degradation</li>
+            </ol>
+            
+            <h2>1. Experiment Tracking with MLflow</h2>
+            <pre><code class="language-python">import mlflow
+import mlflow.sklearn
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, f1_score
+
+# Set tracking URI (local or remote)
+mlflow.set_tracking_uri("http://localhost:5000")
+mlflow.set_experiment("crack-detection-v2")
+
+with mlflow.start_run(run_name="rf-baseline"):
+    # Log parameters
+    params = {
+        "n_estimators": 100,
+        "max_depth": 10,
+        "min_samples_split": 5
+    }
+    mlflow.log_params(params)
+    
+    # Train model
+    model = RandomForestClassifier(**params)
+    model.fit(X_train, y_train)
+    
+    # Log metrics
+    y_pred = model.predict(X_test)
+    mlflow.log_metric("accuracy", accuracy_score(y_test, y_pred))
+    mlflow.log_metric("f1_score", f1_score(y_test, y_pred))
+    
+    # Log model
+    mlflow.sklearn.log_model(model, "model")
+    
+    # Log artifacts (plots, configs)
+    mlflow.log_artifact("confusion_matrix.png")</code></pre>
+            
+            <h2>2. Model Registry and Versioning</h2>
+            <pre><code class="language-python"># Register model to MLflow Model Registry
+model_uri = f"runs:/{mlflow.active_run().info.run_id}/model"
+model_details = mlflow.register_model(model_uri, "CrackDetectionModel")
+
+# Transition model stages
+from mlflow.tracking import MlflowClient
+client = MlflowClient()
+
+# Move to staging
+client.transition_model_version_stage(
+    name="CrackDetectionModel",
+    version=model_details.version,
+    stage="Staging"
+)
+
+# After validation, promote to production
+client.transition_model_version_stage(
+    name="CrackDetectionModel",
+    version=model_details.version,
+    stage="Production"
+)</code></pre>
+            
+            <h2>3. CI/CD Pipeline with GitHub Actions</h2>
+            <pre><code class="language-yaml"># .github/workflows/ml-pipeline.yml
+name: ML Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install pytest pytest-cov
+      
+      - name: Run tests
+        run: pytest tests/ --cov=src --cov-report=xml
+      
+      - name: Model validation
+        run: python scripts/validate_model.py
+
+  deploy:
+    needs: test
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to production
+        run: |
+          # Build and push Docker image
+          docker build -t myregistry/model:${{ github.sha }} .
+          docker push myregistry/model:${{ github.sha }}</code></pre>
+            
+            <h2>4. Model Serving with FastAPI</h2>
+            <pre><code class="language-python">from fastapi import FastAPI, File, UploadFile
+import mlflow.pyfunc
+from PIL import Image
+import io
+
+app = FastAPI(title="Crack Detection API")
+
+# Load production model
+model = mlflow.pyfunc.load_model("models:/CrackDetectionModel/Production")
+
+@app.post("/predict")
+async def predict(file: UploadFile = File(...)):
+    """Predict crack presence in uploaded image."""
+    image_bytes = await file.read()
+    image = Image.open(io.BytesIO(image_bytes))
+    
+    # Preprocess and predict
+    features = preprocess(image)
+    prediction = model.predict(features)
+    
+    return {
+        "filename": file.filename,
+        "prediction": "crack" if prediction[0] == 1 else "no_crack",
+        "confidence": float(prediction[1])
+    }
+
+@app.get("/health")
+def health_check():
+    return {"status": "healthy", "model_version": "1.2.0"}</code></pre>
+            
+            <h2>5. Monitoring and Drift Detection</h2>
+            <pre><code class="language-python">from evidently import ColumnMapping
+from evidently.report import Report
+from evidently.metrics import DataDriftTable, DatasetDriftMetric
+
+def check_data_drift(reference_data, current_data):
+    """Detect data drift between training and production data."""
+    report = Report(metrics=[
+        DatasetDriftMetric(),
+        DataDriftTable()
+    ])
+    
+    report.run(
+        reference_data=reference_data,
+        current_data=current_data
+    )
+    
+    # Get drift score
+    drift_detected = report.as_dict()['metrics'][0]['result']['dataset_drift']
+    
+    if drift_detected:
+        alert_team("Data drift detected! Consider retraining.")
+    
+    return report</code></pre>
+            
+            <h2>Project Structure for MLOps</h2>
+            <pre><code class="language-bash">ml-project/
+├── .github/workflows/      # CI/CD pipelines
+├── data/
+│   ├── raw/               # Original data
+│   └── processed/         # Transformed data
+├── models/                # Saved model artifacts
+├── notebooks/             # Exploration notebooks
+├── src/
+│   ├── data/             # Data processing
+│   ├── features/         # Feature engineering
+│   ├── models/           # Model training
+│   └── serving/          # API endpoints
+├── tests/                 # Unit and integration tests
+├── Dockerfile
+├── requirements.txt
+├── mlflow.yaml           # MLflow config
+└── dvc.yaml              # Data version control</code></pre>
+            
+            <h2>Conclusion</h2>
+            <p>MLOps transforms ML from experimental notebooks to production-ready systems. Start with experiment tracking, then progressively add model registry, CI/CD, and monitoring. The investment pays off in reproducibility, reliability, and faster iteration cycles.</p>
+        </article>
+    </main>
+    <footer class="text-white text-center py-4">
+        <p>Connect with me:</p>
+        <ul class="list-inline mb-0">
+            <li class="list-inline-item"><a href="https://github.com/mohammadnajeeb" class="text-white"><i class="fab fa-github fa-lg"></i></a></li>
+            <li class="list-inline-item"><a href="https://linkedin.com/in/mohammadnajeeb" class="text-white"><i class="fab fa-linkedin fa-lg"></i></a></li>
+            <li class="list-inline-item"><a href="https://twitter.com/md__najeeb" class="text-white"><i class="fab fa-twitter fa-lg"></i></a></li>
+        </ul>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.js"></script>
+</body>
+</html>

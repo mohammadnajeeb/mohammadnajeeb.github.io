@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CI/CD Pipelines for Machine Learning Projects - Mohammad Najeeb</title>
+    
+    <meta name="description" content="Implement CI/CD pipelines for ML projects using GitHub Actions. Automate testing, training, model validation, and deployment for reproducible machine learning.">
+    <meta name="keywords" content="CI/CD, GitHub Actions, Machine Learning, MLOps, Automation, Testing, Model Deployment, DevOps, Python, Mohammad Najeeb">
+    <meta name="author" content="Mohammad Najeeb">
+    <meta name="robots" content="index, follow">
+    
+    <meta property="og:title" content="CI/CD Pipelines for Machine Learning Projects">
+    <meta property="og:description" content="Automate ML workflows with CI/CD pipelines.">
+    <meta property="og:url" content="https://mohammadnajeeb.github.io/blog/blog_post_18.html">
+    <meta property="og:type" content="article">
+    
+    <meta name="google-site-verification" content="s9wkPDxJlx_Dvk8KiR2W2GkyQGBKSCU_EGImxA7Zmn0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WVBGG8N5CE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-WVBGG8N5CE');
+</script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg sticky-top">
+            <div class="container">
+                <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item"><a class="nav-link" href="../pages/publications.html">Publications</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../pages/projects.html">Projects</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../pages/experience.html">Experience</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../social/youtube.html">YouTube</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.html">Blog</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <nav aria-label="breadcrumb" class="container mt-3">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="index.html">Blog</a></li>
+                <li class="breadcrumb-item active">CI/CD for ML Projects</li>
+            </ol>
+        </nav>
+    </header>
+    <main class="container my-5">
+        <article>
+            <h1>CI/CD Pipelines for Machine Learning Projects</h1>
+            <p class="text-muted">Published on November 5, 2025</p>
+            
+            <p>ML projects require more than code testing—they need data validation, model training, performance benchmarking, and deployment automation. Here's how to build comprehensive CI/CD pipelines for ML using GitHub Actions.</p>
+            
+            <h2>ML-Specific CI/CD Challenges</h2>
+            <ul>
+                <li><strong>Data dependencies:</strong> Code changes might not affect model quality</li>
+                <li><strong>Non-determinism:</strong> Same code can produce different results</li>
+                <li><strong>Long training times:</strong> Can't run full training on every commit</li>
+                <li><strong>Large artifacts:</strong> Models often exceed Git limits</li>
+            </ul>
+            
+            <h2>Pipeline Architecture</h2>
+            <pre><code class="language-yaml"># .github/workflows/ml-pipeline.yml
+name: ML CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  # Stage 1: Code Quality
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+      
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install -r requirements-dev.txt
+      
+      - name: Lint with ruff
+        run: ruff check src/
+      
+      - name: Type check with mypy
+        run: mypy src/
+      
+      - name: Run unit tests
+        run: pytest tests/unit/ -v --cov=src --cov-report=xml
+      
+      - name: Upload coverage
+        uses: codecov/codecov-action@v3
+
+  # Stage 2: Data Validation
+  validate-data:
+    runs-on: ubuntu-latest
+    needs: lint-and-test
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      
+      - name: Download test data
+        run: dvc pull data/test_sample.csv
+      
+      - name: Validate data schema
+        run: python scripts/validate_data.py
+      
+      - name: Check data quality
+        run: |
+          python -c "
+          import pandas as pd
+          from great_expectations import expect
+          
+          df = pd.read_csv('data/test_sample.csv')
+          assert df.isnull().sum().sum() == 0, 'Found null values'
+          assert len(df) > 100, 'Insufficient test data'
+          print('Data validation passed!')
+          "
+
+  # Stage 3: Model Training (on specific triggers)
+  train-model:
+    runs-on: ubuntu-latest
+    needs: validate-data
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      
+      - name: Pull training data
+        run: dvc pull data/train/
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      
+      - name: Train model
+        run: python src/train.py --config configs/production.yaml
+        env:
+          MLFLOW_TRACKING_URI: ${{ secrets.MLFLOW_TRACKING_URI }}
+      
+      - name: Upload model artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: trained-model
+          path: models/
+
+  # Stage 4: Model Validation
+  validate-model:
+    runs-on: ubuntu-latest
+    needs: train-model
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Download model artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: trained-model
+          path: models/
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      
+      - name: Run model validation
+        run: |
+          python scripts/validate_model.py \
+            --model-path models/model.pt \
+            --min-accuracy 0.85 \
+            --max-latency-ms 100
+
+  # Stage 5: Deploy
+  deploy:
+    runs-on: ubuntu-latest
+    needs: validate-model
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Download model
+        uses: actions/download-artifact@v3
+        with:
+          name: trained-model
+          path: models/
+      
+      - name: Build Docker image
+        run: |
+          docker build -t myregistry/ml-model:${{ github.sha }} .
+          docker push myregistry/ml-model:${{ github.sha }}
+      
+      - name: Deploy to production
+        run: |
+          kubectl set image deployment/ml-api \
+            api=myregistry/ml-model:${{ github.sha }}</code></pre>
+            
+            <h2>Model Validation Script</h2>
+            <pre><code class="language-python"># scripts/validate_model.py
+import argparse
+import torch
+import time
+import numpy as np
+from pathlib import Path
+
+def validate_model(model_path: str, min_accuracy: float, max_latency_ms: float):
+    """Validate model meets production requirements."""
+    
+    # Load model
+    model = torch.load(model_path)
+    model.eval()
+    
+    # Load test data
+    test_data = torch.load('data/test_tensor.pt')
+    test_labels = torch.load('data/test_labels.pt')
+    
+    # Measure accuracy
+    with torch.no_grad():
+        predictions = model(test_data)
+        accuracy = (predictions.argmax(dim=1) == test_labels).float().mean()
+    
+    # Measure latency
+    latencies = []
+    dummy_input = torch.randn(1, *test_data.shape[1:])
+    for _ in range(100):
+        start = time.perf_counter()
+        with torch.no_grad():
+            _ = model(dummy_input)
+        latencies.append((time.perf_counter() - start) * 1000)
+    
+    avg_latency = np.mean(latencies)
+    p99_latency = np.percentile(latencies, 99)
+    
+    # Validate
+    print(f"Accuracy: {accuracy:.4f} (min: {min_accuracy})")
+    print(f"Avg Latency: {avg_latency:.2f}ms (max: {max_latency_ms})")
+    print(f"P99 Latency: {p99_latency:.2f}ms")
+    
+    assert accuracy >= min_accuracy, f"Accuracy {accuracy} below threshold {min_accuracy}"
+    assert avg_latency <= max_latency_ms, f"Latency {avg_latency}ms exceeds {max_latency_ms}ms"
+    
+    print("✓ Model validation passed!")
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--model-path", required=True)
+    parser.add_argument("--min-accuracy", type=float, default=0.85)
+    parser.add_argument("--max-latency-ms", type=float, default=100)
+    args = parser.parse_args()
+    
+    validate_model(args.model_path, args.min_accuracy, args.max_latency_ms)</code></pre>
+            
+            <h2>Handling Large Files with DVC</h2>
+            <pre><code class="language-yaml"># Additional workflow for data versioning
+name: Data Pipeline
+
+on:
+  push:
+    paths:
+      - 'data/**'
+      - 'dvc.yaml'
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup DVC
+        uses: iterative/setup-dvc@v1
+      
+      - name: Pull data
+        run: dvc pull
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      
+      - name: Run data pipeline
+        run: dvc repro
+      
+      - name: Push updated data
+        run: dvc push</code></pre>
+            
+            <h2>Best Practices</h2>
+            <ol>
+                <li><strong>Fail fast:</strong> Run quick checks (linting, unit tests) first</li>
+                <li><strong>Cache aggressively:</strong> Pip packages, model weights, processed data</li>
+                <li><strong>Use environments:</strong> Separate staging and production deployments</li>
+                <li><strong>Gate deployments:</strong> Require model validation before production</li>
+                <li><strong>Track everything:</strong> Log metrics, artifacts, and configs to MLflow</li>
+            </ol>
+            
+            <h2>Conclusion</h2>
+            <p>CI/CD for ML goes beyond traditional software pipelines. By incorporating data validation, model training, and performance benchmarking, you can maintain model quality while shipping updates confidently. Start simple and add stages as your project matures.</p>
+        </article>
+    </main>
+    <footer class="text-white text-center py-4">
+        <p>Connect with me:</p>
+        <ul class="list-inline mb-0">
+            <li class="list-inline-item"><a href="https://github.com/mohammadnajeeb" class="text-white"><i class="fab fa-github fa-lg"></i></a></li>
+            <li class="list-inline-item"><a href="https://linkedin.com/in/mohammadnajeeb" class="text-white"><i class="fab fa-linkedin fa-lg"></i></a></li>
+            <li class="list-inline-item"><a href="https://twitter.com/md__najeeb" class="text-white"><i class="fab fa-twitter fa-lg"></i></a></li>
+        </ul>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.js"></script>
+</body>
+</html>

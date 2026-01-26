@@ -88,15 +88,136 @@
     <main class="container my-5">
         <section id="projects">
             <div class="row g-4">
-                <!-- E-Healthcare Project -->
+                <!-- NCBI Gene MCP Client -->
                 <div class="col-md-6 col-lg-4">
                     <div class="card h-100">
                         <div class="card-body">
-                            <h5 class="card-title">E-Healthcare: Disease Detection</h5>
-                            <p class="card-text">Machine learning-based disease detection system using MERN stack.</p>
+                            <h5 class="card-title">NCBI Gene MCP Client</h5>
+                            <p class="card-text">Model Context Protocol (MCP) client integrating with NCBI Entrez API for gene and protein metadata retrieval.</p>
                             <ul class="list-unstyled mt-3">
-                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Built and deployed using MERN stack</li>
-                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Integrated with Gradio for ML model deployment</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Symbol-based queries & flexible search with dual interfaces (REST API + CLI)</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Production-ready MCP server (JSON-RPC) compliant with NCBI rate-limiting</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Deployed on Vercel with modular design and automated testing</li>
+                            </ul>
+                            <div class="tech-stack mb-3">
+                                <span class="badge bg-light text-dark me-2">Python</span>
+                                <span class="badge bg-light text-dark me-2">FastAPI</span>
+                                <span class="badge bg-light text-dark me-2">Bootstrap</span>
+                                <span class="badge bg-light text-dark me-2">Jinja2</span>
+                                <span class="badge bg-light text-dark me-2">REST</span>
+                            </div>
+                            <a href="https://www.ncbi.nlm.nih.gov/books/NBK25501/" class="btn btn-sm btn-outline-secondary" target="_blank">
+                                <i class="fas fa-external-link-alt me-1"></i>NCBI API Docs
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill Lyft -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Skill Lyft: AI-Powered Learning Prototype</h5>
+                            <p class="card-text">Learning platform simplifying complex ML concepts like Transformers, LLMs, and Neural Networks.</p>
+                            <ul class="list-unstyled mt-3">
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Full-stack prototype with React frontend and Flask backend</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>User testing with 20+ students in Agile 4-person workflow</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>30% improvement in navigation efficiency after usability testing</li>
+                            </ul>
+                            <div class="tech-stack mb-3">
+                                <span class="badge bg-light text-dark me-2">Figma</span>
+                                <span class="badge bg-light text-dark me-2">React</span>
+                                <span class="badge bg-light text-dark me-2">Flask</span>
+                                <span class="badge bg-light text-dark me-2">Hugging Face</span>
+                                <span class="badge bg-light text-dark me-2">PyTorch</span>
+                            </div>
+                            <a href="https://www.figma.com/proto/X5T2MzeZiKqaC72WfYJXIB/Untitled?node-id=0-1" class="btn btn-sm btn-outline-secondary" target="_blank">
+                                <i class="fab fa-figma me-1"></i>Figma Prototype
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- UniChatbot -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">UniChatbot</h5>
+                            <p class="card-text">LLM-powered chatbot using LangChain and RAG to answer 500+ university-related queries.</p>
+                            <ul class="list-unstyled mt-3">
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Semantic search with vector embeddings, improving query relevance by 35%</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Optimized local inference with HuggingFace models and dynamic context windows</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Containerized with Docker and deployed via Streamlit</li>
+                            </ul>
+                            <div class="tech-stack mb-3">
+                                <span class="badge bg-light text-dark me-2">Python</span>
+                                <span class="badge bg-light text-dark me-2">LangChain</span>
+                                <span class="badge bg-light text-dark me-2">RAG</span>
+                                <span class="badge bg-light text-dark me-2">ChromaDB</span>
+                                <span class="badge bg-light text-dark me-2">Streamlit</span>
+                            </div>
+                            <a href="https://github.com/mohammadnajeeb/Uni_Chatbot" class="btn btn-sm btn-outline-secondary" target="_blank">
+                                <i class="fab fa-github me-1"></i>Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Smart StudyDesk -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Smart StudyDesk: AI-Powered Study Organizer</h5>
+                            <p class="card-text">Cross-platform study assistant that organizes lecture notes, summarizes content, and generates personalized quizzes.</p>
+                            <ul class="list-unstyled mt-3">
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Usability testing with 20+ students using NASA-TLX workload analysis</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Improved navigation efficiency by 30% after iterative refinements</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Semi-structured interviews for user feedback</li>
+                            </ul>
+                            <div class="tech-stack mb-3">
+                                <span class="badge bg-light text-dark me-2">Figma</span>
+                                <span class="badge bg-light text-dark me-2">UI/UX Research</span>
+                                <span class="badge bg-light text-dark me-2">Python</span>
+                            </div>
+                            <a href="https://www.figma.com/proto/X5T2MzeZiKqaC72WfYJXIB/Untitled?node-id=0-1" class="btn btn-sm btn-outline-secondary" target="_blank">
+                                <i class="fab fa-figma me-1"></i>Figma Prototype
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Zero-Shot Medical Image Classification -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Zero-Shot Medical Image Classification with CLIP</h5>
+                            <p class="card-text">Comparative study of CLIP against Vision Transformers (ViT) and ResNet50 for OCT medical image classification.</p>
+                            <ul class="list-unstyled mt-3">
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Zero-shot classification with custom prompts</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Evaluated with Precision, Recall, F1, ROC-AUC, and MCC metrics</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Validated on OCT2017 and RFMiD datasets</li>
+                            </ul>
+                            <div class="tech-stack mb-3">
+                                <span class="badge bg-light text-dark me-2">Python</span>
+                                <span class="badge bg-light text-dark me-2">PyTorch</span>
+                                <span class="badge bg-light text-dark me-2">CLIP</span>
+                                <span class="badge bg-light text-dark me-2">ViT</span>
+                                <span class="badge bg-light text-dark me-2">ResNet50</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HealthSenseAI -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">HealthSenseAI: Automated Disease Detection</h5>
+                            <p class="card-text">MERN stack web app with Hugging Face pre-trained model for automated disease predictions.</p>
+                            <ul class="list-unstyled mt-3">
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>End-to-end ML pipeline for preprocessing, inference, and deployment</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Leveraged Gradio to cut prototyping cycles by 40%</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>User-friendly interface for non-technical healthcare staff</li>
                             </ul>
                             <div class="tech-stack mb-3">
                                 <span class="badge bg-light text-dark me-2">MongoDB</span>
@@ -105,109 +226,73 @@
                                 <span class="badge bg-light text-dark me-2">Node</span>
                                 <span class="badge bg-light text-dark me-2">Python</span>
                             </div>
+                            <a href="https://github.com/mohammadnajeeb/HealthSenseAI" class="btn btn-sm btn-outline-secondary" target="_blank">
+                                <i class="fab fa-github me-1"></i>Code
+                            </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Fluorescent Microscopy Project -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">Automated Segmentation of Microscopy Images</h5>
-                            <p class="card-text">Deep learning models for neuronal cell identification in fluorescent microscopy images.</p>
-                            <ul class="list-unstyled mt-3">
-                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Implemented Efficient-Unet for neuron detection</li>
-                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Visualization using Seaborn</li>
-                            </ul>
-                            <div class="tech-stack mb-3">
-                                <span class="badge bg-light text-dark me-2">Python</span>
-                                <span class="badge bg-light text-dark me-2">PyTorch</span>
-                                <span class="badge bg-light text-dark me-2">Pillow</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Concrete Cracks Detection -->
+                <!-- Efficient Model for Concrete Cracks Detection -->
                 <div class="col-md-6 col-lg-4">
                     <div class="card h-100">
                         <div class="card-body">
                             <h5 class="card-title">Efficient Model for Concrete Cracks Detection</h5>
-                            <p class="card-text">Deep learning models for architectural infrastructure crack detection.</p>
+                            <p class="card-text">Deep learning models for architectural infrastructure crack detection using knowledge distillation.</p>
                             <ul class="list-unstyled mt-3">
-                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Implemented Knowledge Distillation</li>
-                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Visualization using SciPy libraries</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Trained and benchmarked 9 CNN architectures on SDNET2018 dataset (56k+ images)</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Applied KD to compress ResNet152/DenseNet into lightweight models</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Improved MCC by up to 20% with Grad-CAM interpretability</li>
                             </ul>
                             <div class="tech-stack mb-3">
                                 <span class="badge bg-light text-dark me-2">Python</span>
                                 <span class="badge bg-light text-dark me-2">TensorFlow</span>
                                 <span class="badge bg-light text-dark me-2">Keras</span>
                             </div>
-                            <a href="https://mohammadnajeeb.github.io/projects/2_project/" class="btn btn-sm btn-outline-secondary">
-                                <i class="fab fa-github me-1"></i>Code
-                            </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Face Recognition Project -->
+                <!-- Face Recognition Attendance System -->
                 <div class="col-md-6 col-lg-4">
                     <div class="card h-100">
                         <div class="card-body">
-                            <h5 class="card-title">Face Recognition Based Attendance System</h5>
-                            <p class="card-text">Automated attendance system using facial recognition.</p>
+                            <h5 class="card-title">Automated Face Recognition Attendance System</h5>
+                            <p class="card-text">Real-time face recognition system using Haar cascade and OpenCV processing 200+ students per session.</p>
                             <ul class="list-unstyled mt-3">
-                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Implemented Haar cascade Algorithm</li>
-                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Flask-based web interface</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Deployed in Flask web app for remote access</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Reduced attendance processing time by 80%</li>
                             </ul>
                             <div class="tech-stack mb-3">
                                 <span class="badge bg-light text-dark me-2">Python</span>
                                 <span class="badge bg-light text-dark me-2">OpenCV</span>
                                 <span class="badge bg-light text-dark me-2">Flask</span>
                             </div>
-                            <a href="https://github.com/mohammadnajeeb/jmi_automated_attendace_system" class="btn btn-sm btn-outline-secondary">
+                            <a href="https://github.com/mohammadnajeeb/jmi_automated_attendace_system" class="btn btn-sm btn-outline-secondary" target="_blank">
                                 <i class="fab fa-github me-1"></i>Code
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Climate Change Project -->
+                <!-- Climate Change Forecast -->
                 <div class="col-md-6 col-lg-4">
                     <div class="card h-100">
                         <div class="card-body">
                             <h5 class="card-title">Climate Change Forecast of Delhi</h5>
-                            <p class="card-text">Time Series Analysis using SARIMAX for climate change prediction.</p>
+                            <p class="card-text">SARIMAX forecasting models on 20+ years of regional climate data to predict seasonal and long-term trends.</p>
                             <ul class="list-unstyled mt-3">
-                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Exploratory Data Analysis</li>
-                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Visualization using statistical libraries</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Preprocessed climate time-series data (1.6B+ records, Berkeley Earth)</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Extracted Delhi-specific subsets for regional analysis</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Interpretable visual analytics showing warming trends</li>
                             </ul>
                             <div class="tech-stack mb-3">
                                 <span class="badge bg-light text-dark me-2">Python</span>
                                 <span class="badge bg-light text-dark me-2">Scikit-learn</span>
+                                <span class="badge bg-light text-dark me-2">Matplotlib</span>
+                                <span class="badge bg-light text-dark me-2">Seaborn</span>
                             </div>
-                            <a href="https://github.com/mohammadnajeeb/Climate-Change-Forecast-of-Delhi" class="btn btn-sm btn-outline-secondary">
-                                <i class="fab fa-github me-1"></i>Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Arduino Project -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">Arduino Based Ambient Light</h5>
-                            <p class="card-text">Monitor backlight system for reduced eye strain.</p>
-                            <ul class="list-unstyled mt-3">
-                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>WS2812b RGB Strip programming</li>
-                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>FastLED library implementation</li>
-                            </ul>
-                            <div class="tech-stack mb-3">
-                                <span class="badge bg-light text-dark me-2">C++</span>
-                                <span class="badge bg-light text-dark me-2">Arduino</span>
-                            </div>
-                            <a href="https://github.com/mohammadnajeeb/arduino-based-ambient-light" class="btn btn-sm btn-outline-secondary">
+                            <a href="https://github.com/mohammadnajeeb/Climate-Change-Forecast-of-Delhi" class="btn btn-sm btn-outline-secondary" target="_blank">
                                 <i class="fab fa-github me-1"></i>Code
                             </a>
                         </div>

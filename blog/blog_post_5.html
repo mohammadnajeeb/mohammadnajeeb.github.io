@@ -1,41 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Building Model Context Protocol (MCP) Clients for Bioinformatics APIs - Mohammad Najeeb</title>
-    
+
     <!-- Meta Tags for SEO -->
-    <meta name="description" content="Learn how to build Model Context Protocol (MCP) clients for bioinformatics APIs like NCBI Entrez. A practical guide to integrating genomic data retrieval with modern AI workflows.">
-    <meta name="keywords" content="MCP, Model Context Protocol, Bioinformatics, NCBI, Entrez API, FastAPI, Python, Gene Data, Protein Metadata, Mohammad Najeeb">
+    <meta name="description"
+        content="Learn how to build Model Context Protocol (MCP) clients for bioinformatics APIs like NCBI Entrez. A practical guide to integrating genomic data retrieval with modern AI workflows.">
+    <meta name="keywords"
+        content="MCP, Model Context Protocol, Bioinformatics, NCBI, Entrez API, FastAPI, Python, Gene Data, Protein Metadata, Mohammad Najeeb">
     <meta name="author" content="Mohammad Najeeb">
     <meta name="robots" content="index, follow">
-    
+
     <!-- Open Graph Meta Tags for Social Media -->
-    <meta property="og:title" content="Building Model Context Protocol (MCP) Clients for Bioinformatics APIs - Mohammad Najeeb">
-    <meta property="og:description" content="Learn how to build Model Context Protocol (MCP) clients for bioinformatics APIs like NCBI Entrez.">
+    <meta property="og:title"
+        content="Building Model Context Protocol (MCP) Clients for Bioinformatics APIs - Mohammad Najeeb">
+    <meta property="og:description"
+        content="Learn how to build Model Context Protocol (MCP) clients for bioinformatics APIs like NCBI Entrez.">
     <meta property="og:image" content="../assets/images/blog_post_image.jpg">
     <meta property="og:url" content="https://mohammadnajeeb.github.io/blog/blog_post_5.html">
     <meta property="og:type" content="article">
-    
+
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Building Model Context Protocol (MCP) Clients for Bioinformatics APIs - Mohammad Najeeb">
-    <meta name="twitter:description" content="Learn how to build Model Context Protocol (MCP) clients for bioinformatics APIs like NCBI Entrez.">
+    <meta name="twitter:title"
+        content="Building Model Context Protocol (MCP) Clients for Bioinformatics APIs - Mohammad Najeeb">
+    <meta name="twitter:description"
+        content="Learn how to build Model Context Protocol (MCP) clients for bioinformatics APIs like NCBI Entrez.">
     <meta name="twitter:image" content="../assets/images/blog_post_image.jpg">
-        
+
     <!-- Google Site Verification Meta Tag -->
     <meta name="google-site-verification" content="s9wkPDxJlx_Dvk8KiR2W2GkyQGBKSCU_EGImxA7Zmn0">
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-WVBGG8N5CE"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WVBGG8N5CE"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-  gtag('config', 'G-WVBGG8N5CE');
-</script>
-    
+        gtag('config', 'G-WVBGG8N5CE');
+    </script>
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <!-- MD Bootstrap CSS -->
@@ -44,11 +51,14 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/main.css">
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-lg sticky-top">
             <div class="container">
-                <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                    aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
@@ -58,7 +68,8 @@
                         <li class="nav-item"><a class="nav-link" href="../pages/experience.html">Experience</a></li>
                         <li class="nav-item"><a class="nav-link" href="../social/youtube.html">YouTube</a></li>
                         <li class="nav-item"><a class="nav-link" href="index.html">Blog</a></li>
-                        <li class="nav-item"><a class="nav-link" href="../assets/Mohammad_Najeeb_CV_Nov_16_24.pdf" target="_blank">Download Profile</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../assets/Mohammad_Najeeb_CV_Nov_16_24.pdf"
+                                target="_blank">Download Profile</a></li>
                     </ul>
                     <form class="d-flex">
                         <div class="input-group">
@@ -83,20 +94,29 @@
         <article>
             <h1>Building Model Context Protocol (MCP) Clients for Bioinformatics APIs</h1>
             <p class="text-muted">Published on January 20, 2026</p>
-            
-            <p>The intersection of AI and bioinformatics is creating unprecedented opportunities for data-driven research. In this post, I'll share my experience building an <strong>MCP (Model Context Protocol) client</strong> that integrates with the <strong>NCBI Entrez API</strong> to retrieve structured gene and protein metadata—a project that bridges modern AI tooling with life sciences data.</p>
-            
+
+            <p>The intersection of AI and bioinformatics is creating unprecedented opportunities for data-driven
+                research. In this post, I'll share my experience building an <strong>MCP (Model Context Protocol)
+                    client</strong> that integrates with the <strong>NCBI Entrez API</strong> to retrieve structured
+                gene and protein metadata—a project that bridges modern AI tooling with life sciences data.</p>
+
             <h2>What is Model Context Protocol (MCP)?</h2>
-            <p>MCP is an emerging standard for enabling AI models to interact with external tools and data sources in a structured, reliable way. Unlike ad-hoc API integrations, MCP provides a standardized JSON-RPC interface that allows language models to query databases, retrieve files, and execute functions with proper error handling and rate limiting.</p>
-            
-            <p>For bioinformatics applications, this means AI assistants can now reliably query genomic databases, retrieve protein sequences, and analyze gene expression data—all through a unified protocol.</p>
-            
+            <p>MCP is an emerging standard for enabling AI models to interact with external tools and data sources in a
+                structured, reliable way. Unlike ad-hoc API integrations, MCP provides a standardized JSON-RPC interface
+                that allows language models to query databases, retrieve files, and execute functions with proper error
+                handling and rate limiting.</p>
+
+            <p>For bioinformatics applications, this means AI assistants can now reliably query genomic databases,
+                retrieve protein sequences, and analyze gene expression data—all through a unified protocol.</p>
+
             <h2>Architecture: NCBI Gene MCP Client</h2>
             <p>My implementation consists of three core components:</p>
-            
+
             <h3>1. MCP Server (JSON-RPC Compliant)</h3>
-            <p>The server exposes tools for gene symbol queries, flexible search, and ID-based retrieval. It's fully compliant with NCBI's rate-limiting standards (3 requests/second without API key, 10 with key) to ensure responsible API usage.</p>
-            
+            <p>The server exposes tools for gene symbol queries, flexible search, and ID-based retrieval. It's fully
+                compliant with NCBI's rate-limiting standards (3 requests/second without API key, 10 with key) to ensure
+                responsible API usage.</p>
+
             <pre><code class="language-python"># Example MCP tool definition
 @mcp_server.tool()
 async def search_gene(symbol: str, organism: str = "Homo sapiens"):
@@ -106,21 +126,26 @@ async def search_gene(symbol: str, organism: str = "Homo sapiens"):
         term=f"{symbol}[Gene Name] AND {organism}[Organism]"
     )
     return format_gene_results(results)</code></pre>
-            
+
             <h3>2. Dual Interface Design</h3>
-            <p>The system provides both a <strong>REST API</strong> (FastAPI) for web applications and a <strong>CLI</strong> for command-line workflows. This flexibility allows researchers to integrate gene data retrieval into Jupyter notebooks, web dashboards, or automated pipelines.</p>
-            
+            <p>The system provides both a <strong>REST API</strong> (FastAPI) for web applications and a
+                <strong>CLI</strong> for command-line workflows. This flexibility allows researchers to integrate gene
+                data retrieval into Jupyter notebooks, web dashboards, or automated pipelines.</p>
+
             <h3>3. Production Deployment</h3>
-            <p>The entire system is deployed on Vercel with Bootstrap frontend, featuring modular design and automated testing for maintainability. The architecture follows clean separation of concerns:</p>
+            <p>The entire system is deployed on Vercel with Bootstrap frontend, featuring modular design and automated
+                testing for maintainability. The architecture follows clean separation of concerns:</p>
             <ul>
                 <li><strong>Data Layer:</strong> Entrez API client with caching and retry logic</li>
                 <li><strong>Business Logic:</strong> Gene/protein metadata parsing and normalization</li>
                 <li><strong>Presentation:</strong> REST endpoints and CLI commands</li>
             </ul>
-            
+
             <h2>Why This Matters for Bioinformatics Research</h2>
-            <p>Traditional bioinformatics workflows often involve manual data retrieval, format conversion, and integration steps. MCP-enabled tools can automate these processes while maintaining data provenance and reproducibility.</p>
-            
+            <p>Traditional bioinformatics workflows often involve manual data retrieval, format conversion, and
+                integration steps. MCP-enabled tools can automate these processes while maintaining data provenance and
+                reproducibility.</p>
+
             <p>Key benefits include:</p>
             <ul>
                 <li><strong>Structured Data Access:</strong> Gene metadata returned in consistent JSON format</li>
@@ -128,12 +153,13 @@ async def search_gene(symbol: str, organism: str = "Homo sapiens"):
                 <li><strong>Rate Limit Compliance:</strong> Built-in throttling prevents API abuse</li>
                 <li><strong>Extensibility:</strong> Easy to add new databases (UniProt, Ensembl, etc.)</li>
             </ul>
-            
+
             <h2>Technical Challenges & Solutions</h2>
-            
+
             <h3>Handling NCBI's XML Responses</h3>
-            <p>NCBI returns data in XML format, which requires careful parsing. I implemented custom parsers that extract relevant fields while handling missing data gracefully:</p>
-            
+            <p>NCBI returns data in XML format, which requires careful parsing. I implemented custom parsers that
+                extract relevant fields while handling missing data gracefully:</p>
+
             <pre><code class="language-python">def parse_gene_record(xml_record):
     """Extract structured data from NCBI gene record."""
     return {
@@ -143,10 +169,10 @@ async def search_gene(symbol: str, organism: str = "Homo sapiens"):
         "organism": safe_extract(xml_record, "Entrezgene_source/BioSource/BioSource_org/Org-ref/Org-ref_taxname"),
         "chromosome": safe_extract(xml_record, "Entrezgene_locus/Gene-commentary/Gene-commentary_label"),
     }</code></pre>
-            
+
             <h3>Async Rate Limiting</h3>
             <p>To comply with NCBI's usage policies, I implemented an async rate limiter using Python's asyncio:</p>
-            
+
             <pre><code class="language-python">class RateLimiter:
     def __init__(self, requests_per_second: float):
         self.min_interval = 1.0 / requests_per_second
@@ -159,7 +185,7 @@ async def search_gene(symbol: str, organism: str = "Homo sapiens"):
             if elapsed < self.min_interval:
                 await asyncio.sleep(self.min_interval - elapsed)
             self.last_request = time.time()</code></pre>
-            
+
             <h2>Future Directions</h2>
             <p>This project opens several exciting possibilities:</p>
             <ul>
@@ -168,28 +194,39 @@ async def search_gene(symbol: str, organism: str = "Homo sapiens"):
                 <li>Automated annotation pipelines for novel sequences</li>
                 <li>Natural language interfaces for complex genomic queries</li>
             </ul>
-            
+
             <h2>Conclusion</h2>
-            <p>Building MCP clients for bioinformatics APIs represents a significant step toward making genomic data more accessible to AI-powered research tools. By combining structured protocols with domain-specific knowledge, we can create systems that accelerate scientific discovery while maintaining data quality and API compliance.</p>
-            
-            <p>The code for this project demonstrates how modern software engineering practices—async programming, modular design, automated testing—can be applied to bioinformatics tool development. As AI continues to transform research workflows, such integrations will become increasingly valuable.</p>
-            
+            <p>Building MCP clients for bioinformatics APIs represents a significant step toward making genomic data
+                more accessible to AI-powered research tools. By combining structured protocols with domain-specific
+                knowledge, we can create systems that accelerate scientific discovery while maintaining data quality and
+                API compliance.</p>
+
+            <p>The code for this project demonstrates how modern software engineering practices—async programming,
+                modular design, automated testing—can be applied to bioinformatics tool development. As AI continues to
+                transform research workflows, such integrations will become increasingly valuable.</p>
+
             <div class="mt-4 p-3 bg-light rounded">
-                <strong>Related Project:</strong> <a href="../pages/projects.html">NCBI Gene MCP Client</a> - View the full project details and implementation.
+                <strong>Related Project:</strong> <a href="../pages/projects.html">NCBI Gene MCP Client</a> - View the
+                full project details and implementation.
             </div>
         </article>
     </main>
     <footer class="text-white text-center py-4">
         <p>Connect with me:</p>
         <ul class="list-inline mb-0">
-            <li class="list-inline-item"><a href="https://github.com/mohammadnajeeb" class="text-white"><i class="fab fa-github fa-lg"></i></a></li>
-            <li class="list-inline-item"><a href="https://linkedin.com/in/mohammadnajeeb" class="text-white"><i class="fab fa-linkedin fa-lg"></i></a></li>
-            <li class="list-inline-item"><a href="https://twitter.com/md__najeeb" class="text-white"><i class="fab fa-twitter fa-lg"></i></a></li>
-            <li class="list-inline-item"><a href="https://instagram.com/pixellements" class="text-white"><i class="fab fa-instagram fa-lg"></i></a></li>
+            <li class="list-inline-item"><a href="https://github.com/mohammadnajeeb" class="text-white"><i
+                        class="fab fa-github fa-lg"></i></a></li>
+            <li class="list-inline-item"><a href="https://linkedin.com/in/mohammadnajeeb" class="text-white"><i
+                        class="fab fa-linkedin fa-lg"></i></a></li>
+            <li class="list-inline-item"><a href="https://twitter.com/md__najeeb" class="text-white"><i
+                        class="fab fa-twitter fa-lg"></i></a></li>
+            <li class="list-inline-item"><a href="https://instagram.com/pixellements" class="text-white"><i
+                        class="fab fa-instagram fa-lg"></i></a></li>
         </ul>
     </footer>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.js"></script>
     <script src="../assets/js/main.js"></script>
 </body>
+
 </html>

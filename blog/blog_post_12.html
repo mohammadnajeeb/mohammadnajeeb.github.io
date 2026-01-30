@@ -1,39 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Real-Time Face Recognition Systems with OpenCV and Deep Learning - Mohammad Najeeb</title>
-    
-    <meta name="description" content="Build a real-time face recognition system using OpenCV, dlib, and deep learning. Learn face detection, encoding, and recognition for attendance systems.">
-    <meta name="keywords" content="Face Recognition, OpenCV, Deep Learning, dlib, Haar Cascade, Face Detection, Python, Attendance System, Computer Vision, Mohammad Najeeb">
+
+    <meta name="description"
+        content="Build a real-time face recognition system using OpenCV, dlib, and deep learning. Learn face detection, encoding, and recognition for attendance systems.">
+    <meta name="keywords"
+        content="Face Recognition, OpenCV, Deep Learning, dlib, Haar Cascade, Face Detection, Python, Attendance System, Computer Vision, Mohammad Najeeb">
     <meta name="author" content="Mohammad Najeeb">
     <meta name="robots" content="index, follow">
-    
+
     <meta property="og:title" content="Real-Time Face Recognition Systems with OpenCV">
     <meta property="og:description" content="Build face recognition systems for automated attendance.">
     <meta property="og:url" content="https://mohammadnajeeb.github.io/blog/blog_post_12.html">
     <meta property="og:type" content="article">
-    
+
     <meta name="google-site-verification" content="s9wkPDxJlx_Dvk8KiR2W2GkyQGBKSCU_EGImxA7Zmn0">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-WVBGG8N5CE"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-WVBGG8N5CE');
-</script>
-    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WVBGG8N5CE"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-WVBGG8N5CE');
+    </script>
+
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/main.css">
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-lg sticky-top">
             <div class="container">
-                <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
@@ -59,9 +64,12 @@
         <article>
             <h1>Real-Time Face Recognition Systems with OpenCV and Deep Learning</h1>
             <p class="text-muted">Published on December 10, 2025</p>
-            
-            <p>Face recognition has evolved from a research curiosity to a practical technology used in security, attendance systems, and photo organization. In this post, I'll walk through building a <strong>real-time face recognition system</strong> that processes 200+ students per session—achieving an <strong>80% reduction in attendance processing time</strong>.</p>
-            
+
+            <p>Face recognition has evolved from a research curiosity to a practical technology used in security,
+                attendance systems, and photo organization. In this post, I'll walk through building a <strong>real-time
+                    face recognition system</strong> that processes 200+ students per session—achieving an <strong>80%
+                    reduction in attendance processing time</strong>.</p>
+
             <h2>System Architecture</h2>
             <p>Our system uses a three-stage pipeline:</p>
             <ol>
@@ -69,7 +77,7 @@
                 <li><strong>Face Encoding:</strong> Convert faces to numerical representations</li>
                 <li><strong>Face Recognition:</strong> Match encodings against a database</li>
             </ol>
-            
+
             <h2>1. Face Detection with Haar Cascades</h2>
             <pre><code class="language-python">import cv2
 import numpy as np
@@ -109,7 +117,7 @@ class DlibFaceDetector:
     def detect_faces(self, frame):
         rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         return self.detector(rgb, 1)</code></pre>
-            
+
             <h2>2. Face Encoding with Deep Learning</h2>
             <pre><code class="language-python">import face_recognition
 
@@ -146,7 +154,7 @@ class FaceEncoder:
             self.known_names.append(name)
             return True
         return False</code></pre>
-            
+
             <h2>3. Face Recognition and Matching</h2>
             <pre><code class="language-python">class FaceRecognizer:
     def __init__(self, encoder, threshold=0.6):
@@ -189,7 +197,7 @@ class FaceEncoder:
             })
         
         return results</code></pre>
-            
+
             <h2>4. Complete Attendance System</h2>
             <pre><code class="language-python">import datetime
 import csv
@@ -264,7 +272,7 @@ class AttendanceSystem:
             writer.writerow(['Name', 'Timestamp'])
             for name, timestamp in self.attendance_log.items():
                 writer.writerow([name, timestamp.isoformat()])</code></pre>
-            
+
             <h2>Performance Optimization</h2>
             <p>For real-time performance with 200+ students:</p>
             <ul>
@@ -273,7 +281,7 @@ class AttendanceSystem:
                 <li><strong>Batch processing:</strong> Encode multiple faces simultaneously</li>
                 <li><strong>GPU acceleration:</strong> Use CUDA-enabled dlib</li>
             </ul>
-            
+
             <h2>Results</h2>
             <p>Our deployed system achieved:</p>
             <ul>
@@ -281,20 +289,26 @@ class AttendanceSystem:
                 <li><strong>Processing speed:</strong> 15 FPS on standard laptop</li>
                 <li><strong>Time savings:</strong> 80% reduction vs. manual attendance</li>
             </ul>
-            
+
             <div class="mt-4 p-3 bg-light rounded">
-                <strong>Related Project:</strong> <a href="https://github.com/mohammadnajeeb/jmi_automated_attendace_system">Automated Face Recognition Attendance System on GitHub</a>
+                <strong>Related Project:</strong> <a
+                    href="https://github.com/mohammadnajeeb/jmi_automated_attendace_system">Automated Face Recognition
+                    Attendance System on GitHub</a>
             </div>
         </article>
     </main>
     <footer class="text-white text-center py-4">
         <p>Connect with me:</p>
         <ul class="list-inline mb-0">
-            <li class="list-inline-item"><a href="https://github.com/mohammadnajeeb" class="text-white"><i class="fab fa-github fa-lg"></i></a></li>
-            <li class="list-inline-item"><a href="https://linkedin.com/in/mohammadnajeeb" class="text-white"><i class="fab fa-linkedin fa-lg"></i></a></li>
-            <li class="list-inline-item"><a href="https://twitter.com/md__najeeb" class="text-white"><i class="fab fa-twitter fa-lg"></i></a></li>
+            <li class="list-inline-item"><a href="https://github.com/mohammadnajeeb" class="text-white"><i
+                        class="fab fa-github fa-lg"></i></a></li>
+            <li class="list-inline-item"><a href="https://linkedin.com/in/mohammadnajeeb" class="text-white"><i
+                        class="fab fa-linkedin fa-lg"></i></a></li>
+            <li class="list-inline-item"><a href="https://twitter.com/md__najeeb" class="text-white"><i
+                        class="fab fa-twitter fa-lg"></i></a></li>
         </ul>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.js"></script>
 </body>
+
 </html>

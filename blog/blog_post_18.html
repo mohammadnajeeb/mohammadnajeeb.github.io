@@ -1,39 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CI/CD Pipelines for Machine Learning Projects - Mohammad Najeeb</title>
-    
-    <meta name="description" content="Implement CI/CD pipelines for ML projects using GitHub Actions. Automate testing, training, model validation, and deployment for reproducible machine learning.">
-    <meta name="keywords" content="CI/CD, GitHub Actions, Machine Learning, MLOps, Automation, Testing, Model Deployment, DevOps, Python, Mohammad Najeeb">
+
+    <meta name="description"
+        content="Implement CI/CD pipelines for ML projects using GitHub Actions. Automate testing, training, model validation, and deployment for reproducible machine learning.">
+    <meta name="keywords"
+        content="CI/CD, GitHub Actions, Machine Learning, MLOps, Automation, Testing, Model Deployment, DevOps, Python, Mohammad Najeeb">
     <meta name="author" content="Mohammad Najeeb">
     <meta name="robots" content="index, follow">
-    
+
     <meta property="og:title" content="CI/CD Pipelines for Machine Learning Projects">
     <meta property="og:description" content="Automate ML workflows with CI/CD pipelines.">
     <meta property="og:url" content="https://mohammadnajeeb.github.io/blog/blog_post_18.html">
     <meta property="og:type" content="article">
-    
+
     <meta name="google-site-verification" content="s9wkPDxJlx_Dvk8KiR2W2GkyQGBKSCU_EGImxA7Zmn0">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-WVBGG8N5CE"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-WVBGG8N5CE');
-</script>
-    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WVBGG8N5CE"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-WVBGG8N5CE');
+    </script>
+
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/main.css">
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-lg sticky-top">
             <div class="container">
-                <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
@@ -59,9 +64,11 @@
         <article>
             <h1>CI/CD Pipelines for Machine Learning Projects</h1>
             <p class="text-muted">Published on November 5, 2025</p>
-            
-            <p>ML projects require more than code testing—they need data validation, model training, performance benchmarking, and deployment automation. Here's how to build comprehensive CI/CD pipelines for ML using GitHub Actions.</p>
-            
+
+            <p>ML projects require more than code testing—they need data validation, model training, performance
+                benchmarking, and deployment automation. Here's how to build comprehensive CI/CD pipelines for ML using
+                GitHub Actions.</p>
+
             <h2>ML-Specific CI/CD Challenges</h2>
             <ul>
                 <li><strong>Data dependencies:</strong> Code changes might not affect model quality</li>
@@ -69,7 +76,7 @@
                 <li><strong>Long training times:</strong> Can't run full training on every commit</li>
                 <li><strong>Large artifacts:</strong> Models often exceed Git limits</li>
             </ul>
-            
+
             <h2>Pipeline Architecture</h2>
             <pre><code class="language-yaml"># .github/workflows/ml-pipeline.yml
 name: ML CI/CD Pipeline
@@ -227,7 +234,7 @@ jobs:
         run: |
           kubectl set image deployment/ml-api \
             api=myregistry/ml-model:${{ github.sha }}</code></pre>
-            
+
             <h2>Model Validation Script</h2>
             <pre><code class="language-python"># scripts/validate_model.py
 import argparse
@@ -282,7 +289,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     validate_model(args.model_path, args.min_accuracy, args.max_latency_ms)</code></pre>
-            
+
             <h2>Handling Large Files with DVC</h2>
             <pre><code class="language-yaml"># Additional workflow for data versioning
 name: Data Pipeline
@@ -313,7 +320,7 @@ jobs:
       
       - name: Push updated data
         run: dvc push</code></pre>
-            
+
             <h2>Best Practices</h2>
             <ol>
                 <li><strong>Fail fast:</strong> Run quick checks (linting, unit tests) first</li>
@@ -322,19 +329,25 @@ jobs:
                 <li><strong>Gate deployments:</strong> Require model validation before production</li>
                 <li><strong>Track everything:</strong> Log metrics, artifacts, and configs to MLflow</li>
             </ol>
-            
+
             <h2>Conclusion</h2>
-            <p>CI/CD for ML goes beyond traditional software pipelines. By incorporating data validation, model training, and performance benchmarking, you can maintain model quality while shipping updates confidently. Start simple and add stages as your project matures.</p>
+            <p>CI/CD for ML goes beyond traditional software pipelines. By incorporating data validation, model
+                training, and performance benchmarking, you can maintain model quality while shipping updates
+                confidently. Start simple and add stages as your project matures.</p>
         </article>
     </main>
     <footer class="text-white text-center py-4">
         <p>Connect with me:</p>
         <ul class="list-inline mb-0">
-            <li class="list-inline-item"><a href="https://github.com/mohammadnajeeb" class="text-white"><i class="fab fa-github fa-lg"></i></a></li>
-            <li class="list-inline-item"><a href="https://linkedin.com/in/mohammadnajeeb" class="text-white"><i class="fab fa-linkedin fa-lg"></i></a></li>
-            <li class="list-inline-item"><a href="https://twitter.com/md__najeeb" class="text-white"><i class="fab fa-twitter fa-lg"></i></a></li>
+            <li class="list-inline-item"><a href="https://github.com/mohammadnajeeb" class="text-white"><i
+                        class="fab fa-github fa-lg"></i></a></li>
+            <li class="list-inline-item"><a href="https://linkedin.com/in/mohammadnajeeb" class="text-white"><i
+                        class="fab fa-linkedin fa-lg"></i></a></li>
+            <li class="list-inline-item"><a href="https://twitter.com/md__najeeb" class="text-white"><i
+                        class="fab fa-twitter fa-lg"></i></a></li>
         </ul>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.js"></script>
 </body>
+
 </html>

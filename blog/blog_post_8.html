@@ -1,41 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Knowledge Distillation for Edge Deployment: Compressing CNNs Without Losing Accuracy - Mohammad Najeeb</title>
-    
+    <title>Knowledge Distillation for Edge Deployment: Compressing CNNs Without Losing Accuracy - Mohammad Najeeb
+    </title>
+
     <!-- Meta Tags for SEO -->
-    <meta name="description" content="Learn how to compress deep learning models using knowledge distillation for edge deployment. Case study: Improving MCC by 20% while reducing model size for embedded crack detection systems.">
-    <meta name="keywords" content="Knowledge Distillation, Model Compression, Edge AI, CNN, Deep Learning, Embedded Systems, Grad-CAM, TensorFlow, ResNet, VGG, Mohammad Najeeb">
+    <meta name="description"
+        content="Learn how to compress deep learning models using knowledge distillation for edge deployment. Case study: Improving MCC by 20% while reducing model size for embedded crack detection systems.">
+    <meta name="keywords"
+        content="Knowledge Distillation, Model Compression, Edge AI, CNN, Deep Learning, Embedded Systems, Grad-CAM, TensorFlow, ResNet, VGG, Mohammad Najeeb">
     <meta name="author" content="Mohammad Najeeb">
     <meta name="robots" content="index, follow">
-    
+
     <!-- Open Graph Meta Tags for Social Media -->
     <meta property="og:title" content="Knowledge Distillation for Edge Deployment - Mohammad Najeeb">
-    <meta property="og:description" content="Compressing deep learning models for embedded systems while improving accuracy.">
+    <meta property="og:description"
+        content="Compressing deep learning models for embedded systems while improving accuracy.">
     <meta property="og:image" content="../assets/images/blog_post_image.jpg">
     <meta property="og:url" content="https://mohammadnajeeb.github.io/blog/blog_post_8.html">
     <meta property="og:type" content="article">
-    
+
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Knowledge Distillation for Edge Deployment - Mohammad Najeeb">
-    <meta name="twitter:description" content="Compressing deep learning models for embedded systems while improving accuracy.">
+    <meta name="twitter:description"
+        content="Compressing deep learning models for embedded systems while improving accuracy.">
     <meta name="twitter:image" content="../assets/images/blog_post_image.jpg">
-        
+
     <!-- Google Site Verification Meta Tag -->
     <meta name="google-site-verification" content="s9wkPDxJlx_Dvk8KiR2W2GkyQGBKSCU_EGImxA7Zmn0">
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-WVBGG8N5CE"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WVBGG8N5CE"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-  gtag('config', 'G-WVBGG8N5CE');
-</script>
-    
+        gtag('config', 'G-WVBGG8N5CE');
+    </script>
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <!-- MD Bootstrap CSS -->
@@ -44,11 +50,14 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/main.css">
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-lg sticky-top">
             <div class="container">
-                <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                    aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
@@ -58,7 +67,8 @@
                         <li class="nav-item"><a class="nav-link" href="../pages/experience.html">Experience</a></li>
                         <li class="nav-item"><a class="nav-link" href="../social/youtube.html">YouTube</a></li>
                         <li class="nav-item"><a class="nav-link" href="index.html">Blog</a></li>
-                        <li class="nav-item"><a class="nav-link" href="../assets/Mohammad_Najeeb_CV_Nov_16_24.pdf" target="_blank">Download Profile</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../assets/Mohammad_Najeeb_CV_Nov_16_24.pdf"
+                                target="_blank">Download Profile</a></li>
                     </ul>
                     <form class="d-flex">
                         <div class="input-group">
@@ -83,12 +93,17 @@
         <article>
             <h1>Knowledge Distillation for Edge Deployment: Compressing CNNs Without Losing Accuracy</h1>
             <p class="text-muted">Published on January 5, 2026</p>
-            
-            <p>Deep learning models achieve impressive accuracy, but deploying them on resource-constrained devices remains challenging. In this post, I'll share how we used <strong>knowledge distillation</strong> to compress large CNN models for crack detection, achieving a <strong>20% improvement in Matthews Correlation Coefficient (MCC)</strong> while making models suitable for embedded deployment.</p>
-            
+
+            <p>Deep learning models achieve impressive accuracy, but deploying them on resource-constrained devices
+                remains challenging. In this post, I'll share how we used <strong>knowledge distillation</strong> to
+                compress large CNN models for crack detection, achieving a <strong>20% improvement in Matthews
+                    Correlation Coefficient (MCC)</strong> while making models suitable for embedded deployment.</p>
+
             <h2>The Problem: Deploying AI on Edge Devices</h2>
-            <p>Infrastructure inspection requires AI that can run on portable devices—drones, handheld scanners, or embedded systems. But state-of-the-art models like ResNet-152 or DenseNet-201 demand significant computational resources:</p>
-            
+            <p>Infrastructure inspection requires AI that can run on portable devices—drones, handheld scanners, or
+                embedded systems. But state-of-the-art models like ResNet-152 or DenseNet-201 demand significant
+                computational resources:</p>
+
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -119,15 +134,18 @@
                     </tr>
                 </tbody>
             </table>
-            
-            <p>For real-time inspection, we needed models that could run in <strong>under 100ms</strong> while maintaining detection accuracy.</p>
-            
+
+            <p>For real-time inspection, we needed models that could run in <strong>under 100ms</strong> while
+                maintaining detection accuracy.</p>
+
             <h2>Knowledge Distillation: Teaching Small Models to Think Big</h2>
-            <p>Knowledge distillation transfers "knowledge" from a large teacher model to a smaller student model. The key insight is that the teacher's soft probability outputs contain more information than hard labels alone.</p>
-            
+            <p>Knowledge distillation transfers "knowledge" from a large teacher model to a smaller student model. The
+                key insight is that the teacher's soft probability outputs contain more information than hard labels
+                alone.</p>
+
             <h3>The Distillation Loss</h3>
             <p>We train the student with a combination of hard label loss and soft target loss:</p>
-            
+
             <pre><code class="language-python">import tensorflow as tf
 
 def distillation_loss(y_true, y_pred, teacher_pred, temperature=3.0, alpha=0.5):
@@ -154,7 +172,7 @@ def distillation_loss(y_true, y_pred, teacher_pred, temperature=3.0, alpha=0.5):
     
     # Combined loss
     return alpha * soft_loss + (1 - alpha) * hard_loss</code></pre>
-            
+
             <h3>Training Pipeline</h3>
             <pre><code class="language-python">class DistillationTrainer:
     def __init__(self, teacher_model, student_model, temperature=3.0):
@@ -188,13 +206,14 @@ def distillation_loss(y_true, y_pred, teacher_pred, temperature=3.0, alpha=0.5):
         )
         
         return loss</code></pre>
-            
+
             <h2>Case Study: SDNET2018 Crack Detection</h2>
-            <p>We applied distillation to the SDNET2018 dataset containing <strong>56,000+ images</strong> of concrete surfaces. Our approach:</p>
-            
+            <p>We applied distillation to the SDNET2018 dataset containing <strong>56,000+ images</strong> of concrete
+                surfaces. Our approach:</p>
+
             <h3>1. Teacher Ensemble</h3>
             <p>Instead of a single teacher, we used an ensemble of high-performing models:</p>
-            
+
             <pre><code class="language-python">def create_teacher_ensemble(models):
     """Create ensemble teacher from multiple models."""
     inputs = tf.keras.Input(shape=(224, 224, 3))
@@ -210,10 +229,10 @@ def distillation_loss(y_true, y_pred, teacher_pred, temperature=3.0, alpha=0.5):
 
 # Ensemble of ResNet-152, DenseNet-201, and EfficientNet-B4
 teacher = create_teacher_ensemble([resnet152, densenet201, efficientnetb4])</code></pre>
-            
+
             <h3>2. Student Architecture Selection</h3>
             <p>We benchmarked lightweight architectures as students:</p>
-            
+
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -244,12 +263,12 @@ teacher = create_teacher_ensemble([resnet152, densenet201, efficientnetb4])</cod
                     </tr>
                 </tbody>
             </table>
-            
+
             <p>Knowledge distillation improved MCC by <strong>14-20%</strong> across all student architectures!</p>
-            
+
             <h3>3. Data Augmentation for Distillation</h3>
             <p>We found that aggressive augmentation during distillation improved generalization:</p>
-            
+
             <pre><code class="language-python">augmentation = tf.keras.Sequential([
     tf.keras.layers.RandomFlip("horizontal_and_vertical"),
     tf.keras.layers.RandomRotation(0.2),
@@ -259,10 +278,11 @@ teacher = create_teacher_ensemble([resnet152, densenet201, efficientnetb4])</cod
     tf.keras.layers.GaussianNoise(0.1),
     tf.keras.layers.RandomBrightness(0.2),
 ])</code></pre>
-            
+
             <h2>Interpretability with Grad-CAM</h2>
-            <p>For infrastructure inspection, interpretability is crucial. Engineers need to understand <em>why</em> the model flagged an area. We integrated Grad-CAM visualizations:</p>
-            
+            <p>For infrastructure inspection, interpretability is crucial. Engineers need to understand <em>why</em> the
+                model flagged an area. We integrated Grad-CAM visualizations:</p>
+
             <pre><code class="language-python">import numpy as np
 
 def grad_cam(model, image, layer_name='conv5_block3_out'):
@@ -291,12 +311,13 @@ def grad_cam(model, image, layer_name='conv5_block3_out'):
     cam = cam / tf.reduce_max(cam)
     
     return cam.numpy()[0]</code></pre>
-            
-            <p>Grad-CAM showed that distilled models learned to focus on crack edges and textures, similar to their teacher models—evidence that knowledge transfer was successful.</p>
-            
+
+            <p>Grad-CAM showed that distilled models learned to focus on crack edges and textures, similar to their
+                teacher models—evidence that knowledge transfer was successful.</p>
+
             <h2>Deployment Results</h2>
             <p>After distillation and INT8 quantization, our models achieved real-time performance:</p>
-            
+
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -333,41 +354,53 @@ def grad_cam(model, image, layer_name='conv5_block3_out'):
                     </tr>
                 </tbody>
             </table>
-            
-            <p>The distilled ResNet-50 with INT8 quantization runs at <strong>15 FPS</strong> on a Jetson Nano while retaining 94% of the teacher's accuracy!</p>
-            
+
+            <p>The distilled ResNet-50 with INT8 quantization runs at <strong>15 FPS</strong> on a Jetson Nano while
+                retaining 94% of the teacher's accuracy!</p>
+
             <h2>Key Takeaways</h2>
             <ol>
-                <li><strong>Temperature matters:</strong> Higher temperatures (3-5) work better for similar teacher-student architectures; lower temperatures (1-2) for very different architectures.</li>
-                <li><strong>Ensemble teachers outperform single teachers:</strong> The diversity of predictions provides richer supervision.</li>
-                <li><strong>Data augmentation during distillation:</strong> Helps the student learn robust features rather than memorizing teacher outputs.</li>
-                <li><strong>Combine with quantization:</strong> Distillation and quantization are complementary—use both for maximum compression.</li>
+                <li><strong>Temperature matters:</strong> Higher temperatures (3-5) work better for similar
+                    teacher-student architectures; lower temperatures (1-2) for very different architectures.</li>
+                <li><strong>Ensemble teachers outperform single teachers:</strong> The diversity of predictions provides
+                    richer supervision.</li>
+                <li><strong>Data augmentation during distillation:</strong> Helps the student learn robust features
+                    rather than memorizing teacher outputs.</li>
+                <li><strong>Combine with quantization:</strong> Distillation and quantization are complementary—use both
+                    for maximum compression.</li>
             </ol>
-            
+
             <h2>Future Work</h2>
             <ul>
                 <li><strong>Self-distillation:</strong> Using the model as its own teacher across training epochs</li>
                 <li><strong>Feature-based distillation:</strong> Matching intermediate layer representations</li>
-                <li><strong>Neural Architecture Search:</strong> Automatically finding optimal student architectures</li>
+                <li><strong>Neural Architecture Search:</strong> Automatically finding optimal student architectures
+                </li>
                 <li><strong>On-device fine-tuning:</strong> Adapting models to new crack types in the field</li>
             </ul>
-            
+
             <div class="mt-4 p-3 bg-light rounded">
-                <strong>Related Project:</strong> <a href="../pages/projects.html">Efficient Model for Concrete Cracks Detection</a> - View the full project with 9 CNN architectures benchmarked.
+                <strong>Related Project:</strong> <a href="../pages/projects.html">Efficient Model for Concrete Cracks
+                    Detection</a> - View the full project with 9 CNN architectures benchmarked.
             </div>
         </article>
     </main>
     <footer class="text-white text-center py-4">
         <p>Connect with me:</p>
         <ul class="list-inline mb-0">
-            <li class="list-inline-item"><a href="https://github.com/mohammadnajeeb" class="text-white"><i class="fab fa-github fa-lg"></i></a></li>
-            <li class="list-inline-item"><a href="https://linkedin.com/in/mohammadnajeeb" class="text-white"><i class="fab fa-linkedin fa-lg"></i></a></li>
-            <li class="list-inline-item"><a href="https://twitter.com/md__najeeb" class="text-white"><i class="fab fa-twitter fa-lg"></i></a></li>
-            <li class="list-inline-item"><a href="https://instagram.com/pixellements" class="text-white"><i class="fab fa-instagram fa-lg"></i></a></li>
+            <li class="list-inline-item"><a href="https://github.com/mohammadnajeeb" class="text-white"><i
+                        class="fab fa-github fa-lg"></i></a></li>
+            <li class="list-inline-item"><a href="https://linkedin.com/in/mohammadnajeeb" class="text-white"><i
+                        class="fab fa-linkedin fa-lg"></i></a></li>
+            <li class="list-inline-item"><a href="https://twitter.com/md__najeeb" class="text-white"><i
+                        class="fab fa-twitter fa-lg"></i></a></li>
+            <li class="list-inline-item"><a href="https://instagram.com/pixellements" class="text-white"><i
+                        class="fab fa-instagram fa-lg"></i></a></li>
         </ul>
     </footer>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.js"></script>
     <script src="../assets/js/main.js"></script>
 </body>
+
 </html>

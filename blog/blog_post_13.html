@@ -1,39 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Docker for Data Scientists: Containerizing ML Workflows - Mohammad Najeeb</title>
-    
-    <meta name="description" content="Learn Docker fundamentals for data science and machine learning. Containerize ML models, create reproducible environments, and deploy with Docker Compose.">
-    <meta name="keywords" content="Docker, Data Science, Machine Learning, Containerization, DevOps, Python, Jupyter, Docker Compose, Reproducibility, Mohammad Najeeb">
+
+    <meta name="description"
+        content="Learn Docker fundamentals for data science and machine learning. Containerize ML models, create reproducible environments, and deploy with Docker Compose.">
+    <meta name="keywords"
+        content="Docker, Data Science, Machine Learning, Containerization, DevOps, Python, Jupyter, Docker Compose, Reproducibility, Mohammad Najeeb">
     <meta name="author" content="Mohammad Najeeb">
     <meta name="robots" content="index, follow">
-    
+
     <meta property="og:title" content="Docker for Data Scientists: Containerizing ML Workflows">
     <meta property="og:description" content="Learn Docker fundamentals for data science and ML.">
     <meta property="og:url" content="https://mohammadnajeeb.github.io/blog/blog_post_13.html">
     <meta property="og:type" content="article">
-    
+
     <meta name="google-site-verification" content="s9wkPDxJlx_Dvk8KiR2W2GkyQGBKSCU_EGImxA7Zmn0">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-WVBGG8N5CE"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-WVBGG8N5CE');
-</script>
-    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WVBGG8N5CE"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-WVBGG8N5CE');
+    </script>
+
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/main.css">
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-lg sticky-top">
             <div class="container">
-                <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
@@ -59,9 +64,11 @@
         <article>
             <h1>Docker for Data Scientists: Containerizing ML Workflows</h1>
             <p class="text-muted">Published on December 5, 2025</p>
-            
-            <p>"It works on my machine" is the bane of collaborative data science. <strong>Docker</strong> solves this by packaging your code, dependencies, and environment into portable containers. In this guide, I'll show you how to containerize ML workflows for reproducibility and seamless deployment.</p>
-            
+
+            <p>"It works on my machine" is the bane of collaborative data science. <strong>Docker</strong> solves this
+                by packaging your code, dependencies, and environment into portable containers. In this guide, I'll show
+                you how to containerize ML workflows for reproducibility and seamless deployment.</p>
+
             <h2>Why Docker for Data Science?</h2>
             <ul>
                 <li><strong>Reproducibility:</strong> Same environment everywhere</li>
@@ -69,7 +76,7 @@
                 <li><strong>Portability:</strong> Run on any machine with Docker</li>
                 <li><strong>Scalability:</strong> Easy transition to cloud/Kubernetes</li>
             </ul>
-            
+
             <h2>Basic Dockerfile for ML Projects</h2>
             <pre><code class="language-dockerfile"># Use official Python image with CUDA support
 FROM python:3.10-slim
@@ -102,7 +109,7 @@ EXPOSE 8000
 
 # Default command
 CMD ["uvicorn", "src.api:app", "--host", "0.0.0.0", "--port", "8000"]</code></pre>
-            
+
             <h2>Optimizing Docker Images</h2>
             <h3>Multi-Stage Builds</h3>
             <pre><code class="language-dockerfile"># Stage 1: Build
@@ -121,7 +128,7 @@ RUN pip install --no-cache-dir /wheels/*
 
 COPY src/ ./src/
 CMD ["python", "src/main.py"]</code></pre>
-            
+
             <h3>Layer Caching Strategy</h3>
             <pre><code class="language-dockerfile"># ✗ Bad: Invalidates cache on any code change
 COPY . .
@@ -131,7 +138,7 @@ RUN pip install -r requirements.txt
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 COPY src/ ./src/</code></pre>
-            
+
             <h2>Docker Compose for ML Pipelines</h2>
             <pre><code class="language-yaml"># docker-compose.yml
 version: '3.8'
@@ -179,7 +186,7 @@ services:
 
 volumes:
   postgres_data:</code></pre>
-            
+
             <h2>GPU Support with NVIDIA Docker</h2>
             <pre><code class="language-dockerfile"># Dockerfile for GPU training
 FROM nvidia/cuda:11.8-cudnn8-runtime-ubuntu22.04
@@ -197,10 +204,10 @@ COPY . /app
 WORKDIR /app
 
 CMD ["python3", "train.py"]</code></pre>
-            
+
             <p>Run with GPU:</p>
             <pre><code class="language-bash">docker run --gpus all -it my-ml-image python train.py</code></pre>
-            
+
             <h2>Development vs Production Images</h2>
             <pre><code class="language-dockerfile"># Dockerfile.dev
 FROM python:3.10
@@ -211,7 +218,7 @@ RUN pip install -r requirements.txt -r requirements-dev.txt
 
 # Mount code as volume for hot reload
 CMD ["uvicorn", "src.api:app", "--reload", "--host", "0.0.0.0"]</code></pre>
-            
+
             <pre><code class="language-dockerfile"># Dockerfile.prod
 FROM python:3.10-slim AS builder
 # ... build steps ...
@@ -221,7 +228,7 @@ FROM python:3.10-slim
 COPY --from=builder /app /app
 USER nonroot
 CMD ["gunicorn", "src.api:app", "-w", "4", "-k", "uvicorn.workers.UvicornWorker"]</code></pre>
-            
+
             <h2>Common Docker Commands for DS</h2>
             <pre><code class="language-bash"># Build image
 docker build -t my-ml-project:v1 .
@@ -237,19 +244,25 @@ docker logs -f container_name
 
 # Clean up
 docker system prune -a  # Remove unused images/containers</code></pre>
-            
+
             <h2>Conclusion</h2>
-            <p>Docker transforms data science from "works on my machine" to "works everywhere." Start with simple Dockerfiles, then graduate to Docker Compose for multi-service ML pipelines. Your future self (and collaborators) will thank you.</p>
+            <p>Docker transforms data science from "works on my machine" to "works everywhere." Start with simple
+                Dockerfiles, then graduate to Docker Compose for multi-service ML pipelines. Your future self (and
+                collaborators) will thank you.</p>
         </article>
     </main>
     <footer class="text-white text-center py-4">
         <p>Connect with me:</p>
         <ul class="list-inline mb-0">
-            <li class="list-inline-item"><a href="https://github.com/mohammadnajeeb" class="text-white"><i class="fab fa-github fa-lg"></i></a></li>
-            <li class="list-inline-item"><a href="https://linkedin.com/in/mohammadnajeeb" class="text-white"><i class="fab fa-linkedin fa-lg"></i></a></li>
-            <li class="list-inline-item"><a href="https://twitter.com/md__najeeb" class="text-white"><i class="fab fa-twitter fa-lg"></i></a></li>
+            <li class="list-inline-item"><a href="https://github.com/mohammadnajeeb" class="text-white"><i
+                        class="fab fa-github fa-lg"></i></a></li>
+            <li class="list-inline-item"><a href="https://linkedin.com/in/mohammadnajeeb" class="text-white"><i
+                        class="fab fa-linkedin fa-lg"></i></a></li>
+            <li class="list-inline-item"><a href="https://twitter.com/md__najeeb" class="text-white"><i
+                        class="fab fa-twitter fa-lg"></i></a></li>
         </ul>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.js"></script>
 </body>
+
 </html>

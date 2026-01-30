@@ -1,39 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Building Interactive Dashboards with Plotly and Dash - Mohammad Najeeb</title>
-    
-    <meta name="description" content="Create interactive data dashboards using Plotly and Dash. Learn to build real-time visualizations, callbacks, and deploy analytics apps with Python.">
-    <meta name="keywords" content="Plotly, Dash, Data Visualization, Dashboard, Python, Interactive Charts, Analytics, Data Science, Web App, Mohammad Najeeb">
+
+    <meta name="description"
+        content="Create interactive data dashboards using Plotly and Dash. Learn to build real-time visualizations, callbacks, and deploy analytics apps with Python.">
+    <meta name="keywords"
+        content="Plotly, Dash, Data Visualization, Dashboard, Python, Interactive Charts, Analytics, Data Science, Web App, Mohammad Najeeb">
     <meta name="author" content="Mohammad Najeeb">
     <meta name="robots" content="index, follow">
-    
+
     <meta property="og:title" content="Building Interactive Dashboards with Plotly and Dash">
     <meta property="og:description" content="Create interactive data dashboards with Python.">
     <meta property="og:url" content="https://mohammadnajeeb.github.io/blog/blog_post_17.html">
     <meta property="og:type" content="article">
-    
+
     <meta name="google-site-verification" content="s9wkPDxJlx_Dvk8KiR2W2GkyQGBKSCU_EGImxA7Zmn0">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-WVBGG8N5CE"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-WVBGG8N5CE');
-</script>
-    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WVBGG8N5CE"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-WVBGG8N5CE');
+    </script>
+
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/main.css">
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-lg sticky-top">
             <div class="container">
-                <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
@@ -59,9 +64,11 @@
         <article>
             <h1>Building Interactive Dashboards with Plotly and Dash</h1>
             <p class="text-muted">Published on November 10, 2025</p>
-            
-            <p>Static charts are limiting. When stakeholders need to explore data, filter by date ranges, or drill into specifics, you need interactive dashboards. <strong>Plotly</strong> and <strong>Dash</strong> let Python developers build professional analytics apps without JavaScript.</p>
-            
+
+            <p>Static charts are limiting. When stakeholders need to explore data, filter by date ranges, or drill into
+                specifics, you need interactive dashboards. <strong>Plotly</strong> and <strong>Dash</strong> let Python
+                developers build professional analytics apps without JavaScript.</p>
+
             <h2>Why Dash?</h2>
             <ul>
                 <li><strong>Pure Python:</strong> No JavaScript required</li>
@@ -69,10 +76,10 @@
                 <li><strong>Plotly integration:</strong> Beautiful, interactive charts</li>
                 <li><strong>Deployable:</strong> Flask-based, easy to host</li>
             </ul>
-            
+
             <h2>Getting Started</h2>
             <pre><code class="language-bash">pip install dash plotly pandas</code></pre>
-            
+
             <h3>Minimal Dashboard</h3>
             <pre><code class="language-python">from dash import Dash, html, dcc
 import plotly.express as px
@@ -104,10 +111,10 @@ app.layout = html.Div([
 
 if __name__ == '__main__':
     app.run_server(debug=True)</code></pre>
-            
+
             <h2>Adding Interactivity with Callbacks</h2>
             <p>Callbacks connect UI components to update charts dynamically:</p>
-            
+
             <pre><code class="language-python">from dash import Dash, html, dcc, callback, Output, Input
 import plotly.express as px
 
@@ -165,7 +172,7 @@ def update_chart(year, metric):
 
 if __name__ == '__main__':
     app.run_server(debug=True)</code></pre>
-            
+
             <h2>Multi-Page Dashboard</h2>
             <pre><code class="language-python">from dash import Dash, html, dcc, page_container, page_registry
 
@@ -199,7 +206,7 @@ layout = html.Div([
     html.H2("Detailed Analysis"),
     # ... analysis content
 ])</code></pre>
-            
+
             <h2>Real-Time Data Updates</h2>
             <pre><code class="language-python">from dash import Dash, html, dcc, callback, Output, Input
 import plotly.graph_objs as go
@@ -248,7 +255,7 @@ def update_live_graph(n):
     )
     
     return fig</code></pre>
-            
+
             <h2>Styling with Bootstrap</h2>
             <pre><code class="language-python">import dash_bootstrap_components as dbc
 from dash import Dash, html, dcc
@@ -276,7 +283,7 @@ app.layout = dbc.Container([
         ], width=9)
     ])
 ], fluid=True)</code></pre>
-            
+
             <h2>Deployment</h2>
             <pre><code class="language-python"># For production with Gunicorn
 # gunicorn app:server -b 0.0.0.0:8050
@@ -290,19 +297,25 @@ server = app.server  # Expose Flask server
 
 if __name__ == '__main__':
     app.run_server(debug=False, host='0.0.0.0', port=8050)</code></pre>
-            
+
             <h2>Conclusion</h2>
-            <p>Dash empowers data scientists to build production-quality dashboards without frontend expertise. Start simple, add interactivity with callbacks, and deploy with standard Python tools. Your stakeholders will love being able to explore data on their own.</p>
+            <p>Dash empowers data scientists to build production-quality dashboards without frontend expertise. Start
+                simple, add interactivity with callbacks, and deploy with standard Python tools. Your stakeholders will
+                love being able to explore data on their own.</p>
         </article>
     </main>
     <footer class="text-white text-center py-4">
         <p>Connect with me:</p>
         <ul class="list-inline mb-0">
-            <li class="list-inline-item"><a href="https://github.com/mohammadnajeeb" class="text-white"><i class="fab fa-github fa-lg"></i></a></li>
-            <li class="list-inline-item"><a href="https://linkedin.com/in/mohammadnajeeb" class="text-white"><i class="fab fa-linkedin fa-lg"></i></a></li>
-            <li class="list-inline-item"><a href="https://twitter.com/md__najeeb" class="text-white"><i class="fab fa-twitter fa-lg"></i></a></li>
+            <li class="list-inline-item"><a href="https://github.com/mohammadnajeeb" class="text-white"><i
+                        class="fab fa-github fa-lg"></i></a></li>
+            <li class="list-inline-item"><a href="https://linkedin.com/in/mohammadnajeeb" class="text-white"><i
+                        class="fab fa-linkedin fa-lg"></i></a></li>
+            <li class="list-inline-item"><a href="https://twitter.com/md__najeeb" class="text-white"><i
+                        class="fab fa-twitter fa-lg"></i></a></li>
         </ul>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.js"></script>
 </body>
+
 </html>

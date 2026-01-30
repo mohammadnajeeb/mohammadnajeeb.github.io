@@ -1,39 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Time Series Forecasting with SARIMAX: Predicting Climate Trends - Mohammad Najeeb</title>
-    
-    <meta name="description" content="A comprehensive guide to time series forecasting using SARIMAX models. Learn to analyze climate data, handle seasonality, and make accurate predictions with Python.">
-    <meta name="keywords" content="Time Series, SARIMAX, ARIMA, Forecasting, Climate Data, Python, Statsmodels, Data Science, Seasonal Decomposition, Mohammad Najeeb">
+
+    <meta name="description"
+        content="A comprehensive guide to time series forecasting using SARIMAX models. Learn to analyze climate data, handle seasonality, and make accurate predictions with Python.">
+    <meta name="keywords"
+        content="Time Series, SARIMAX, ARIMA, Forecasting, Climate Data, Python, Statsmodels, Data Science, Seasonal Decomposition, Mohammad Najeeb">
     <meta name="author" content="Mohammad Najeeb">
     <meta name="robots" content="index, follow">
-    
+
     <meta property="og:title" content="Time Series Forecasting with SARIMAX: Predicting Climate Trends">
     <meta property="og:description" content="Learn time series forecasting with SARIMAX for climate data analysis.">
     <meta property="og:url" content="https://mohammadnajeeb.github.io/blog/blog_post_10.html">
     <meta property="og:type" content="article">
-    
+
     <meta name="google-site-verification" content="s9wkPDxJlx_Dvk8KiR2W2GkyQGBKSCU_EGImxA7Zmn0">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-WVBGG8N5CE"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-WVBGG8N5CE');
-</script>
-    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WVBGG8N5CE"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-WVBGG8N5CE');
+    </script>
+
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/main.css">
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-lg sticky-top">
             <div class="container">
-                <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
@@ -59,9 +64,12 @@
         <article>
             <h1>Time Series Forecasting with SARIMAX: Predicting Climate Trends</h1>
             <p class="text-muted">Published on December 20, 2025</p>
-            
-            <p>Climate data exhibits complex patterns: long-term trends, seasonal cycles, and irregular fluctuations. <strong>SARIMAX</strong> (Seasonal AutoRegressive Integrated Moving Average with eXogenous factors) is a powerful framework for modeling such data. In this post, I'll walk through forecasting Delhi's temperature trends using 20+ years of historical data.</p>
-            
+
+            <p>Climate data exhibits complex patterns: long-term trends, seasonal cycles, and irregular fluctuations.
+                <strong>SARIMAX</strong> (Seasonal AutoRegressive Integrated Moving Average with eXogenous factors) is a
+                powerful framework for modeling such data. In this post, I'll walk through forecasting Delhi's
+                temperature trends using 20+ years of historical data.</p>
+
             <h2>Understanding SARIMAX Components</h2>
             <p>SARIMAX extends ARIMA with seasonal terms and external variables:</p>
             <ul>
@@ -71,7 +79,7 @@
                 <li><strong>Seasonal (P, D, Q, s):</strong> Same components at seasonal lag</li>
                 <li><strong>X:</strong> Exogenous variables (e.g., CO2 levels)</li>
             </ul>
-            
+
             <h2>Data Preparation</h2>
             <pre><code class="language-python">import pandas as pd
 import numpy as np
@@ -91,7 +99,7 @@ monthly = monthly.interpolate(method='time')
 
 print(f"Data range: {monthly.index[0]} to {monthly.index[-1]}")
 print(f"Total observations: {len(monthly)}")</code></pre>
-            
+
             <h3>Seasonal Decomposition</h3>
             <pre><code class="language-python"># Decompose into trend, seasonal, and residual
 decomposition = seasonal_decompose(monthly, model='additive', period=12)
@@ -102,7 +110,7 @@ decomposition.trend.plot(ax=axes[1], title='Trend')
 decomposition.seasonal.plot(ax=axes[2], title='Seasonal')
 decomposition.resid.plot(ax=axes[3], title='Residual')
 plt.tight_layout()</code></pre>
-            
+
             <h2>Stationarity Testing</h2>
             <pre><code class="language-python">from statsmodels.tsa.stattools import adfuller, kpss
 
@@ -128,7 +136,7 @@ is_stationary = test_stationarity(monthly)
 if not is_stationary:
     print("\nFirst Difference:")
     test_stationarity(monthly.diff().dropna())</code></pre>
-            
+
             <h2>Model Selection with Auto-ARIMA</h2>
             <pre><code class="language-python">from pmdarima import auto_arima
 
@@ -149,7 +157,7 @@ auto_model = auto_arima(
 
 print(f"\nBest model: SARIMAX{auto_model.order}x{auto_model.seasonal_order}")
 print(f"AIC: {auto_model.aic():.2f}")</code></pre>
-            
+
             <h2>Training the SARIMAX Model</h2>
             <pre><code class="language-python"># Split data: 80% train, 20% test
 train_size = int(len(monthly) * 0.8)
@@ -166,7 +174,7 @@ model = SARIMAX(
 
 results = model.fit(disp=False)
 print(results.summary())</code></pre>
-            
+
             <h3>Model Diagnostics</h3>
             <pre><code class="language-python"># Diagnostic plots
 fig = results.plot_diagnostics(figsize=(12, 8))
@@ -177,7 +185,7 @@ from statsmodels.stats.diagnostic import acorr_ljungbox
 lb_test = acorr_ljungbox(results.resid, lags=[12, 24, 36])
 print("Ljung-Box Test:")
 print(lb_test)</code></pre>
-            
+
             <h2>Forecasting and Evaluation</h2>
             <pre><code class="language-python"># Generate forecasts
 forecast = results.get_forecast(steps=len(test))
@@ -194,7 +202,7 @@ mape = np.mean(np.abs((test - forecast_mean) / test)) * 100
 print(f"MAE: {mae:.3f}°C")
 print(f"RMSE: {rmse:.3f}°C")
 print(f"MAPE: {mape:.2f}%")</code></pre>
-            
+
             <h3>Visualization</h3>
             <pre><code class="language-python">plt.figure(figsize=(14, 6))
 plt.plot(train.index, train, label='Training Data', color='blue')
@@ -211,26 +219,35 @@ plt.xlabel('Date')
 plt.ylabel('Temperature (°C)')
 plt.legend()
 plt.grid(True, alpha=0.3)</code></pre>
-            
+
             <h2>Long-Term Climate Trend Analysis</h2>
-            <p>Our analysis revealed a warming trend of approximately <strong>0.02°C per year</strong> over the past two decades—consistent with global climate change observations.</p>
-            
+            <p>Our analysis revealed a warming trend of approximately <strong>0.02°C per year</strong> over the past two
+                decades—consistent with global climate change observations.</p>
+
             <h2>Conclusion</h2>
-            <p>SARIMAX provides a robust framework for climate forecasting, capturing both seasonal patterns and long-term trends. While deep learning approaches like LSTMs offer alternatives, SARIMAX remains interpretable and effective for many time series applications.</p>
-            
+            <p>SARIMAX provides a robust framework for climate forecasting, capturing both seasonal patterns and
+                long-term trends. While deep learning approaches like LSTMs offer alternatives, SARIMAX remains
+                interpretable and effective for many time series applications.</p>
+
             <div class="mt-4 p-3 bg-light rounded">
-                <strong>Related Project:</strong> <a href="https://github.com/mohammadnajeeb/Climate-Change-Forecast-of-Delhi">Climate Change Forecast of Delhi on GitHub</a>
+                <strong>Related Project:</strong> <a
+                    href="https://github.com/mohammadnajeeb/Climate-Change-Forecast-of-Delhi">Climate Change Forecast of
+                    Delhi on GitHub</a>
             </div>
         </article>
     </main>
     <footer class="text-white text-center py-4">
         <p>Connect with me:</p>
         <ul class="list-inline mb-0">
-            <li class="list-inline-item"><a href="https://github.com/mohammadnajeeb" class="text-white"><i class="fab fa-github fa-lg"></i></a></li>
-            <li class="list-inline-item"><a href="https://linkedin.com/in/mohammadnajeeb" class="text-white"><i class="fab fa-linkedin fa-lg"></i></a></li>
-            <li class="list-inline-item"><a href="https://twitter.com/md__najeeb" class="text-white"><i class="fab fa-twitter fa-lg"></i></a></li>
+            <li class="list-inline-item"><a href="https://github.com/mohammadnajeeb" class="text-white"><i
+                        class="fab fa-github fa-lg"></i></a></li>
+            <li class="list-inline-item"><a href="https://linkedin.com/in/mohammadnajeeb" class="text-white"><i
+                        class="fab fa-linkedin fa-lg"></i></a></li>
+            <li class="list-inline-item"><a href="https://twitter.com/md__najeeb" class="text-white"><i
+                        class="fab fa-twitter fa-lg"></i></a></li>
         </ul>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.js"></script>
 </body>
+
 </html>

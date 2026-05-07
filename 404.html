@@ -41,8 +41,10 @@
         gtag('config', 'G-WVBGG8N5CE');
     </script>
 
+    <!-- Apply saved theme before render to avoid flash -->
+    <script>(function(){const t=localStorage.getItem('theme')||'light';document.documentElement.setAttribute('data-theme',t);})();</script>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&display=swap" rel="stylesheet">
     <!-- MD Bootstrap CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -67,18 +69,12 @@
                         <li class="nav-item"><a class="nav-link" href="pages/publications.html">Publications</a></li>
                         <li class="nav-item"><a class="nav-link" href="pages/projects.html">Projects</a></li>
                         <li class="nav-item"><a class="nav-link" href="pages/experience.html">Experience</a></li>
-                        <li class="nav-item"><a class="nav-link" href="social/youtube.html">YouTube</a></li>
                         <li class="nav-item"><a class="nav-link" href="assets/Najeeb_Resume.pdf"
                                 target="_blank">Download Profile</a></li>
                     </ul>
-                    <form class="d-flex">
-                        <div class="input-group">
-                            <input type="search" class="form-control" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-light" type="submit">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>
-                    </form>
+                    <button id="darkModeToggle" class="btn btn-outline-light btn-sm ms-2" title="Toggle dark mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
                 </div>
             </div>
         </nav>

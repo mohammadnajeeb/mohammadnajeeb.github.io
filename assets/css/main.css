@@ -209,23 +209,89 @@ footer a:hover {
     body {
         font-size: 0.95rem;
     }
-    
+
     .nav-link {
         font-size: 0.85rem;
     }
-    
+
     .card-title {
-        font-size: 1.25rem;
+        font-size: 1.2rem;
     }
 
-    .navbar .form-control {
-        width: 150px;
+    .hero-headline {
+        font-size: 1.2rem;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+
+    .skill-chip {
+        font-size: 0.75rem;
+        padding: 0.25em 0.65em;
+    }
+
+    /* Stack CTA buttons vertically on small screens */
+    .hero-card .d-flex {
+        flex-direction: column;
+    }
+
+    .hero-card .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Full-width profile card image */
+    .card-img-top {
+        max-height: 280px;
+        object-fit: cover;
+        object-position: top;
+    }
+
+    /* Reduce timeline card left padding */
+    .timeline .card-body,
+    .publication-list .card-body {
+        padding: 0.85rem;
+    }
+
+    /* Wrap badges */
+    .d-flex.justify-content-between {
+        flex-direction: column;
+        gap: 0.4rem;
+    }
+
+    .d-flex.justify-content-between .badge {
+        align-self: flex-start;
     }
 }
 
-@media (max-width: 576px) {
-    .navbar .form-control {
-        width: 100%;
+@media (max-width: 480px) {
+    .hero-headline {
+        font-size: 1.1rem;
+    }
+
+    .navbar .nav-link {
+        padding: 0.4rem 0.5rem !important;
+        font-size: 0.82rem;
+    }
+
+    /* Touch-friendly buttons */
+    .btn {
+        min-height: 40px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Blog/project cards: full width on tiny screens */
+    .col-md-6.col-lg-4 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .contact-info p {
+        font-size: 0.85rem;
+        word-break: break-all;
     }
 }
 
@@ -246,13 +312,117 @@ footer a:hover {
 @media (max-width: 991.98px) {
     .navbar-collapse {
         background-color: var(--navbar-color);
-        padding: 1rem;
-        border-radius: 0.25rem;
-        margin-top: 0.5rem;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        z-index: 1000;
+        padding: 0.75rem 1rem;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        margin-top: 0.25rem;
     }
+}
+
+/* ── Hero Section ── */
+.hero-card {
+    border-left: 3px solid var(--navbar-color) !important;
+}
+
+.hero-headline {
+    font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--text-color);
+    margin-bottom: 0.6rem;
+}
+
+.hero-subtext {
+    font-size: 0.88rem;
+    color: #6c757d;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.3px;
+}
+
+/* ── Skill Chips ── */
+.skill-chip-group {
+    margin-bottom: 0.9rem;
+}
+
+.skill-chip-label {
+    font-size: 0.68rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: #999;
+    margin-bottom: 0.4rem;
+}
+
+.skill-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.skill-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.28em 0.8em;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 300;
+    letter-spacing: 0.2px;
+    background-color: #eef4f4;
+    color: var(--navbar-color);
+    border: 1px solid #cce0e0;
+    transition: background-color var(--transition-speed) ease;
+}
+
+/* ── Featured Project Card ── */
+.card.featured {
+    border-left: 3px solid var(--navbar-color) !important;
+}
+
+/* ── Dark Mode ── */
+[data-theme="dark"] {
+    --background-color: #0d1117;
+    --text-color: #e6edf3;
+    --card-border-color: #30363d;
+    --navbar-color: #003c3c;
+    --link-color: #4db8b8;
+    --link-hover-color: #66cccc;
+}
+
+[data-theme="dark"] .card {
+    background-color: #161b22;
+    border-color: #30363d;
+}
+
+[data-theme="dark"] .card-text {
+    color: #8b949e;
+}
+
+[data-theme="dark"] .text-muted {
+    color: #8b949e !important;
+}
+
+[data-theme="dark"] .badge.bg-light {
+    background-color: #21262d !important;
+    color: #c9d1d9 !important;
+}
+
+[data-theme="dark"] .badge.bg-secondary {
+    background-color: #2d333b !important;
+}
+
+[data-theme="dark"] .skill-chip {
+    background-color: #1c2128;
+    color: #4db8b8;
+    border-color: #30363d;
+}
+
+[data-theme="dark"] .skill-chip-label {
+    color: #6e7681;
+}
+
+[data-theme="dark"] .breadcrumb-item a {
+    color: var(--link-color);
+}
+
+[data-theme="dark"] .hero-subtext {
+    color: #8b949e;
 }

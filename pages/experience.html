@@ -4,29 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Experience - Mohammad Najeeb</title>
+    <title>Experience | Mohammad Najeeb — AI Research & Full-Stack</title>
 
     <!-- Meta Tags for SEO -->
     <meta name="description"
-        content="Mohammad Najeeb's professional experience in Machine Learning, Computer Vision, HCI, and full-stack web development.">
+        content="Research Assistant (HiWi) at Saarland University — building adaptive RAG learning platforms, hybrid vector search systems, audio-to-knowledge-graph NLP pipelines, and computer vision tools.">
     <meta name="keywords"
-        content="Mohammad Najeeb, experience, Machine Learning, Computer Vision, HCI, MERN stack, web development, full-stack development, research">
+        content="Mohammad Najeeb experience, HiWi Saarland University, RAG system, pgvector, hybrid search, NLP pipeline, computer vision, OpenCV, MediaPipe">
+    <meta name="theme-color" content="#005555">
     <meta name="author" content="Mohammad Najeeb">
     <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://mohammadnajeeb.github.io/pages/experience.html">
 
     <!-- Open Graph Meta Tags for Social Media -->
-    <meta property="og:title" content="Experience - Mohammad Najeeb">
+    <meta property="og:title" content="Experience | Mohammad Najeeb — AI Research & Full-Stack">
     <meta property="og:description"
-        content="Mohammad Najeeb's professional experience in Machine Learning, Computer Vision, HCI, and full-stack web development.">
+        content="Research Assistant at Saarland University building adaptive AI learning platforms, hybrid RAG systems, NLP pipelines, and computer vision research tools.">
     <meta property="og:image" content="../assets/images/profile-photo.JPG">
     <meta property="og:url" content="https://mohammadnajeeb.github.io/pages/experience.html">
     <meta property="og:type" content="website">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Experience - Mohammad Najeeb">
+    <meta name="twitter:title" content="Experience | Mohammad Najeeb — AI Research & Full-Stack">
     <meta name="twitter:description"
-        content="Mohammad Najeeb's professional experience in Machine Learning, Computer Vision, HCI, and full-stack web development.">
+        content="Research Assistant at Saarland University building adaptive AI learning platforms, hybrid RAG systems, NLP pipelines, and computer vision research tools.">
     <meta name="twitter:image" content="../assets/images/profile-photo.JPG">
 
 
@@ -45,13 +47,50 @@
     </script>
 
 
+    <!-- Apply saved theme before render to avoid flash -->
+    <script>(function(){const t=localStorage.getItem('theme')||'light';document.documentElement.setAttribute('data-theme',t);})();</script>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&display=swap" rel="stylesheet">
     <!-- MD Bootstrap CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/main.css">
+
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://mohammadnajeeb.github.io/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Experience",
+          "item": "https://mohammadnajeeb.github.io/pages/experience.html"
+        }
+      ]
+    },
+    {
+      "@type": "ProfilePage",
+      "name": "Experience \u2014 Mohammad Najeeb",
+      "url": "https://mohammadnajeeb.github.io/pages/experience.html",
+      "about": {
+        "@id": "https://mohammadnajeeb.github.io/#person"
+      }
+    }
+  ]
+}
+    </script>
 </head>
 
 <body>
@@ -70,19 +109,13 @@
                         <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
                         <li class="nav-item"><a class="nav-link" href="experience.html">Experience</a></li>
                         <!-- <li class="nav-item"><a class="nav-link" href="../social/instagram.html">Photography</a></li> -->
-                        <li class="nav-item"><a class="nav-link" href="../social/youtube.html">YouTube</a></li>
                         <li class="nav-item"><a class="nav-link" href="../blog/index.html">Blog</a></li>
                         <li class="nav-item"><a class="nav-link" href="../assets/Najeeb_Resume.pdf"
                                 target="_blank">Download Profile</a></li>
                     </ul>
-                    <form class="d-flex">
-                        <div class="input-group">
-                            <input type="search" class="form-control" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-light" type="submit">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>
-                    </form>
+                    <button id="darkModeToggle" class="btn btn-outline-light btn-sm ms-2" title="Toggle dark mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
                 </div>
             </div>
         </nav>
@@ -97,70 +130,106 @@
     <main class="container my-5">
         <section id="experience">
             <div class="timeline">
-                <!-- Experience Entry 1 -->
+                <!-- Experience Entry 1: EdTech HiWi -->
                 <div class="card mb-4">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center mb-2">
-                            <h5 class="card-title mb-0">Graduate Research Assistant</h5>
-                            <span class="badge bg-primary">Sept. 2024 - Mar. 2025</span>
+                            <h5 class="card-title mb-0">Research Assistant (HiWi)</h5>
+                            <span class="badge bg-primary">Apr. 2026 – Present</span>
                         </div>
-                        <h6 class="text-muted">Computational Interaction Group (CIX), Saarland University | Saarbrücken,
-                            Germany</h6>
+                        <h6 class="text-muted">Educational Technology Department, Saarland University | Saarbrücken, Germany</h6>
+
+                        <p class="mt-3 mb-1"><strong>SRL Course Platform (Full-Stack, Lead Developer)</strong></p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <i class="fas fa-check-circle text-success me-2"></i>
+                                Architected end-to-end adaptive learning platform (React + TypeScript, Node.js/Express, PostgreSQL + pgvector); authored ADRs covering authentication, LLM abstraction, and data architecture
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check-circle text-success me-2"></i>
+                                Engineered a Medallion ETL pipeline ingesting PDFs, LLM-driven semantic chunking, and pgvector HNSW indexing
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check-circle text-success me-2"></i>
+                                Implemented hybrid retrieval combining pgvector HNSW vector similarity and BM25 full-text search (PostgreSQL GIN index) via Reciprocal Rank Fusion (RRF), exposed through a FastAPI endpoint
+                            </li>
+                        </ul>
+
+                        <p class="mt-3 mb-1"><strong>AI Co-Design Platform — Audio-to-Knowledge-Graph Pipeline</strong></p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <i class="fas fa-check-circle text-success me-2"></i>
+                                Architected NLP pipeline converting pedagogical audio to knowledge graphs: OpenAI Whisper STT, pyannote speaker diarization, LLM entity and relation extraction
+                            </li>
+                        </ul>
+
+                        <p class="mt-3 mb-1"><strong>Real-Time Gaze Streaming Optimization</strong></p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <i class="fas fa-check-circle text-success me-2"></i>
+                                Optimized WebSocket-based real-time gaze data streaming from Pupil Labs glasses API, reducing end-to-end latency on a custom behavioral data collection tool
+                            </li>
+                        </ul>
+
+                        <div class="mt-3">
+                            <span class="badge bg-light text-dark me-2">React</span>
+                            <span class="badge bg-light text-dark me-2">TypeScript</span>
+                            <span class="badge bg-light text-dark me-2">PostgreSQL</span>
+                            <span class="badge bg-light text-dark me-2">pgvector</span>
+                            <span class="badge bg-light text-dark me-2">FastAPI</span>
+                            <span class="badge bg-light text-dark me-2">RAG</span>
+                            <span class="badge bg-light text-dark me-2">LLM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience Entry 2: CIX HiWi -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h5 class="card-title mb-0">Research Assistant (HiWi)</h5>
+                            <span class="badge bg-secondary">Sept. 2024 – Mar. 2025</span>
+                        </div>
+                        <h6 class="text-muted">Computational Interaction Group (CIX), Saarland University | Saarbrücken, Germany</h6>
                         <ul class="list-unstyled mt-3">
                             <li class="mb-2">
                                 <i class="fas fa-check-circle text-success me-2"></i>
-                                Engineered and deployed a scalable ETL pipeline (MediaPipe + OpenCV) processing 50k+
-                                finger-movement events and log frames for multi-modal touchscreen studies
+                                Built automated computer vision pipeline (OpenCV, MediaPipe) processing 50–60 typing videos (5M+ frames); achieved 96% accuracy on hand posture detection, eliminating manual annotation bottleneck for interaction research
                             </li>
                             <li class="mb-2">
                                 <i class="fas fa-check-circle text-success me-2"></i>
-                                Implemented automated data validation using Euclidean thresholding, achieving over 95%
-                                accuracy for event classification with real-time violation/accuracy reports
-                            </li>
-                            <li class="mb-2">
-                                <i class="fas fa-check-circle text-success me-2"></i>
-                                Delivered reproducible, queryable datasets that cut manual processing by 30% and enabled
-                                dynamic forecasting pipelines for PhD research projects
+                                Delivered production-ready dataset and reusable pipeline enabling scalable behavioral analysis for touchscreen/gesture interaction studies
                             </li>
                         </ul>
                         <div class="mt-3">
-                            <span class="badge bg-light text-dark me-2">ETL Pipeline</span>
-                            <span class="badge bg-light text-dark me-2">MediaPipe</span>
                             <span class="badge bg-light text-dark me-2">OpenCV</span>
+                            <span class="badge bg-light text-dark me-2">MediaPipe</span>
+                            <span class="badge bg-light text-dark me-2">Python</span>
                             <span class="badge bg-light text-dark me-2">HCI</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Experience Entry 2 -->
+                <!-- Experience Entry 3: Orion Solutions -->
                 <div class="card mb-4">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center mb-2">
-                            <h5 class="card-title mb-0">Research Intern</h5>
-                            <span class="badge bg-info">Nov. 2021 - May 2022</span>
+                            <h5 class="card-title mb-0">Web Developer & UI/UX Intern</h5>
+                            <span class="badge bg-secondary">Jul. 2022 – Sept. 2023</span>
                         </div>
-                        <h6 class="text-muted">Taibah University | Medina, Saudi Arabia (Remote)</h6>
+                        <h6 class="text-muted">Orion Solutions | Lucknow, India · Hybrid</h6>
                         <ul class="list-unstyled mt-3">
                             <li class="mb-2">
                                 <i class="fas fa-check-circle text-success me-2"></i>
-                                Processed and structured the SDNET2018 dataset (56k+ images) for CNN-based crack
-                                detection, applying augmentation and KD-based model optimization
-                            </li>
-                            <li class="mb-2">
-                                <i class="fas fa-check-circle text-success me-2"></i>
-                                Improved Matthews Correlation Coefficient (MCC) by 20% for ResNet-50/VGG-19 models
-                            </li>
-                            <li class="mb-2">
-                                <i class="fas fa-check-circle text-success me-2"></i>
-                                Enhanced interpretability with Grad-CAM for embedded deployment on resource-limited
-                                devices
+                                Shipped responsive web interfaces (React, HTML, JavaScript) in cross-functional team; managed design-to-dev handoff; integrated REST APIs and database layers (MongoDB, SQL)
                             </li>
                         </ul>
                         <div class="mt-3">
-                            <span class="badge bg-light text-dark me-2">Deep Learning</span>
-                            <span class="badge bg-light text-dark me-2">Computer Vision</span>
-                            <span class="badge bg-light text-dark me-2">Knowledge Distillation</span>
-                            <span class="badge bg-light text-dark me-2">Grad-CAM</span>
+                            <span class="badge bg-light text-dark me-2">React</span>
+                            <span class="badge bg-light text-dark me-2">JavaScript</span>
+                            <span class="badge bg-light text-dark me-2">MongoDB</span>
+                            <span class="badge bg-light text-dark me-2">REST API</span>
+                            <span class="badge bg-light text-dark me-2">UI/UX</span>
                         </div>
                     </div>
                 </div>
@@ -182,6 +251,8 @@
     </footer>
 
     <!-- MDB JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.js"></script>
     <script src="../assets/js/main.js"></script>
 </body>

@@ -77,3 +77,8 @@ you commit** or the deployed site will lag behind `data/`.
   stub for each one.
 - Everything renders without JavaScript; the workbench is progressive
   enhancement, and the CSS unwraps it into a plain document if JS is off.
+
+## License
+
+All rights reserved — see [LICENSE](LICENSE). No modification, no commercial
+use, no redistribution without permission.

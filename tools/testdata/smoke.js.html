@@ -104,6 +104,15 @@ window.addEventListener('load', function(){ setTimeout(function(){
     $('.menubar__item[data-menu="View"]').click();
     return !document.querySelector('[data-menu-for="View"]').hidden || 'stayed hidden'; });
 
+  t('File menu exposes the easter egg', function(){
+    return !!$('[data-menu-for="File"] [data-cmd="break-glass"]') || 'menu item missing'; });
+
+  t('command palette lists the easter egg', function(){
+    key({key:'p', ctrlKey:true, shiftKey:true});
+    var hit=$$('.palette__item').filter(function(x){ return /Break Glass/.test(x.textContent); });
+    key({key:'Escape'});
+    return hit.length===1 || 'found '+hit.length; });
+
   // search is async
   $('.activity__btn[data-view="search"]').click();
   var si=$('#searchInput'); si.value='pgvector'; si.dispatchEvent(new Event('input'));
@@ -117,9 +126,76 @@ window.addEventListener('load', function(){ setTimeout(function(){
     setTimeout(function(){
       t('extensions rendered 36 skill cards', function(){
         var n=document.querySelectorAll('.ext__card').length; return n===36 || 'got '+n; });
-      R.unshift('RESULT  '+ok+' passed, '+fail+' failed');
-      var pre=document.createElement('pre'); pre.id='testout'; pre.textContent=R.join('\n');
-      document.body.appendChild(pre);
+      // The egg runs last: opening it makes #vsc inert, so nothing else may
+      // need the workbench afterwards. Lazy-loaded, hence the extra timeout.
+      $('[data-menu-for="File"] [data-cmd="break-glass"]').click();
+      setTimeout(function(){
+        t('egg lazy-loads exactly one script tag', function(){
+          var n=$$('script[src*="egg-breakglass"]').length; return n===1 || 'got '+n; });
+
+        t('re-activating double-injects neither script nor overlay', function(){
+          $('[data-cmd="break-glass"]').click();
+          var sc=$$('script[src*="egg-breakglass"]').length, rt=$$('#egg').length;
+          return (sc===1 && rt===1) || 'scripts='+sc+' roots='+rt; });
+
+        t('overlay mounted with dialog semantics', function(){
+          var r=$('#egg');
+          return (r && r.getAttribute('role')==='dialog'
+                    && r.getAttribute('aria-modal')==='true') || 'no dialog'; });
+
+        t('workbench is inert while the egg is open', function(){
+          return ($('#vsc').getAttribute('aria-hidden')==='true'
+                  && $('#vsc').hasAttribute('inert')) || 'not inert'; });
+
+        t('crack web generated 44 shard faces', function(){
+          var n=$$('#eggWeb .egg-face').length; return n===44 || 'got '+n; });
+
+        t('every shard has an extrusion side face', function(){
+          var n=$$('#eggWeb .egg-deep').length; return n===44 || 'got '+n; });
+
+        t('web covers the farthest viewport corner', function(){
+          return window.__GLASS.debug.covers()===true || 'corner uncovered'; });
+
+        t('playfield canvas is retina-scaled', function(){
+          var c=$('#eggBoard'); return c.width>=c.clientWidth || 'w='+c.width+' css='+c.clientWidth; });
+
+        t('ArrowRight moves the active piece', function(){
+          var x0=window.__GLASS.debug.state().x;
+          key({key:'ArrowRight'});
+          return window.__GLASS.debug.state().x===x0+1 || 'x stayed '+x0; });
+
+        t('rotation kicks off the left wall', function(){
+          window.__GLASS.debug.place('I', -1, 8, 1);   // vertical, flush left
+          key({key:'ArrowUp'});
+          var st=window.__GLASS.debug.state();
+          return st.rot===2 || 'rotation blocked at the wall (rot='+st.rot+')'; });
+
+        t('hard drop locks a piece and spawns the next', function(){
+          var n0=window.__GLASS.debug.state().locked;
+          key({key:' '});
+          return window.__GLASS.debug.state().locked===n0+1 || 'no lock'; });
+
+        t('a filled row clears and scores', function(){
+          window.__GLASS.debug.fillRow(21);
+          window.__GLASS.debug.step();
+          var st=window.__GLASS.debug.state();
+          return (st.lines>=1 && st.score>0) || 'lines='+st.lines+' score='+st.score; });
+
+        t('Escape closes the egg and un-inerts the workbench', function(){
+          key({key:'Escape'});
+          return (!$('#egg') && !$('#vsc').hasAttribute('inert')
+                  && !$('#vsc').getAttribute('aria-hidden')) || 'still open'; });
+
+        t('reopen after close is clean (one overlay, no leak)', function(){
+          $('[data-cmd="break-glass"]').click();
+          var n=$$('#egg').length;
+          key({key:'Escape'});
+          return n===1 || 'roots='+n; });
+
+        R.unshift('RESULT  '+ok+' passed, '+fail+' failed');
+        var pre=document.createElement('pre'); pre.id='testout'; pre.textContent=R.join('\n');
+        document.body.appendChild(pre);
+      }, 500);
     }, 700);
   }, 900);
 }, 700); });

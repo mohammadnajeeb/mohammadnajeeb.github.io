@@ -696,7 +696,8 @@ def activitybar(depth=0):
 # ================================================================ chrome
 MENUS = {
     "File": [("New Window", "open-site", "⌃⇧N"), ("Open Résumé…", "resume", "⌘O"), None,
-             ("Copy Email Address", "copy-email", ""), ("Exit", "close", "")],
+             ("Copy Email Address", "copy-email", ""), None,
+             ("Break Glass…", "break-glass", "⌘K B"), ("Exit", "close", "")],
     "Edit": [("Find in Files…", "search", "⇧⌘F"), ("Go to File…", "quickopen", "⌘P")],
     "View": [("Command Palette…", "palette", "⇧⌘P"), None,
              ("Toggle Primary Side Bar", "toggle-sidebar", "⌘B"),

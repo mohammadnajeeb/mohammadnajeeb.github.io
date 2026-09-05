@@ -46,6 +46,35 @@
     toastT = setTimeout(function () { toastEl.classList.remove('is-on'); }, 2600);
   }
 
+  /* ------------------------------------------- easter egg (lazy load)
+     The game is ~30 KB that a normal page view never needs, so it lives in
+     its own file and is fetched on first activation. Three guards: the
+     global is already there, a load is in flight, or the egg is already on
+     screen. A failed load drops its own tag so a second click retries. */
+  var eggState = 0;                       /* 0 idle — 1 in flight — 2 ready */
+
+  function openEgg(pt) {
+    var p = pt || { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    if (window.__GLASS) {
+      if (!window.__GLASS.isOpen()) window.__GLASS.open(p);
+      return;
+    }
+    if (eggState === 1) return;
+    eggState = 1;
+    var s = document.createElement('script');
+    s.src = UP + 'assets/js/egg-breakglass.js';
+    s.onload = function () {
+      if (window.__GLASS) { eggState = 2; window.__GLASS.open(p); }
+      else { eggState = 0; toast('Something broke — just not the way it was meant to.'); }
+    };
+    s.onerror = function () {
+      eggState = 0;
+      if (s.parentNode) s.parentNode.removeChild(s);
+      toast('Could not load that. The glass holds.');
+    };
+    document.head.appendChild(s);
+  }
+
   /* ------------------------------------------------------------ tabs */
   function tabIcon(file) {
     var ext = file.indexOf('.') > -1 ? file.split('.').pop().toLowerCase() : 'md';
@@ -377,6 +406,7 @@
     cmds.push(['Open GitHub profile', function () { window.open('https://github.com/mohammadnajeeb', '_blank'); }]);
     cmds.push(['Open LinkedIn profile', function () { window.open('https://www.linkedin.com/in/mohammadnajeeb/', '_blank'); }]);
     cmds.push(['Terminal: Focus', function () { vsc.classList.remove('is-panel-hidden'); var i = $('#termIn'); if (i) i.focus(); }]);
+    cmds.push(['Developer: Break Glass…', function () { openEgg(null); }]);
     return cmds.map(function (c) {
       return { label: c[0], desc: '', icon: ['#8f8f8f', '›'], run: c[1] };
     });
@@ -671,6 +701,10 @@
       echo('najeeb is not in the sudoers file. This incident will be reported.', 'term__err');
       echo('<span class="term__dim">(it will not be reported)</span>');
     },
+    breakglass: function () {
+      echo('breaking the screen…', 'term__ok');
+      openEgg(null);
+    },
     clear: function () { termOut.innerHTML = ''; },
     pwd: function () { echo('/home/najeeb/portfolio'); },
     date: function () { echo(new Date().toString()); },
@@ -754,7 +788,7 @@
   document.addEventListener('click', closeMenus);
 
   /* ------------------------------------------------------- commands */
-  function doCommand(cmd) {
+  function doCommand(cmd, pt) {
     if (!cmd) return;
     if (cmd.indexOf('url:') === 0) { window.open(cmd.slice(4), '_blank', 'noopener'); return; }
     if (cmd.indexOf('go:') === 0) {
@@ -795,6 +829,11 @@
         vsc.classList.toggle('is-panel-hidden');
         render();
         break;
+      case 'break-glass':
+        closeMenus();
+        closePalette();
+        openEgg(pt);
+        break;
       case 'close':
         toast('Nice try — you can close the browser tab instead.');
         break;
@@ -805,7 +844,15 @@
     var el = ev.target.closest('[data-cmd]');
     if (!el) return;
     ev.preventDefault();
-    doCommand(el.getAttribute('data-cmd'));
+    var pt;
+    if (ev.clientX || ev.clientY) pt = { x: ev.clientX, y: ev.clientY };
+    else {
+      /* Chrome fires keyboard-activated clicks with clientX === 0, which would
+         shatter from the screen corner. Fall back to the button itself. */
+      var r = el.getBoundingClientRect();
+      pt = { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+    }
+    doCommand(el.getAttribute('data-cmd'), pt);
   });
 
   /* ------------------------------------------------------ shortcuts */
@@ -844,6 +891,7 @@
       var once = function (e2) {
         document.removeEventListener('keydown', once, true);
         if (e2.key === 't' || e2.key === 'T') { e2.preventDefault(); cycleTheme(); }
+        else if (e2.key === 'b' || e2.key === 'B') { e2.preventDefault(); openEgg(null); }
       };
       document.addEventListener('keydown', once, true);
       return;

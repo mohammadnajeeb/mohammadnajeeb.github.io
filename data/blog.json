@@ -1,0 +1,398 @@
+[
+  {
+    "slug": "academic-integrity-and-the-role-of-ai-in-assignments",
+    "title": "Academic Integrity and the Role of AI in Assignments",
+    "date": "2025-02-23",
+    "date_display": "February 23, 2025",
+    "tags": [
+      "Academic Integrity",
+      "AI in Assignments",
+      "LaTeX",
+      "Artificial Intelligence",
+      "Education"
+    ],
+    "excerpt": "Academic integrity is a cornerstone of the educational process, ensuring that students engage in honest and ethical behavior in their academic pursuits. With the rise of artificial…",
+    "art": "academia",
+    "pinned": true,
+    "legacy": "blog_post_0_pinned_1.html",
+    "words": 604
+  },
+  {
+    "slug": "promoting-latex-among-students-a-must-for-academic-excellence",
+    "title": "Promoting LaTeX Among Students: A Must for Academic Excellence",
+    "date": "2025-02-23",
+    "date_display": "February 23, 2025",
+    "tags": [
+      "LaTeX",
+      "Academic Writing",
+      "Research",
+      "Students",
+      "Bachelor's Degree"
+    ],
+    "excerpt": "LaTeX is a powerful typesetting system that has become the standard for academic writing in many fields, including mathematics, computer science, and engineering. Despite its numerous…",
+    "art": "academia",
+    "pinned": true,
+    "legacy": "blog_post_0_pinned_2.html",
+    "words": 504
+  },
+  {
+    "slug": "university-shortlisting-and-application-process-for-germany-a-guide-for",
+    "title": "University Shortlisting and Application Process for Germany: A Guide for Indian Students",
+    "date": "2025-02-23",
+    "date_display": "February 23, 2025",
+    "tags": [
+      "University Shortlisting",
+      "Application Process",
+      "Germany",
+      "Indian Students",
+      "Study Abroad"
+    ],
+    "excerpt": "Germany is a popular destination for Indian students seeking higher education due to its world-class universities, affordable tuition fees, and vibrant cultural experience. However, the…",
+    "art": "academia",
+    "pinned": true,
+    "legacy": "blog_post_0_pinned_3.html",
+    "words": 768
+  },
+  {
+    "slug": "building-model-context-protocol-mcp-clients-for-bioinformatics-apis",
+    "title": "Building Model Context Protocol (MCP) Clients for Bioinformatics APIs",
+    "date": "2026-01-20",
+    "date_display": "January 20, 2026",
+    "tags": [
+      "MCP",
+      "Model Context Protocol",
+      "Bioinformatics",
+      "NCBI",
+      "Entrez API"
+    ],
+    "excerpt": "The intersection of AI and bioinformatics is creating unprecedented opportunities for data-driven research. In this post, I'll share my experience building an MCP (Model Context Protocol)…",
+    "art": "protocol",
+    "pinned": false,
+    "legacy": "blog_post_5.html",
+    "words": 613
+  },
+  {
+    "slug": "scalable-etl-pipelines-for-research-data-lessons-from-hci-studies",
+    "title": "Scalable ETL Pipelines for Research Data: Lessons from HCI Studies",
+    "date": "2026-01-15",
+    "date_display": "January 15, 2026",
+    "tags": [
+      "ETL Pipeline",
+      "Data Engineering",
+      "MediaPipe",
+      "OpenCV",
+      "Research Data"
+    ],
+    "excerpt": "Research data processing presents unique challenges: heterogeneous formats, quality validation requirements, and the need for reproducibility. In this post, I'll share insights from…",
+    "art": "pipeline",
+    "pinned": false,
+    "legacy": "blog_post_6.html",
+    "words": 649
+  },
+  {
+    "slug": "building-rag-powered-chatbots-with-langchain-and-vector-databases",
+    "title": "Building RAG-Powered Chatbots with LangChain and Vector Databases",
+    "date": "2026-01-10",
+    "date_display": "January 10, 2026",
+    "tags": [
+      "RAG",
+      "Retrieval-Augmented Generation",
+      "LangChain",
+      "ChromaDB",
+      "Vector Database"
+    ],
+    "excerpt": "Large Language Models (LLMs) are powerful, but they have limitations: training data cutoffs, hallucinations, and lack of domain-specific knowledge. Retrieval-Augmented Generation (RAG)…",
+    "art": "retrieval",
+    "pinned": false,
+    "legacy": "blog_post_7.html",
+    "words": 754
+  },
+  {
+    "slug": "knowledge-distillation-for-edge-deployment-compressing-cnns-without-losing-accuracy",
+    "title": "Knowledge Distillation for Edge Deployment: Compressing CNNs Without Losing Accuracy",
+    "date": "2026-01-05",
+    "date_display": "January 5, 2026",
+    "tags": [
+      "Knowledge Distillation",
+      "Model Compression",
+      "Edge AI",
+      "CNN",
+      "Deep Learning"
+    ],
+    "excerpt": "Deep learning models achieve impressive accuracy, but deploying them on resource-constrained devices remains challenging. In this post, I'll share how we used knowledge distillation to…",
+    "art": "transformer",
+    "pinned": false,
+    "legacy": "blog_post_8.html",
+    "words": 805
+  },
+  {
+    "slug": "zero-shot-learning-with-clip-for-medical-image-classification",
+    "title": "Zero-Shot Learning with CLIP for Medical Image Classification",
+    "date": "2025-12-28",
+    "date_display": "December 28, 2025",
+    "tags": [
+      "Zero-Shot Learning",
+      "CLIP",
+      "Medical Imaging",
+      "Vision Transformers",
+      "ViT"
+    ],
+    "excerpt": "Medical image classification traditionally requires large labeled datasets—expensive and time-consuming to create. Zero-shot learning offers an alternative: classifying images without…",
+    "art": "vision",
+    "pinned": false,
+    "legacy": "blog_post_9.html",
+    "words": 427
+  },
+  {
+    "slug": "time-series-forecasting-with-sarimax-predicting-climate-trends",
+    "title": "Time Series Forecasting with SARIMAX: Predicting Climate Trends",
+    "date": "2025-12-20",
+    "date_display": "December 20, 2025",
+    "tags": [
+      "Time Series",
+      "SARIMAX",
+      "ARIMA",
+      "Forecasting",
+      "Climate Data"
+    ],
+    "excerpt": "Climate data exhibits complex patterns: long-term trends, seasonal cycles, and irregular fluctuations. SARIMAX (Seasonal AutoRegressive Integrated Moving Average with eXogenous factors) is…",
+    "art": "analysis",
+    "pinned": false,
+    "legacy": "blog_post_10.html",
+    "words": 483
+  },
+  {
+    "slug": "mlops-best-practices-from-experimentation-to-production",
+    "title": "MLOps Best Practices: From Experimentation to Production",
+    "date": "2025-12-15",
+    "date_display": "December 15, 2025",
+    "tags": [
+      "MLOps",
+      "Machine Learning Operations",
+      "MLflow",
+      "Model Deployment",
+      "CI/CD"
+    ],
+    "excerpt": "Building a model is just 20% of the ML journey—the real challenge is deploying, monitoring, and maintaining it in production. MLOps brings DevOps principles to machine learning, enabling…",
+    "art": "pipeline",
+    "pinned": false,
+    "legacy": "blog_post_11.html",
+    "words": 552
+  },
+  {
+    "slug": "real-time-face-recognition-systems-with-opencv-and-deep-learning",
+    "title": "Real-Time Face Recognition Systems with OpenCV and Deep Learning",
+    "date": "2025-12-10",
+    "date_display": "December 10, 2025",
+    "tags": [
+      "Face Recognition",
+      "OpenCV",
+      "Deep Learning",
+      "dlib",
+      "Haar Cascade"
+    ],
+    "excerpt": "Face recognition has evolved from a research curiosity to a practical technology used in security, attendance systems, and photo organization. In this post, I'll walk through building a…",
+    "art": "vision",
+    "pinned": false,
+    "legacy": "blog_post_12.html",
+    "words": 593
+  },
+  {
+    "slug": "docker-for-data-scientists-containerizing-ml-workflows",
+    "title": "Docker for Data Scientists: Containerizing ML Workflows",
+    "date": "2025-12-05",
+    "date_display": "December 5, 2025",
+    "tags": [
+      "Docker",
+      "Data Science",
+      "Machine Learning",
+      "Containerization",
+      "DevOps"
+    ],
+    "excerpt": "\"It works on my machine\" is the bane of collaborative data science. Docker solves this by packaging your code, dependencies, and environment into portable containers. In this guide, I'll…",
+    "art": "pipeline",
+    "pinned": false,
+    "legacy": "blog_post_13.html",
+    "words": 538
+  },
+  {
+    "slug": "user-centered-design-conducting-effective-usability-studies",
+    "title": "User-Centered Design: Conducting Effective Usability Studies",
+    "date": "2025-11-28",
+    "date_display": "November 28, 2025",
+    "tags": [
+      "Usability Testing",
+      "UX Research",
+      "User-Centered Design",
+      "NASA-TLX",
+      "HCI"
+    ],
+    "excerpt": "Great products aren't built in isolation—they emerge from understanding users. Through usability studies on the Smart StudyDesk project, we achieved a 30% improvement in navigation…",
+    "art": "interaction",
+    "pinned": false,
+    "legacy": "blog_post_14.html",
+    "words": 666
+  },
+  {
+    "slug": "aws-vs-azure-vs-gcp-choosing-the-right-cloud-for",
+    "title": "AWS vs Azure vs GCP: Choosing the Right Cloud for ML Workloads",
+    "date": "2025-11-20",
+    "date_display": "November 20, 2025",
+    "tags": [
+      "AWS",
+      "Azure",
+      "GCP",
+      "Cloud Computing",
+      "Machine Learning"
+    ],
+    "excerpt": "Choosing a cloud platform for machine learning involves trade-offs between features, pricing, ecosystem, and your team's expertise. Having deployed ML solutions on all three major clouds,…",
+    "art": "pipeline",
+    "pinned": false,
+    "legacy": "blog_post_15.html",
+    "words": 425
+  },
+  {
+    "slug": "transformer-architecture-explained-from-attention-to-gpt",
+    "title": "Transformer Architecture Explained: From Attention to GPT",
+    "date": "2025-11-15",
+    "date_display": "November 15, 2025",
+    "tags": [
+      "Transformer",
+      "Attention Mechanism",
+      "Self-Attention",
+      "GPT",
+      "BERT"
+    ],
+    "excerpt": "The Transformer architecture, introduced in \"Attention Is All You Need\" (2017), revolutionized NLP and beyond. Understanding Transformers is essential for working with modern LLMs like GPT,…",
+    "art": "transformer",
+    "pinned": false,
+    "legacy": "blog_post_16.html",
+    "words": 646
+  },
+  {
+    "slug": "building-interactive-dashboards-with-plotly-and-dash",
+    "title": "Building Interactive Dashboards with Plotly and Dash",
+    "date": "2025-11-10",
+    "date_display": "November 10, 2025",
+    "tags": [
+      "Plotly",
+      "Dash",
+      "Data Visualization",
+      "Dashboard",
+      "Python"
+    ],
+    "excerpt": "Static charts are limiting. When stakeholders need to explore data, filter by date ranges, or drill into specifics, you need interactive dashboards. Plotly and Dash let Python developers…",
+    "art": "analysis",
+    "pinned": false,
+    "legacy": "blog_post_17.html",
+    "words": 538
+  },
+  {
+    "slug": "cicd-pipelines-for-machine-learning-projects",
+    "title": "CI/CD Pipelines for Machine Learning Projects",
+    "date": "2025-11-05",
+    "date_display": "November 5, 2025",
+    "tags": [
+      "CI/CD",
+      "GitHub Actions",
+      "Machine Learning",
+      "MLOps",
+      "Automation"
+    ],
+    "excerpt": "ML projects require more than code testing—they need data validation, model training, performance benchmarking, and deployment automation. Here's how to build comprehensive CI/CD pipelines…",
+    "art": "pipeline",
+    "pinned": false,
+    "legacy": "blog_post_18.html",
+    "words": 720
+  },
+  {
+    "slug": "advancements-in-machine-learning-for-computer-vision",
+    "title": "Advancements in Machine Learning for Computer Vision",
+    "date": "2025-02-23",
+    "date_display": "February 23, 2025",
+    "tags": [
+      "Machine Learning",
+      "Computer Vision",
+      "Deep Learning",
+      "AI",
+      "Artificial Intelligence"
+    ],
+    "excerpt": "Machine Learning (ML) has revolutionized the field of Computer Vision (CV), enabling machines to interpret and understand visual data with unprecedented accuracy. In this blog post, we will…",
+    "art": "vision",
+    "pinned": false,
+    "legacy": "blog_post_1.html",
+    "words": 251
+  },
+  {
+    "slug": "revolutionizing-computer-vision-with-machine-learning",
+    "title": "Revolutionizing Computer Vision with Machine Learning",
+    "date": "2025-02-23",
+    "date_display": "February 23, 2025",
+    "tags": [
+      "Machine Learning",
+      "Computer Vision",
+      "Deep Learning",
+      "AI",
+      "Artificial Intelligence"
+    ],
+    "excerpt": "Machine Learning (ML) is at the forefront of technological innovation, transforming the field of Computer Vision (CV) with groundbreaking advancements. From deep learning techniques to…",
+    "art": "vision",
+    "pinned": false,
+    "legacy": "blog_post_2.html",
+    "words": 612
+  },
+  {
+    "slug": "the-future-of-human-computer-interaction",
+    "title": "The Future of Human-Computer Interaction",
+    "date": "2025-02-23",
+    "date_display": "February 23, 2025",
+    "tags": [
+      "Human-Computer Interaction",
+      "HCI",
+      "User Experience",
+      "UX",
+      "UI"
+    ],
+    "excerpt": "Human-Computer Interaction (HCI) is a dynamic field that focuses on the design and use of computer technology, emphasizing the interfaces between people (users) and computers. As technology…",
+    "art": "interaction",
+    "pinned": false,
+    "legacy": "blog_post_3.html",
+    "words": 692
+  },
+  {
+    "slug": "the-rise-of-generative-ai-transforming-creativity-and-innovation",
+    "title": "The Rise of Generative AI: Transforming Creativity and Innovation",
+    "date": "2025-02-23",
+    "date_display": "February 23, 2025",
+    "tags": [
+      "Generative AI",
+      "GANs",
+      "Machine Learning",
+      "Artificial Intelligence",
+      "Creativity"
+    ],
+    "excerpt": "Generative AI is revolutionizing the way we approach creativity and innovation. By leveraging advanced machine learning techniques, Generative AI models can create new content, from images…",
+    "art": "transformer",
+    "pinned": false,
+    "legacy": "blog_post_4.html",
+    "words": 609
+  },
+  {
+    "slug": "a-to-z-guide-for-assignment-and-research-paper-writing",
+    "title": "A to Z Guide for Assignment and Research Paper Writing on Overleaf",
+    "date": "2025-02-23",
+    "date_display": "February 23, 2025",
+    "tags": [
+      "Overleaf",
+      "LaTeX",
+      "Assignment Writing",
+      "Research Paper Writing",
+      "Academic Writing"
+    ],
+    "excerpt": "Overleaf is a popular online LaTeX editor that simplifies the process of writing, editing, and collaborating on LaTeX documents. Whether you are working on an assignment or a research…",
+    "art": "academia",
+    "pinned": false,
+    "legacy": "blog_post_latex.html",
+    "words": 672
+  }
+]

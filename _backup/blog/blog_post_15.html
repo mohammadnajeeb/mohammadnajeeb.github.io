@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS vs Azure vs GCP: Choosing the Right Cloud for ML Workloads - Mohammad Najeeb</title>
+
+    <meta name="description"
+        content="Compare AWS, Azure, and GCP for machine learning workloads. Learn about SageMaker, Azure ML, Vertex AI, pricing, and which cloud is best for your ML projects.">
+    <meta name="keywords"
+        content="AWS, Azure, GCP, Cloud Computing, Machine Learning, SageMaker, Azure ML, Vertex AI, Cloud Comparison, MLOps, Mohammad Najeeb">
+    <meta name="theme-color" content="#005555">
+    <meta name="author" content="Mohammad Najeeb">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://mohammadnajeeb.github.io/blog/blog_post_15.html">
+
+    <meta property="og:title" content="AWS vs Azure vs GCP: Choosing the Right Cloud for ML">
+    <meta property="og:description" content="Compare cloud platforms for machine learning workloads.">
+    <meta property="og:url" content="https://mohammadnajeeb.github.io/blog/blog_post_15.html">
+    <meta property="og:type" content="article">
+
+    <meta name="google-site-verification" content="s9wkPDxJlx_Dvk8KiR2W2GkyQGBKSCU_EGImxA7Zmn0">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WVBGG8N5CE"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-WVBGG8N5CE');
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/main.css">
+
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AWS vs Azure vs GCP: Choosing the Right Cloud for ML Workloads",
+  "description": "Compare AWS, Azure, and GCP for machine learning workloads. Learn about SageMaker, Azure ML, Vertex AI, pricing, and which cloud is best for your ML projects.",
+  "url": "https://mohammadnajeeb.github.io/blog/blog_post_15.html",
+  "author": {
+    "@type": "Person",
+    "name": "Mohammad Najeeb",
+    "url": "https://mohammadnajeeb.github.io"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Mohammad Najeeb"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://mohammadnajeeb.github.io/blog/blog_post_15.html"
+  },
+  "dateModified": "2026-05-08"
+}
+    </script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg sticky-top">
+            <div class="container">
+                <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item"><a class="nav-link" href="../pages/publications.html">Publications</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../pages/projects.html">Projects</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../pages/experience.html">Experience</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.html">Blog</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <nav aria-label="breadcrumb" class="container mt-3">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="index.html">Blog</a></li>
+                <li class="breadcrumb-item active">AWS vs Azure vs GCP for ML</li>
+            </ol>
+        </nav>
+    </header>
+    <main class="container my-5">
+        <article>
+            <h1>AWS vs Azure vs GCP: Choosing the Right Cloud for ML Workloads</h1>
+            <p class="text-muted">Published on November 20, 2025</p>
+
+            <p>Choosing a cloud platform for machine learning involves trade-offs between features, pricing, ecosystem,
+                and your team's expertise. Having deployed ML solutions on all three major clouds, here's my practical
+                comparison.</p>
+
+            <h2>ML Platform Overview</h2>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>AWS SageMaker</th>
+                        <th>Azure ML</th>
+                        <th>GCP Vertex AI</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Notebooks</td>
+                        <td>SageMaker Studio</td>
+                        <td>Azure ML Studio</td>
+                        <td>Workbench</td>
+                    </tr>
+                    <tr>
+                        <td>AutoML</td>
+                        <td>Autopilot</td>
+                        <td>Automated ML</td>
+                        <td>AutoML</td>
+                    </tr>
+                    <tr>
+                        <td>Training</td>
+                        <td>Training Jobs</td>
+                        <td>Compute Clusters</td>
+                        <td>Custom Training</td>
+                    </tr>
+                    <tr>
+                        <td>Deployment</td>
+                        <td>Endpoints</td>
+                        <td>Managed Endpoints</td>
+                        <td>Prediction</td>
+                    </tr>
+                    <tr>
+                        <td>MLOps</td>
+                        <td>Pipelines</td>
+                        <td>Pipelines</td>
+                        <td>Pipelines</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>AWS SageMaker</h2>
+            <h3>Strengths</h3>
+            <ul>
+                <li><strong>Mature ecosystem:</strong> Most extensive ML service catalog</li>
+                <li><strong>Built-in algorithms:</strong> 17+ optimized algorithms</li>
+                <li><strong>Spot training:</strong> Up to 90% cost savings</li>
+                <li><strong>Ground Truth:</strong> Data labeling at scale</li>
+            </ul>
+
+            <h3>Example: Training on SageMaker</h3>
+            <pre><code class="language-python">import sagemaker
+from sagemaker.pytorch import PyTorch
+
+# Configure estimator
+estimator = PyTorch(
+    entry_point='train.py',
+    source_dir='./src',
+    role=sagemaker.get_execution_role(),
+    instance_count=1,
+    instance_type='ml.p3.2xlarge',
+    framework_version='2.0',
+    py_version='py310',
+    hyperparameters={
+        'epochs': 50,
+        'batch-size': 64,
+        'learning-rate': 0.001
+    }
+)
+
+# Start training
+estimator.fit({'training': 's3://my-bucket/train-data'})</code></pre>
+
+            <h2>Azure Machine Learning</h2>
+            <h3>Strengths</h3>
+            <ul>
+                <li><strong>Enterprise integration:</strong> Seamless with Microsoft ecosystem</li>
+                <li><strong>Designer:</strong> No-code ML pipeline builder</li>
+                <li><strong>Responsible AI:</strong> Built-in fairness and explainability tools</li>
+                <li><strong>Hybrid support:</strong> Arc-enabled ML for on-premises</li>
+            </ul>
+
+            <h3>Example: Training on Azure ML</h3>
+            <pre><code class="language-python">from azure.ai.ml import MLClient, command
+from azure.identity import DefaultAzureCredential
+
+# Initialize client
+ml_client = MLClient(
+    DefaultAzureCredential(),
+    subscription_id="your-sub-id",
+    resource_group_name="your-rg",
+    workspace_name="your-workspace"
+)
+
+# Define training job
+job = command(
+    code="./src",
+    command="python train.py --epochs 50 --lr 0.001",
+    environment="AzureML-pytorch-2.0-cuda11.8@latest",
+    compute="gpu-cluster",
+    experiment_name="crack-detection"
+)
+
+# Submit job
+ml_client.jobs.create_or_update(job)</code></pre>
+
+            <h2>Google Cloud Vertex AI</h2>
+            <h3>Strengths</h3>
+            <ul>
+                <li><strong>TPU access:</strong> Best for large-scale training</li>
+                <li><strong>BigQuery ML:</strong> SQL-based ML for analysts</li>
+                <li><strong>Unified platform:</strong> Clean, consistent experience</li>
+                <li><strong>Research heritage:</strong> TensorFlow, JAX first-class support</li>
+            </ul>
+
+            <h3>Example: Training on Vertex AI</h3>
+            <pre><code class="language-python">from google.cloud import aiplatform
+
+# Initialize
+aiplatform.init(project='my-project', location='us-central1')
+
+# Create training job
+job = aiplatform.CustomTrainingJob(
+    display_name='crack-detection-training',
+    script_path='train.py',
+    container_uri='us-docker.pkg.dev/vertex-ai/training/pytorch-gpu.2-0:latest',
+    requirements=['torchvision', 'pillow']
+)
+
+# Run training
+model = job.run(
+    replica_count=1,
+    machine_type='n1-standard-8',
+    accelerator_type='NVIDIA_TESLA_V100',
+    accelerator_count=1,
+    args=['--epochs', '50', '--lr', '0.001']
+)</code></pre>
+
+            <h2>Pricing Comparison</h2>
+            <p>For a typical training workload (8 vCPU, 32GB RAM, V100 GPU, 100 hours/month):</p>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Cloud</th>
+                        <th>Instance</th>
+                        <th>On-Demand ($/hr)</th>
+                        <th>Spot/Preemptible ($/hr)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>AWS</td>
+                        <td>ml.p3.2xlarge</td>
+                        <td>$3.82</td>
+                        <td>$1.15 (70% off)</td>
+                    </tr>
+                    <tr>
+                        <td>Azure</td>
+                        <td>NC6s_v3</td>
+                        <td>$3.06</td>
+                        <td>$0.92 (70% off)</td>
+                    </tr>
+                    <tr>
+                        <td>GCP</td>
+                        <td>n1-standard-8 + V100</td>
+                        <td>$2.95</td>
+                        <td>$0.89 (70% off)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>When to Choose Each Cloud</h2>
+
+            <h3>Choose AWS SageMaker when:</h3>
+            <ul>
+                <li>You need the most mature MLOps tooling</li>
+                <li>Your organization is already on AWS</li>
+                <li>You want extensive pre-built algorithms</li>
+            </ul>
+
+            <h3>Choose Azure ML when:</h3>
+            <ul>
+                <li>You're in a Microsoft enterprise environment</li>
+                <li>You need strong hybrid/on-premises support</li>
+                <li>Responsible AI features are a priority</li>
+            </ul>
+
+            <h3>Choose GCP Vertex AI when:</h3>
+            <ul>
+                <li>You're training very large models (TPU access)</li>
+                <li>Your data is in BigQuery</li>
+                <li>You prefer TensorFlow/JAX ecosystems</li>
+            </ul>
+
+            <h2>Conclusion</h2>
+            <p>All three clouds offer capable ML platforms. The "best" choice depends on your existing infrastructure,
+                team skills, and specific requirements. For most projects, start with your organization's primary
+                cloud—the ecosystem integration benefits outweigh minor feature differences.</p>
+        </article>
+    </main>
+    <footer class="text-white text-center py-4">
+        <p>Connect with me:</p>
+        <ul class="list-inline mb-0">
+            <li class="list-inline-item"><a href="https://github.com/mohammadnajeeb" class="text-white"><i
+                        class="fab fa-github fa-lg"></i></a></li>
+            <li class="list-inline-item"><a href="https://linkedin.com/in/mohammadnajeeb" class="text-white"><i
+                        class="fab fa-linkedin fa-lg"></i></a></li>
+            <li class="list-inline-item"><a href="https://twitter.com/md__najeeb" class="text-white"><i
+                        class="fab fa-twitter fa-lg"></i></a></li>
+        </ul>
+    </footer>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.js"></script>
+</body>
+
+</html>

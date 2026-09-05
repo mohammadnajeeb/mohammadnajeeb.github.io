@@ -1,144 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-
-<url>
-  <loc>https://mohammadnajeeb.github.io/</loc>
-  <lastmod>2026-05-08T00:00:00+00:00</lastmod>
-  <priority>1.00</priority>
-</url>
-<url>
-  <loc>https://mohammadnajeeb.github.io/pages/experience.html</loc>
-  <lastmod>2026-05-08T00:00:00+00:00</lastmod>
-  <priority>0.90</priority>
-</url>
-<url>
-  <loc>https://mohammadnajeeb.github.io/pages/projects.html</loc>
-  <lastmod>2026-05-08T00:00:00+00:00</lastmod>
-  <priority>0.90</priority>
-</url>
-<url>
-  <loc>https://mohammadnajeeb.github.io/pages/publications.html</loc>
-  <lastmod>2026-05-08T00:00:00+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://mohammadnajeeb.github.io/blog/index.html</loc>
-  <lastmod>2026-05-08T00:00:00+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://mohammadnajeeb.github.io/blog/blog_post_0_pinned_1.html</loc>
-  <lastmod>2026-05-08T00:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://mohammadnajeeb.github.io/blog/blog_post_0_pinned_2.html</loc>
-  <lastmod>2026-05-08T00:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://mohammadnajeeb.github.io/blog/blog_post_0_pinned_3.html</loc>
-  <lastmod>2026-05-08T00:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://mohammadnajeeb.github.io/blog/blog_post_1.html</loc>
-  <lastmod>2026-05-08T00:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://mohammadnajeeb.github.io/blog/blog_post_2.html</loc>
-  <lastmod>2026-05-08T00:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://mohammadnajeeb.github.io/blog/blog_post_3.html</loc>
-  <lastmod>2026-05-08T00:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://mohammadnajeeb.github.io/blog/blog_post_4.html</loc>
-  <lastmod>2026-05-08T00:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://mohammadnajeeb.github.io/blog/blog_post_5.html</loc>
-  <lastmod>2026-05-08T00:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://mohammadnajeeb.github.io/blog/blog_post_6.html</loc>
-  <lastmod>2026-05-08T00:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://mohammadnajeeb.github.io/blog/blog_post_7.html</loc>
-  <lastmod>2026-05-08T00:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://mohammadnajeeb.github.io/blog/blog_post_8.html</loc>
-  <lastmod>2026-05-08T00:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://mohammadnajeeb.github.io/blog/blog_post_9.html</loc>
-  <lastmod>2026-05-08T00:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://mohammadnajeeb.github.io/blog/blog_post_10.html</loc>
-  <lastmod>2026-05-08T00:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://mohammadnajeeb.github.io/blog/blog_post_11.html</loc>
-  <lastmod>2026-05-08T00:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://mohammadnajeeb.github.io/blog/blog_post_12.html</loc>
-  <lastmod>2026-05-08T00:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://mohammadnajeeb.github.io/blog/blog_post_13.html</loc>
-  <lastmod>2026-05-08T00:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://mohammadnajeeb.github.io/blog/blog_post_14.html</loc>
-  <lastmod>2026-05-08T00:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://mohammadnajeeb.github.io/blog/blog_post_15.html</loc>
-  <lastmod>2026-05-08T00:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://mohammadnajeeb.github.io/blog/blog_post_16.html</loc>
-  <lastmod>2026-05-08T00:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://mohammadnajeeb.github.io/blog/blog_post_17.html</loc>
-  <lastmod>2026-05-08T00:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://mohammadnajeeb.github.io/blog/blog_post_18.html</loc>
-  <lastmod>2026-05-08T00:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://mohammadnajeeb.github.io/blog/blog_post_latex.html</loc>
-  <lastmod>2026-05-08T00:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://mohammadnajeeb.github.io/</loc><lastmod>2026-09-05T05:41:32+00:00</lastmod><priority>1.0</priority></url>
+  <url><loc>https://mohammadnajeeb.github.io/blog/index.html</loc><lastmod>2026-09-05T05:41:32+00:00</lastmod><priority>0.8</priority></url>
+  <url><loc>https://mohammadnajeeb.github.io/blog/academic-integrity-and-the-role-of-ai-in-assignments.html</loc><lastmod>2025-02-23T00:00:00+00:00</lastmod><priority>0.64</priority></url>
+  <url><loc>https://mohammadnajeeb.github.io/blog/promoting-latex-among-students-a-must-for-academic-excellence.html</loc><lastmod>2025-02-23T00:00:00+00:00</lastmod><priority>0.64</priority></url>
+  <url><loc>https://mohammadnajeeb.github.io/blog/university-shortlisting-and-application-process-for-germany-a-guide-for.html</loc><lastmod>2025-02-23T00:00:00+00:00</lastmod><priority>0.64</priority></url>
+  <url><loc>https://mohammadnajeeb.github.io/blog/building-model-context-protocol-mcp-clients-for-bioinformatics-apis.html</loc><lastmod>2026-01-20T00:00:00+00:00</lastmod><priority>0.64</priority></url>
+  <url><loc>https://mohammadnajeeb.github.io/blog/scalable-etl-pipelines-for-research-data-lessons-from-hci-studies.html</loc><lastmod>2026-01-15T00:00:00+00:00</lastmod><priority>0.64</priority></url>
+  <url><loc>https://mohammadnajeeb.github.io/blog/building-rag-powered-chatbots-with-langchain-and-vector-databases.html</loc><lastmod>2026-01-10T00:00:00+00:00</lastmod><priority>0.64</priority></url>
+  <url><loc>https://mohammadnajeeb.github.io/blog/knowledge-distillation-for-edge-deployment-compressing-cnns-without-losing-accuracy.html</loc><lastmod>2026-01-05T00:00:00+00:00</lastmod><priority>0.64</priority></url>
+  <url><loc>https://mohammadnajeeb.github.io/blog/zero-shot-learning-with-clip-for-medical-image-classification.html</loc><lastmod>2025-12-28T00:00:00+00:00</lastmod><priority>0.64</priority></url>
+  <url><loc>https://mohammadnajeeb.github.io/blog/time-series-forecasting-with-sarimax-predicting-climate-trends.html</loc><lastmod>2025-12-20T00:00:00+00:00</lastmod><priority>0.64</priority></url>
+  <url><loc>https://mohammadnajeeb.github.io/blog/mlops-best-practices-from-experimentation-to-production.html</loc><lastmod>2025-12-15T00:00:00+00:00</lastmod><priority>0.64</priority></url>
+  <url><loc>https://mohammadnajeeb.github.io/blog/real-time-face-recognition-systems-with-opencv-and-deep-learning.html</loc><lastmod>2025-12-10T00:00:00+00:00</lastmod><priority>0.64</priority></url>
+  <url><loc>https://mohammadnajeeb.github.io/blog/docker-for-data-scientists-containerizing-ml-workflows.html</loc><lastmod>2025-12-05T00:00:00+00:00</lastmod><priority>0.64</priority></url>
+  <url><loc>https://mohammadnajeeb.github.io/blog/user-centered-design-conducting-effective-usability-studies.html</loc><lastmod>2025-11-28T00:00:00+00:00</lastmod><priority>0.64</priority></url>
+  <url><loc>https://mohammadnajeeb.github.io/blog/aws-vs-azure-vs-gcp-choosing-the-right-cloud-for.html</loc><lastmod>2025-11-20T00:00:00+00:00</lastmod><priority>0.64</priority></url>
+  <url><loc>https://mohammadnajeeb.github.io/blog/transformer-architecture-explained-from-attention-to-gpt.html</loc><lastmod>2025-11-15T00:00:00+00:00</lastmod><priority>0.64</priority></url>
+  <url><loc>https://mohammadnajeeb.github.io/blog/building-interactive-dashboards-with-plotly-and-dash.html</loc><lastmod>2025-11-10T00:00:00+00:00</lastmod><priority>0.64</priority></url>
+  <url><loc>https://mohammadnajeeb.github.io/blog/cicd-pipelines-for-machine-learning-projects.html</loc><lastmod>2025-11-05T00:00:00+00:00</lastmod><priority>0.64</priority></url>
+  <url><loc>https://mohammadnajeeb.github.io/blog/advancements-in-machine-learning-for-computer-vision.html</loc><lastmod>2025-02-23T00:00:00+00:00</lastmod><priority>0.64</priority></url>
+  <url><loc>https://mohammadnajeeb.github.io/blog/revolutionizing-computer-vision-with-machine-learning.html</loc><lastmod>2025-02-23T00:00:00+00:00</lastmod><priority>0.64</priority></url>
+  <url><loc>https://mohammadnajeeb.github.io/blog/the-future-of-human-computer-interaction.html</loc><lastmod>2025-02-23T00:00:00+00:00</lastmod><priority>0.64</priority></url>
+  <url><loc>https://mohammadnajeeb.github.io/blog/the-rise-of-generative-ai-transforming-creativity-and-innovation.html</loc><lastmod>2025-02-23T00:00:00+00:00</lastmod><priority>0.64</priority></url>
+  <url><loc>https://mohammadnajeeb.github.io/blog/a-to-z-guide-for-assignment-and-research-paper-writing.html</loc><lastmod>2025-02-23T00:00:00+00:00</lastmod><priority>0.64</priority></url>
 </urlset>

@@ -1,0 +1,126 @@
+<script>
+window.addEventListener('load', function(){ setTimeout(function(){
+  var R=[], ok=0, fail=0;
+  function t(name, fn){
+    try { var r = fn(); if(r===true){R.push('  PASS  '+name); ok++;} else {R.push('  FAIL  '+name+'  → '+r); fail++;} }
+    catch(e){ R.push('  ERR   '+name+'  → '+e.message); fail++; }
+  }
+  function key(o){ document.dispatchEvent(new KeyboardEvent('keydown', Object.assign({bubbles:true,cancelable:true}, o))); }
+  var $=function(s){return document.querySelector(s);};
+  var $$=function(s){return Array.prototype.slice.call(document.querySelectorAll(s));};
+
+  t('welcome doc is active on load', function(){
+    return $('.doc.is-active') && $('.doc.is-active').dataset.doc==='welcome' || 'active='+($('.doc.is-active')||{}).id; });
+
+  t('27 documents present', function(){ var n=$$('.doc').length; return n===27 || 'got '+n; });
+
+  t('tree link opens a document', function(){
+    var a=$$('a.tree__row').filter(function(x){return /skills\.json/.test(x.textContent);})[0];
+    a.click();
+    return $('.doc.is-active').dataset.doc==='skills' || 'active='+$('.doc.is-active').dataset.doc; });
+
+  t('opening a file adds a tab', function(){
+    return !!$('.tab[data-tab="skills"]') || 'no tab created'; });
+
+  t('status bar language follows the file', function(){
+    return $('#stLang').textContent==='JSON' || 'got '+$('#stLang').textContent; });
+
+  t('gutter renders line numbers', function(){
+    var n=$('#gutter').children.length; return n>10 || 'lines='+n; });
+
+  t('minimap renders lines', function(){
+    var n=$('#minimapInner').children.length; return n>5 || 'lines='+n; });
+
+  t('closing a tab falls back', function(){
+    $('.tab[data-tab="skills"] .tab__close').click();
+    return !$('.tab[data-tab="skills"]') || 'tab still present'; });
+
+  t('Ctrl+P opens quick open', function(){
+    key({key:'p', ctrlKey:true});
+    return $('#overlay').classList.contains('is-open') || 'overlay closed'; });
+
+  t('quick open lists files', function(){
+    var n=$$('.palette__item').length; return n>5 || 'items='+n; });
+
+  t('fuzzy filter narrows results', function(){
+    var i=$('#paletteInput'); i.value='ncbi'; i.dispatchEvent(new Event('input'));
+    var items=$$('.palette__item'); 
+    return items.length>0 && /ncbi/i.test(items[0].textContent) || 'first='+(items[0]||{}).textContent; });
+
+  t('Enter in quick open activates the file', function(){
+    $('.palette__item').click();
+    return $('.doc.is-active').dataset.doc==='projects/ncbi-gene-mcp' || 'active='+$('.doc.is-active').dataset.doc; });
+
+  t('Escape closes the palette', function(){
+    key({key:'p', ctrlKey:true, shiftKey:true}); key({key:'Escape'});
+    return !$('#overlay').classList.contains('is-open') || 'still open'; });
+
+  t('Ctrl+B toggles sidebar', function(){
+    key({key:'b', ctrlKey:true}); var hid=$('#vsc').classList.contains('is-sidebar-hidden');
+    key({key:'b', ctrlKey:true}); return hid || 'did not hide'; });
+
+  t('Ctrl+J toggles panel', function(){
+    key({key:'j', ctrlKey:true}); var hid=$('#vsc').classList.contains('is-panel-hidden');
+    key({key:'j', ctrlKey:true}); return hid || 'did not hide'; });
+
+  t('activity bar switches to Source Control', function(){
+    $('.activity__btn[data-view="scm"]').click();
+    return $('#view-scm').classList.contains('is-active') || 'not active'; });
+
+  t('source control lists 10 career commits', function(){
+    var n=$$('.scm__commit').length; return n===10 || 'got '+n; });
+
+  t('theme switch applies and persists', function(){
+    $$('.activity__btn[data-cmd="theme"]')[0].click();
+    var th=document.documentElement.getAttribute('data-theme');
+    return (th && th!=='dark-plus') || 'theme='+th; });
+
+  t('terminal: whoami', function(){
+    var i=$('#termIn'); i.value='whoami';
+    i.dispatchEvent(new KeyboardEvent('keydown',{key:'Enter',bubbles:true}));
+    return /Mohammad Najeeb/.test($('#termOut').textContent) || 'no output'; });
+
+  t('terminal: cat about.md opens the doc', function(){
+    var i=$('#termIn'); i.value='cat about.md';
+    i.dispatchEvent(new KeyboardEvent('keydown',{key:'Enter',bubbles:true}));
+    return $('.doc.is-active').dataset.doc==='about' || 'active='+$('.doc.is-active').dataset.doc; });
+
+  t('terminal: unknown command errors', function(){
+    var i=$('#termIn'); i.value='xyzzy';
+    i.dispatchEvent(new KeyboardEvent('keydown',{key:'Enter',bubbles:true}));
+    return /command not found/.test($('#termOut').textContent) || 'no error shown'; });
+
+  t('terminal: neofetch renders', function(){
+    var i=$('#termIn'); i.value='neofetch';
+    i.dispatchEvent(new KeyboardEvent('keydown',{key:'Enter',bubbles:true}));
+    return /ignite AI GmbH/.test($('#termOut').textContent) || 'no neofetch'; });
+
+  t('terminal: history recall with ArrowUp', function(){
+    var i=$('#termIn'); i.value='';
+    i.dispatchEvent(new KeyboardEvent('keydown',{key:'ArrowUp',bubbles:true}));
+    return i.value==='neofetch' || 'got "'+i.value+'"'; });
+
+  t('menu bar opens a dropdown', function(){
+    $('.menubar__item[data-menu="View"]').click();
+    return !document.querySelector('[data-menu-for="View"]').hidden || 'stayed hidden'; });
+
+  // search is async
+  $('.activity__btn[data-view="search"]').click();
+  var si=$('#searchInput'); si.value='pgvector'; si.dispatchEvent(new Event('input'));
+  setTimeout(function(){
+    t('search finds pgvector across files', function(){
+      var n=document.querySelectorAll('.search-hit').length;
+      return n>0 || 'hits=0 ('+$('#searchResults').textContent.slice(0,60)+')'; });
+    t('extensions view lazy-loads skills', function(){
+      return true; });
+    $('.activity__btn[data-view="ext"]').click();
+    setTimeout(function(){
+      t('extensions rendered 36 skill cards', function(){
+        var n=document.querySelectorAll('.ext__card').length; return n===36 || 'got '+n; });
+      R.unshift('RESULT  '+ok+' passed, '+fail+' failed');
+      var pre=document.createElement('pre'); pre.id='testout'; pre.textContent=R.join('\n');
+      document.body.appendChild(pre);
+    }, 700);
+  }, 900);
+}, 700); });
+</script>

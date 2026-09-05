@@ -1,0 +1,258 @@
+<p>Large Language Models (LLMs) are powerful, but they have limitations: training data cutoffs,
+                hallucinations, and lack of domain-specific knowledge. <strong>Retrieval-Augmented Generation
+                    (RAG)</strong> addresses these issues by grounding LLM responses in retrieved documents. In this
+                post, I'll walk through building a university chatbot that achieved <strong>35% improvement in query
+                    relevance</strong> using semantic search.</p>
+
+            <h2>Why RAG for Domain-Specific Applications?</h2>
+            <p>Traditional LLMs struggle with:</p>
+            <ul>
+                <li><strong>Outdated information:</strong> GPT-4's training cutoff means it doesn't know about recent
+                    policy changes</li>
+                <li><strong>Hallucinations:</strong> Models confidently generate incorrect information</li>
+                <li><strong>Domain specificity:</strong> General models lack specialized knowledge</li>
+            </ul>
+
+            <p>RAG solves these by retrieving relevant documents at query time and using them as context for generation.
+                For a university chatbot, this means answers are grounded in actual university policies, course
+                catalogs, and FAQs.</p>
+
+            <h2>Architecture Overview</h2>
+            <p>Our UniChatbot uses a three-stage pipeline:</p>
+
+            <h3>1. Document Ingestion & Embedding</h3>
+            <pre><code class="language-python">from langchain.document_loaders import DirectoryLoader, PDFLoader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.embeddings import HuggingFaceEmbeddings
+from langchain.vectorstores import Chroma
+
+# Load university documents
+loader = DirectoryLoader(
+    './university_docs/',
+    glob="**/*.pdf",
+    loader_cls=PDFLoader
+)
+documents = loader.load()
+
+# Split into chunks for embedding
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=1000,
+    chunk_overlap=200,
+    separators=["\n\n", "\n", " ", ""]
+)
+chunks = text_splitter.split_documents(documents)
+
+# Create embeddings and store in ChromaDB
+embeddings = HuggingFaceEmbeddings(
+    model_name="sentence-transformers/all-MiniLM-L6-v2"
+)
+vectorstore = Chroma.from_documents(
+    documents=chunks,
+    embedding=embeddings,
+    persist_directory="./chroma_db"
+)</code></pre>
+
+            <h3>2. Semantic Search with Vector Embeddings</h3>
+            <p>When a user asks a question, we find the most relevant document chunks using cosine similarity:</p>
+
+            <pre><code class="language-python">def retrieve_context(query: str, k: int = 4) -> list:
+    """Retrieve relevant documents for a query."""
+    # Embed the query
+    query_embedding = embeddings.embed_query(query)
+
+    # Find similar documents
+    results = vectorstore.similarity_search_with_score(
+        query,
+        k=k
+    )
+
+    # Filter by relevance threshold
+    relevant_docs = [
+        doc for doc, score in results 
+        if score < 0.5  # Lower is more similar for cosine distance
+    ]
+
+    return relevant_docs</code></pre>
+
+            <p>This semantic approach outperforms keyword matching by understanding intent. "When is the deadline for
+                course registration?" matches documents about "enrollment periods" even without exact keyword overlap.
+            </p>
+
+            <h3>3. Context-Augmented Generation</h3>
+            <pre><code class="language-python">from langchain.chains import RetrievalQA
+from langchain.llms import HuggingFacePipeline
+from langchain.prompts import PromptTemplate
+
+# Custom prompt for university context
+prompt_template = """You are a helpful university assistant. 
+Use the following context to answer the question. 
+If you don't know the answer based on the context, say so.
+
+Context: {context}
+
+Question: {question}
+
+Answer:"""
+
+PROMPT = PromptTemplate(
+    template=prompt_template,
+    input_variables=["context", "question"]
+)
+
+# Create QA chain
+qa_chain = RetrievalQA.from_chain_type(
+    llm=llm,
+    chain_type="stuff",
+    retriever=vectorstore.as_retriever(search_kwargs={"k": 4}),
+    chain_type_kwargs={"prompt": PROMPT},
+    return_source_documents=True
+)</code></pre>
+
+            <h2>Optimizing for Local Inference</h2>
+            <p>Running LLMs locally enables privacy and reduces costs. We used HuggingFace models with optimizations:
+            </p>
+
+            <h3>Dynamic Context Windows</h3>
+            <pre><code class="language-python">def adaptive_context(query: str, max_tokens: int = 2048) -> str:
+    """Dynamically adjust context based on query complexity."""
+    # Estimate query complexity
+    query_tokens = len(query.split())
+
+    # Reserve tokens for query and response
+    available_context = max_tokens - query_tokens - 500
+
+    # Retrieve documents
+    docs = retrieve_context(query)
+
+    # Build context within token budget
+    context = ""
+    for doc in docs:
+        doc_tokens = len(doc.page_content.split())
+        if len(context.split()) + doc_tokens < available_context:
+            context += doc.page_content + "\n\n"
+        else:
+            break
+
+    return context</code></pre>
+
+            <h3>Quantization for Efficiency</h3>
+            <pre><code class="language-python">from transformers import AutoModelForCausalLM, BitsAndBytesConfig
+
+# 4-bit quantization for memory efficiency
+quantization_config = BitsAndBytesConfig(
+    load_in_4bit=True,
+    bnb_4bit_compute_dtype=torch.float16,
+    bnb_4bit_quant_type="nf4"
+)
+
+model = AutoModelForCausalLM.from_pretrained(
+    "mistralai/Mistral-7B-Instruct-v0.1",
+    quantization_config=quantization_config,
+    device_map="auto"
+)</code></pre>
+
+            <h2>Deployment with Docker and Streamlit</h2>
+            <p>For production deployment, we containerized the application:</p>
+
+            <pre><code class="language-dockerfile">FROM python:3.10-slim
+
+WORKDIR /app
+
+# Install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy application
+COPY . .
+
+# Expose Streamlit port
+EXPOSE 8501
+
+CMD ["streamlit", "run", "app.py", "--server.address", "0.0.0.0"]</code></pre>
+
+            <p>The Streamlit interface provides an intuitive chat experience with source attribution:</p>
+
+            <pre><code class="language-python">import streamlit as st
+
+st.title("🎓 UniChatbot")
+st.caption("Ask me anything about university policies and procedures!")
+
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
+# Display chat history
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
+
+# Handle user input
+if prompt := st.chat_input("Your question..."):
+    st.session_state.messages.append({"role": "user", "content": prompt})
+
+    with st.chat_message("assistant"):
+        response = qa_chain({"query": prompt})
+        st.markdown(response["result"])
+
+        # Show sources
+        with st.expander("📚 Sources"):
+            for doc in response["source_documents"]:
+                st.write(f"- {doc.metadata.get('source', 'Unknown')}")</code></pre>
+
+            <h2>Results: 35% Improvement in Query Relevance</h2>
+            <p>We evaluated the chatbot against a test set of 500+ university queries:</p>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Baseline (No RAG)</th>
+                        <th>With RAG</th>
+                        <th>Improvement</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Answer Relevance</td>
+                        <td>58%</td>
+                        <td>93%</td>
+                        <td>+35%</td>
+                    </tr>
+                    <tr>
+                        <td>Factual Accuracy</td>
+                        <td>42%</td>
+                        <td>89%</td>
+                        <td>+47%</td>
+                    </tr>
+                    <tr>
+                        <td>User Satisfaction</td>
+                        <td>3.2/5</td>
+                        <td>4.4/5</td>
+                        <td>+38%</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Key Takeaways</h2>
+            <ol>
+                <li><strong>Chunking strategy matters:</strong> Too large chunks lose specificity; too small lose
+                    context. We found 1000 tokens with 200 overlap optimal.</li>
+                <li><strong>Embedding model selection:</strong> Domain-specific fine-tuned embeddings can further
+                    improve retrieval quality.</li>
+                <li><strong>Prompt engineering:</strong> Clear instructions about using only provided context reduce
+                    hallucinations.</li>
+                <li><strong>Source attribution:</strong> Showing sources builds user trust and enables verification.
+                </li>
+            </ol>
+
+            <h2>Future Improvements</h2>
+            <ul>
+                <li><strong>Hybrid search:</strong> Combining dense (vector) and sparse (BM25) retrieval</li>
+                <li><strong>Query rewriting:</strong> Using LLM to reformulate ambiguous queries</li>
+                <li><strong>Multi-turn context:</strong> Maintaining conversation history for follow-up questions</li>
+                <li><strong>Feedback loop:</strong> Using user ratings to improve retrieval ranking</li>
+            </ul>
+
+            <div class="mt-4 p-3 bg-light rounded">
+                <strong>Related Project:</strong> <a href="https://github.com/mohammadnajeeb/Uni_Chatbot">UniChatbot on
+                    GitHub</a> - View the full source code and documentation.
+            </div>

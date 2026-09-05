@@ -1,0 +1,115 @@
+<p>The intersection of AI and bioinformatics is creating unprecedented opportunities for data-driven
+                research. In this post, I'll share my experience building an <strong>MCP (Model Context Protocol)
+                    client</strong> that integrates with the <strong>NCBI Entrez API</strong> to retrieve structured
+                gene and protein metadata—a project that bridges modern AI tooling with life sciences data.</p>
+
+            <h2>What is Model Context Protocol (MCP)?</h2>
+            <p>MCP is an emerging standard for enabling AI models to interact with external tools and data sources in a
+                structured, reliable way. Unlike ad-hoc API integrations, MCP provides a standardized JSON-RPC interface
+                that allows language models to query databases, retrieve files, and execute functions with proper error
+                handling and rate limiting.</p>
+
+            <p>For bioinformatics applications, this means AI assistants can now reliably query genomic databases,
+                retrieve protein sequences, and analyze gene expression data—all through a unified protocol.</p>
+
+            <h2>Architecture: NCBI Gene MCP Client</h2>
+            <p>My implementation consists of three core components:</p>
+
+            <h3>1. MCP Server (JSON-RPC Compliant)</h3>
+            <p>The server exposes tools for gene symbol queries, flexible search, and ID-based retrieval. It's fully
+                compliant with NCBI's rate-limiting standards (3 requests/second without API key, 10 with key) to ensure
+                responsible API usage.</p>
+
+            <pre><code class="language-python"># Example MCP tool definition
+@mcp_server.tool()
+async def search_gene(symbol: str, organism: str = "Homo sapiens"):
+    """Search for gene information by symbol."""
+    results = await entrez_client.search(
+        db="gene",
+        term=f"{symbol}[Gene Name] AND {organism}[Organism]"
+    )
+    return format_gene_results(results)</code></pre>
+
+            <h3>2. Dual Interface Design</h3>
+            <p>The system provides both a <strong>REST API</strong> (FastAPI) for web applications and a
+                <strong>CLI</strong> for command-line workflows. This flexibility allows researchers to integrate gene
+                data retrieval into Jupyter notebooks, web dashboards, or automated pipelines.
+            </p>
+
+            <h3>3. Production Deployment</h3>
+            <p>The entire system is deployed on Vercel with Bootstrap frontend, featuring modular design and automated
+                testing for maintainability. The architecture follows clean separation of concerns:</p>
+            <ul>
+                <li><strong>Data Layer:</strong> Entrez API client with caching and retry logic</li>
+                <li><strong>Business Logic:</strong> Gene/protein metadata parsing and normalization</li>
+                <li><strong>Presentation:</strong> REST endpoints and CLI commands</li>
+            </ul>
+
+            <h2>Why This Matters for Bioinformatics Research</h2>
+            <p>Traditional bioinformatics workflows often involve manual data retrieval, format conversion, and
+                integration steps. MCP-enabled tools can automate these processes while maintaining data provenance and
+                reproducibility.</p>
+
+            <p>Key benefits include:</p>
+            <ul>
+                <li><strong>Structured Data Access:</strong> Gene metadata returned in consistent JSON format</li>
+                <li><strong>AI Integration:</strong> LLMs can query genomic databases as part of research workflows</li>
+                <li><strong>Rate Limit Compliance:</strong> Built-in throttling prevents API abuse</li>
+                <li><strong>Extensibility:</strong> Easy to add new databases (UniProt, Ensembl, etc.)</li>
+            </ul>
+
+            <h2>Technical Challenges & Solutions</h2>
+
+            <h3>Handling NCBI's XML Responses</h3>
+            <p>NCBI returns data in XML format, which requires careful parsing. I implemented custom parsers that
+                extract relevant fields while handling missing data gracefully:</p>
+
+            <pre><code class="language-python">def parse_gene_record(xml_record):
+    """Extract structured data from NCBI gene record."""
+    return {
+        "gene_id": safe_extract(xml_record, "Entrezgene_track-info/Gene-track/Gene-track_geneid"),
+        "symbol": safe_extract(xml_record, "Entrezgene_gene/Gene-ref/Gene-ref_locus"),
+        "description": safe_extract(xml_record, "Entrezgene_gene/Gene-ref/Gene-ref_desc"),
+        "organism": safe_extract(xml_record, "Entrezgene_source/BioSource/BioSource_org/Org-ref/Org-ref_taxname"),
+        "chromosome": safe_extract(xml_record, "Entrezgene_locus/Gene-commentary/Gene-commentary_label"),
+    }</code></pre>
+
+            <h3>Async Rate Limiting</h3>
+            <p>To comply with NCBI's usage policies, I implemented an async rate limiter using Python's asyncio:</p>
+
+            <pre><code class="language-python">class RateLimiter:
+    def __init__(self, requests_per_second: float):
+        self.min_interval = 1.0 / requests_per_second
+        self.last_request = 0
+        self._lock = asyncio.Lock()
+
+    async def acquire(self):
+        async with self._lock:
+            elapsed = time.time() - self.last_request
+            if elapsed < self.min_interval:
+                await asyncio.sleep(self.min_interval - elapsed)
+            self.last_request = time.time()</code></pre>
+
+            <h2>Future Directions</h2>
+            <p>This project opens several exciting possibilities:</p>
+            <ul>
+                <li>Integration with RAG systems for literature-aware gene analysis</li>
+                <li>Multi-database queries (combining NCBI, UniProt, and PDB data)</li>
+                <li>Automated annotation pipelines for novel sequences</li>
+                <li>Natural language interfaces for complex genomic queries</li>
+            </ul>
+
+            <h2>Conclusion</h2>
+            <p>Building MCP clients for bioinformatics APIs represents a significant step toward making genomic data
+                more accessible to AI-powered research tools. By combining structured protocols with domain-specific
+                knowledge, we can create systems that accelerate scientific discovery while maintaining data quality and
+                API compliance.</p>
+
+            <p>The code for this project demonstrates how modern software engineering practices—async programming,
+                modular design, automated testing—can be applied to bioinformatics tool development. As AI continues to
+                transform research workflows, such integrations will become increasingly valuable.</p>
+
+            <div class="mt-4 p-3 bg-light rounded">
+                <strong>Related Project:</strong> <a href="../index.html#projects">NCBI Gene MCP Client</a> - View the
+                full project details and implementation.
+            </div>

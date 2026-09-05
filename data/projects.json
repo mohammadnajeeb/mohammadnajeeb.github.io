@@ -1,0 +1,223 @@
+[
+  {
+    "id": "mona-ai-agents",
+    "file": "mona-ai-agents.py",
+    "lang": "python",
+    "title": "MONA AI — Multi-Agent Business Platform",
+    "tagline": "Ten specialised AI agents solving real business problems behind one FastAPI surface.",
+    "period": "Jun 2026",
+    "assoc": "Hackathon",
+    "featured": true,
+    "desc": "A multi-agent platform built for a hackathon against real company problem statements. Each agent owns one business task end to end — parsing the input, calling the model, and persisting a structured result into a Postgres gold layer so downstream agents can reuse it.",
+    "bullets": [
+      "Ten task-specific agents: invoice extraction, interview screening, CV fraud detection, marketing content generation, shift scheduling, work-permit checks, secure email, and analytics.",
+      "Shared agent base class handling model calls, retries and structured-JSON coercion, so a new agent is roughly one file.",
+      "Gemini-backed generation with results cached in a PostgreSQL gold schema, seeded at startup from the supplied problem datasets.",
+      "The marketing agent encodes real platform constraints — TikTok/Reels 1080×1920 safe-zone geometry — directly into the generation prompt so output is usable without manual reframing."
+    ],
+    "stack": ["Python", "FastAPI", "Gemini", "PostgreSQL", "Multi-agent", "Structured Output"],
+    "links": [{ "label": "Code", "url": "https://github.com/mohammadnajeeb/mona_ai_agents", "icon": "github" }],
+    "svg": "mona-ai-agents.svg"
+  },
+  {
+    "id": "ncbi-gene-mcp",
+    "file": "ncbi-gene-mcp.py",
+    "lang": "python",
+    "title": "NCBI Gene MCP Client",
+    "tagline": "A Model Context Protocol server that turns the NCBI Entrez API into a first-class LLM tool.",
+    "period": "Aug 2025",
+    "assoc": "Personal",
+    "featured": true,
+    "desc": "Model Context Protocol client integrating with the NCBI Entrez API for gene and protein metadata retrieval. Built so that an LLM application can look up authoritative biological data in real time instead of hallucinating it.",
+    "bullets": [
+      "Symbol-based queries and flexible search across two interfaces — a REST API and a CLI.",
+      "Production-ready MCP server speaking JSON-RPC, compliant with NCBI's rate-limiting rules.",
+      "Deployed on Vercel with a modular design and automated testing."
+    ],
+    "stack": ["Python", "FastAPI", "MCP", "JSON-RPC", "Jinja2", "Vercel"],
+    "links": [
+      { "label": "Live demo", "url": "https://ncbi-gene-mcp-client.vercel.app", "icon": "play" },
+      { "label": "Code", "url": "https://github.com/mohammadnajeeb/ncbi_gene_mcp_client", "icon": "github" }
+    ],
+    "svg": "ncbi-gene-mcp.svg"
+  },
+  {
+    "id": "unichatbot",
+    "file": "unichatbot.py",
+    "lang": "python",
+    "title": "UniChatbot",
+    "tagline": "RAG chatbot answering 500+ university queries, with a 35% lift in retrieval relevance.",
+    "period": "May 2025",
+    "assoc": "Personal",
+    "featured": true,
+    "desc": "An AI-powered chatbot using Retrieval-Augmented Generation to answer university questions accurately, built on scraped and cleaned data from Aligarh Muslim University's public sites.",
+    "bullets": [
+      "Vector embeddings and document-chunking strategies tuned for context-aware retrieval — a 35% improvement in query relevance over the naive baseline.",
+      "Local LLM inference optimised with configurable context windows, keeping the whole thing runnable without a paid API.",
+      "LangChain orchestrates question processing, context retrieval and response generation over the university corpus.",
+      "Containerised with Docker and deployed through Streamlit for easy knowledge-base updates."
+    ],
+    "stack": ["Python", "LangChain", "RAG", "ChromaDB", "Streamlit", "Docker"],
+    "links": [{ "label": "Code", "url": "https://github.com/mohammadnajeeb/Uni_Chatbot", "icon": "github" }],
+    "svg": "unichatbot.svg"
+  },
+  {
+    "id": "skill-lyft",
+    "file": "skill-lyft.tsx",
+    "lang": "tsx",
+    "title": "Skill Lyft — AI Peer-Teaching Platform",
+    "tagline": "Full-stack learning platform that makes Transformers, LLMs and neural nets legible to Master's students.",
+    "period": "Apr 2025 — Jul 2025",
+    "assoc": "Saarland University",
+    "featured": true,
+    "desc": "Engineered a full-stack AI-driven learning platform that simplifies complex ML concepts for Master's students, built by a four-person agile team with clearly defined roles (Tech Lead, Co-Lead, Evaluation, Design).",
+    "bullets": [
+      "Integrated state-of-the-art NLP models (Hugging Face, PyTorch) to power an interactive AI peer-teaching agent, boosting engagement and conceptual retention.",
+      "Scalable React + TypeScript frontend against a Flask backend, delivering multimodal learning — visuals, animations, guided exercises and active-recall checkpoints.",
+      "Applied evidence-based pedagogy — chunking, scaffolding, multimodal presentation — to reduce cognitive overload and improve learner outcomes.",
+      "Deployed on Vercel with GitHub CI/CD.",
+      "Usability testing with 20+ students produced a 30% improvement in navigation efficiency."
+    ],
+    "stack": ["React", "TypeScript", "Tailwind CSS", "Flask", "Hugging Face", "PyTorch", "Headless UI", "Vercel"],
+    "links": [
+      { "label": "Code", "url": "https://github.com/mohammadnajeeb/SkillLyft", "icon": "github" },
+      { "label": "Figma prototype", "url": "https://www.figma.com/proto/X5T2MzeZiKqaC72WfYJXIB/Untitled?node-id=0-1", "icon": "figma" }
+    ],
+    "svg": "skill-lyft.svg"
+  },
+  {
+    "id": "smart-studydesk",
+    "file": "smart-studydesk.fig",
+    "lang": "md",
+    "title": "Smart StudyDesk — AI Study Organiser",
+    "tagline": "Cross-platform study assistant, designed and validated with NASA-TLX workload analysis.",
+    "period": "2025",
+    "assoc": "Saarland University",
+    "featured": false,
+    "desc": "A cross-platform application designed to streamline studying by organising, summarising and testing lecture materials, tailored for university students.",
+    "bullets": [
+      "AI-powered summarisation of notes, personalised quizzes targeting weak areas, and progress tracking through graphs and metrics.",
+      "Led usability testing with semi-structured interviews and NASA-TLX workload analysis, identifying navigation and feedback-visibility as the major UX gaps.",
+      "Iteratively refined the interface on user feedback — folder categorisation and weak-area quizzes came directly out of testing.",
+      "Navigation efficiency improved 30% across iterations."
+    ],
+    "stack": ["Figma", "UX Research", "NASA-TLX", "Python"],
+    "links": [{ "label": "Figma prototype", "url": "https://www.figma.com/proto/X5T2MzeZiKqaC72WfYJXIB/Smart-StudyDesk?node-id=1-2&starting-point-node-id=1%3A2", "icon": "figma" }],
+    "svg": "smart-studydesk.svg"
+  },
+  {
+    "id": "clip-medical",
+    "file": "clip-medical.ipynb",
+    "lang": "python",
+    "title": "Zero-Shot Medical Image Classification with CLIP",
+    "tagline": "Does CLIP transfer to OCT scans? A controlled comparison against ViT and ResNet50.",
+    "period": "2025",
+    "assoc": "Saarland University",
+    "featured": false,
+    "desc": "A comparative analysis of the CLIP model against Vision Transformers and ResNet50 for zero-shot classification of Optical Coherence Tomography images.",
+    "bullets": [
+      "Zero-shot classification with custom textual prompts, evaluated on Precision, Recall, F1, ROC-AUC, Accuracy, Cohen's Kappa and MCC.",
+      "Demonstrated CLIP's strengths in zero-shot transfer while surfacing concrete domain-adaptation limits for medical imaging.",
+      "Extensive testing across the OCT2017 and RFMiD datasets."
+    ],
+    "stack": ["Python", "PyTorch", "CLIP", "ViT", "ResNet50"],
+    "links": [],
+    "svg": "clip-medical.svg"
+  },
+  {
+    "id": "concrete-cracks",
+    "file": "concrete-cracks.ipynb",
+    "lang": "python",
+    "title": "Efficient Models for Concrete Crack Detection",
+    "tagline": "Distilling nine CNN architectures into something small enough to deploy on infrastructure.",
+    "period": "2021 — 2022",
+    "assoc": "Taibah University",
+    "featured": false,
+    "desc": "A study finding the best deep-learning models to detect cracks in architectural infrastructure, then compressing them without losing the accuracy that justified them.",
+    "bullets": [
+      "Trained and benchmarked nine CNN architectures on SDNET2018 — 56,000+ concrete crack images.",
+      "Used knowledge distillation to transfer knowledge from ResNet-50 and VGG-19 teachers into lightweight student models, improving MCC by up to 20%.",
+      "Grad-CAM interpretability confirmed the models attend to actual cracks, not background texture; 96% classification accuracy on the test set.",
+      "Results presented with SciPy-stack visualisation — Matplotlib and NumPy."
+    ],
+    "stack": ["Python", "TensorFlow", "Keras", "Knowledge Distillation", "Grad-CAM"],
+    "links": [],
+    "svg": "concrete-cracks.svg"
+  },
+  {
+    "id": "healthsense-ai",
+    "file": "healthsense-ai.js",
+    "lang": "javascript",
+    "title": "HealthSenseAI",
+    "tagline": "MERN health platform with Hugging Face inference and a Gradio prototyping loop.",
+    "period": "2023",
+    "assoc": "Personal",
+    "featured": false,
+    "desc": "A web application providing automated AI-based medical diagnosis and live global medical insights, letting users manage health profiles and receive personalised recommendations.",
+    "bullets": [
+      "End-to-end ML pipeline covering preprocessing, inference and deployment behind a MERN stack.",
+      "Hugging Face pre-trained models for prediction; Gradio cut prototyping cycles by roughly 40%.",
+      "Interface designed for non-technical healthcare staff, with user registration, profile management and secure data handling."
+    ],
+    "stack": ["MongoDB", "Express", "React", "Node.js", "Python", "Hugging Face", "Gradio"],
+    "links": [{ "label": "Code", "url": "https://github.com/mohammadnajeeb/HealthSenseAI", "icon": "github" }],
+    "svg": "healthsense-ai.svg"
+  },
+  {
+    "id": "attendance-system",
+    "file": "attendance-system.py",
+    "lang": "python",
+    "title": "Automated Face Recognition Attendance",
+    "tagline": "Haar cascade + OpenCV attendance for 200+ students a session, 80% less processing time.",
+    "period": "2022",
+    "assoc": "Jamia Millia Islamia",
+    "featured": false,
+    "desc": "A real-time face recognition system replacing manual roll-call, processing 200+ students per session from a single camera feed.",
+    "bullets": [
+      "Haar cascade detection and OpenCV recognition pipeline running against live video.",
+      "Deployed inside a Flask web app so attendance could be taken and reviewed remotely.",
+      "Reduced attendance processing time by roughly 80% against the manual baseline."
+    ],
+    "stack": ["Python", "OpenCV", "Flask", "Haar Cascade"],
+    "links": [{ "label": "Code", "url": "https://github.com/mohammadnajeeb/jmi_automated_attendace_system", "icon": "github" }],
+    "svg": "attendance-system.svg"
+  },
+  {
+    "id": "climate-forecast",
+    "file": "climate-forecast.ipynb",
+    "lang": "python",
+    "title": "Climate Change Forecast of Delhi",
+    "tagline": "SARIMAX over 20+ years of regional climate data, from a 1.6-billion-record source series.",
+    "period": "2022",
+    "assoc": "Personal",
+    "featured": false,
+    "desc": "Time-series forecasting on two decades of regional climate data to predict seasonal cycles and long-term warming trends for Delhi.",
+    "bullets": [
+      "Preprocessed the Berkeley Earth climate series — 1.6B+ records — down to a Delhi-specific regional subset.",
+      "SARIMAX models capturing seasonality alongside the underlying trend.",
+      "Interpretable visual analytics making the warming signal legible rather than merely statistically significant."
+    ],
+    "stack": ["Python", "scikit-learn", "SARIMAX", "Matplotlib", "Seaborn"],
+    "links": [{ "label": "Code", "url": "https://github.com/mohammadnajeeb/Climate-Change-Forecast-of-Delhi", "icon": "github" }],
+    "svg": "climate-forecast.svg"
+  },
+  {
+    "id": "ambient-light",
+    "file": "ambient-light.ino",
+    "lang": "cpp",
+    "title": "Arduino Ambient Light",
+    "tagline": "Screen-reactive bias lighting — capture the edge pixels, drive the strip, stop squinting.",
+    "period": "2022",
+    "assoc": "Personal",
+    "featured": false,
+    "desc": "An Arduino-based ambient light for a monitor that samples the pixels around the screen edge and illuminates an LED strip behind it to match — immersive, and easier on the eyes during long sessions.",
+    "bullets": [
+      "Host-side capture loop samples edge regions of the framebuffer and streams colour data over serial.",
+      "WS2812b RGB strip driven with C++ and the FastLED library on an Arduino Nano.",
+      "Built primarily to reduce eye strain; the immersion was the bonus."
+    ],
+    "stack": ["C++", "Arduino", "FastLED", "WS2812b"],
+    "links": [{ "label": "Code", "url": "https://github.com/mohammadnajeeb/arduino-based-ambient-light", "icon": "github" }],
+    "svg": "ambient-light.svg"
+  }
+]

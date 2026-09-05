@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /social/
+Disallow: /_backup/
 
 Sitemap: https://mohammadnajeeb.github.io/sitemap.xml

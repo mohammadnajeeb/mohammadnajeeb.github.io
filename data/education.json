@@ -1,0 +1,52 @@
+[
+  {
+    "degree": "M.Sc. Computer Science",
+    "spec": "Specialisation: Media Informatics",
+    "org": "Universität des Saarlandes",
+    "org_short": "Saarland University",
+    "location": "Saarbrücken, Germany",
+    "period": "2025 — 2027",
+    "current": true,
+    "note": "Saarland Informatics Campus. Coursework and project work across machine learning, human-computer interaction and media informatics."
+  },
+  {
+    "degree": "Postgraduate Diploma, Computer Applications",
+    "spec": "",
+    "org": "Jamia Millia Islamia",
+    "org_short": "Jamia Millia Islamia",
+    "location": "New Delhi, India",
+    "period": "Aug 2022 — Jun 2023",
+    "current": false,
+    "note": "Applied computing conversion programme taken alongside professional front-end work."
+  },
+  {
+    "degree": "B.Sc. (Hons.) Mathematics & Statistics",
+    "spec": "",
+    "org": "Aligarh Muslim University",
+    "org_short": "AMU",
+    "location": "Aligarh, India",
+    "period": "Aug 2019 — Jun 2022",
+    "current": false,
+    "note": "Where the statistics behind the machine learning came from."
+  },
+  {
+    "degree": "Senior Secondary — Physics, Chemistry, Mathematics",
+    "spec": "",
+    "org": "Aligarh Muslim University",
+    "org_short": "AMU",
+    "location": "Aligarh, India",
+    "period": "2015 — 2017",
+    "current": false,
+    "note": ""
+  },
+  {
+    "degree": "High School — Science, Mathematics, Computer Science",
+    "spec": "",
+    "org": "Delhi Public School Aligarh",
+    "org_short": "DPS Aligarh",
+    "location": "Aligarh, India",
+    "period": "2013 — 2015",
+    "current": false,
+    "note": ""
+  }
+]

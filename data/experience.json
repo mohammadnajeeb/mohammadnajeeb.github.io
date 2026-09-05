@@ -1,0 +1,132 @@
+[
+  {
+    "id": "ignite-ai",
+    "file": "ignite-ai.md",
+    "role": "Artificial Intelligence Engineer",
+    "org": "ignite AI GmbH",
+    "type": "Internship",
+    "start": "2026-08",
+    "end": null,
+    "period": "Aug 2026 — Present",
+    "location": "Birkenfeld, Rhineland-Palatinate, Germany",
+    "mode": "On-site",
+    "current": true,
+    "summary": "Enterprise AI that has to survive a compliance review — governance, PII handling, and LLMs that run inside the customer's own network.",
+    "highlights": [
+      { "title": "AI Governance & Security", "body": "Design and enforce enterprise AI governance policies and guardrails to prevent data leakage and guarantee compliance across model workflows." },
+      { "title": "PII Protection & Data Privacy", "body": "Build robust data anonymisation and privacy layers that intercept and protect Personally Identifiable Information before anything is routed to an external or cloud LLM." },
+      { "title": "Sovereign & On-Premise LLMs", "body": "Deploy, fine-tune and optimise local LLMs on-premise, giving clients full data sovereignty and zero cloud-data exposure." },
+      { "title": "Enterprise AI Chatbots & RAG", "body": "Develop custom conversational assistants integrated with local corporate databases, document repositories and internal knowledge bases." },
+      { "title": "Cloud & Hybrid AI Architecture", "body": "Architect secure pipelines that bridge local workloads with cloud AI providers under strict Data Loss Prevention rules." }
+    ],
+    "stack": ["Sovereign AI", "AI Security", "On-Premise LLMs", "RAG", "PII / DLP", "Hybrid Cloud"]
+  },
+  {
+    "id": "edutech-uds",
+    "file": "edutech-uds.md",
+    "role": "Student Assistant — Lead Developer",
+    "org": "Educational Technology Department (EduTech UdS), Saarland University",
+    "type": "Part-time",
+    "start": "2026-04",
+    "end": null,
+    "period": "Apr 2026 — Present",
+    "location": "Saarbrücken, Saarland, Germany",
+    "mode": "On-site",
+    "current": true,
+    "summary": "Lead developer on an adaptive self-regulated-learning platform, plus two research pipelines: audio-to-knowledge-graph, and real-time gaze streaming.",
+    "highlights": [
+      { "title": "SRL Course Platform — full-stack lead", "body": "Architected and deployed a production adaptive learning platform (React 19 + TypeScript, Node.js/Express, PostgreSQL 16 with pgvector) serving 50+ university course modules. Authored 18 architecture decision records covering authentication, LLM provider abstraction and data architecture." },
+      { "title": "Document-ingestion pipeline", "body": "Built a Medallion ETL pipeline turning lecture PDFs into searchable learning content — PDF parsing, LLM-driven semantic chunking, then vector embeddings in pgvector. Indexed 1,200+ documents with HNSW; cut manual content-labelling time by 40%." },
+      { "title": "Hybrid retrieval", "body": "Combined pgvector HNSW vector similarity with BM25 full-text search over a PostgreSQL GIN index, fused via Reciprocal Rank Fusion. 78% retrieval accuracy on the university knowledge base, served from a FastAPI endpoint at sub-200 ms latency." },
+      { "title": "Adaptive AI tutor", "body": "Backend supporting three content-depth levels per concept with pluggable LLM providers (OpenAI, Anthropic, Ollama). Per-model cost and latency tracking informs provider selection; response quality measured across 500+ student interactions." },
+      { "title": "AI Co-Design Platform — NLP pipeline", "body": "Built a system converting classroom audio into structured knowledge graphs: OpenAI Whisper speech-to-text, pyannote speaker diarisation, then LLM entity and relation extraction. Processed 45+ hours of lecture audio; outputs versioned in PostgreSQL for team collaboration." },
+      { "title": "Real-time gaze streaming", "body": "Optimised WebSocket-based gaze-data streaming from the Pupil Labs glasses API, reducing end-to-end latency on a custom behavioural data-collection tool." }
+    ],
+    "stack": ["React 19", "TypeScript", "Node.js", "Express", "PostgreSQL", "pgvector", "FastAPI", "RAG", "LangChain", "Whisper", "Docker"]
+  },
+  {
+    "id": "olympia-academia",
+    "file": "olympia-academia.md",
+    "role": "Co-Founder · Advisory Board Member · Technical Lead",
+    "org": "Olympia Academia",
+    "type": "Volunteer",
+    "start": "2018-08",
+    "end": null,
+    "period": "Aug 2018 — Present",
+    "location": "Remote / International",
+    "mode": "Remote",
+    "current": true,
+    "summary": "A student scientific community I co-founded in 2018. It now has ~200 members and has hosted speakers from Caltech, NASA and other leading research institutions.",
+    "highlights": [
+      { "title": "Co-founder", "body": "Started the community in 2018 and served as Vice President; today I sit on the advisory board as technical lead." },
+      { "title": "~200-member scientific community", "body": "APS-funded, featuring invited speakers from Caltech, NASA and leading research institutions." },
+      { "title": "Technical lead", "body": "Responsible for the organisation's web presence and technical infrastructure, including a Progressive Web App and a RAG-based knowledge assistant over the community's archives." }
+    ],
+    "stack": ["Community", "Technical Leadership", "PWA", "RAG"]
+  },
+  {
+    "id": "cix-saarland",
+    "file": "cix-saarland.md",
+    "role": "Graduate Research Assistant",
+    "org": "Computational Interaction Group (CIX), Universität des Saarlandes",
+    "type": "Part-time",
+    "start": "2024-09",
+    "end": "2025-03",
+    "period": "Sep 2024 — Mar 2025",
+    "location": "Saarbrücken, Saarland, Germany",
+    "mode": "On-site",
+    "current": false,
+    "summary": "A research study on human-computer interaction patterns in mobile text entry — and the computer-vision pipeline that made it measurable.",
+    "highlights": [
+      { "title": "Computer-vision pipeline", "body": "Built a MediaPipe + OpenCV pipeline tracking detailed hand movements during touchscreen typing, enabling precise analysis of finger positioning and movement patterns. Processed 50,000+ behavioural events at 96% hand-posture classification accuracy." },
+      { "title": "Eliminated the annotation bottleneck", "body": "Delivered a production-ready, reproducible dataset pipeline that reduced manual annotation effort by 30% and unblocked PhD-level forecasting research on user interaction patterns." },
+      { "title": "Statistical analysis", "body": "Implemented position-variability metrics, hand-switching detection and suggestion-bar interaction analysis to quantify typing behaviour." },
+      { "title": "Multi-modal comparison framework", "body": "Compared thumb-based against index-finger typing strategies, surfacing differences in spatial distribution, selection accuracy and ergonomic patterns." },
+      { "title": "Visualisation & data sync", "body": "Matplotlib heatmaps, distribution plots and comparative analyses; a processing pipeline synchronising video with keyboard event logs for temporal analysis of typing behaviour." }
+    ],
+    "stack": ["Python", "OpenCV", "MediaPipe", "NumPy", "Pandas", "Matplotlib", "HCI"],
+    "note": "Letter of Recommendation on file."
+  },
+  {
+    "id": "orion-solutions",
+    "file": "orion-solutions.md",
+    "role": "Web Developer",
+    "org": "Orion Solutions",
+    "type": "Internship",
+    "start": "2022-07",
+    "end": "2023-09",
+    "period": "Jul 2022 — Sep 2023",
+    "location": "Lucknow, Uttar Pradesh, India",
+    "mode": "Hybrid",
+    "current": false,
+    "summary": "Fifteen months shipping production front-ends in a cross-functional team, and the place I learned what a design-to-dev handoff actually costs.",
+    "highlights": [
+      { "title": "Front-end development", "body": "Developed components using HTML, JavaScript and React; built responsive interfaces for consistent experience across devices." },
+      { "title": "Design & handoff", "body": "Designed and improved user interfaces in Figma, and collaborated with designers to implement UI components aligned with company branding." },
+      { "title": "Backend integration", "body": "Assisted in integrating backend features using MongoDB and SQL, and wired up REST API and database layers." },
+      { "title": "Standards", "body": "Applied modern UI/UX principles, responsive design techniques and accessibility standards across delivery." }
+    ],
+    "stack": ["React", "JavaScript", "HTML", "CSS", "Figma", "MongoDB", "SQL", "REST"],
+    "note": "Certificate of Internship on file."
+  },
+  {
+    "id": "taibah-university",
+    "file": "taibah-university.md",
+    "role": "Research Intern — Computer Vision & Deep Learning",
+    "org": "Taibah University",
+    "type": "Internship",
+    "start": "2021-09",
+    "end": "2022-02",
+    "period": "Sep 2021 — Feb 2022",
+    "location": "Al Madinah, Saudi Arabia",
+    "mode": "Remote",
+    "current": false,
+    "summary": "My first research role: compressing crack-detection CNNs small enough to be useful, without giving up the accuracy that made them worth deploying.",
+    "highlights": [
+      { "title": "Concrete crack detection at scale", "body": "Processed the SDNET2018 dataset — 56,000+ concrete crack images — for CNN-based detection, benchmarking nine architectures." },
+      { "title": "Knowledge distillation", "body": "Transferred knowledge from large teachers (ResNet-50, VGG-19) into lightweight students, improving Matthews Correlation Coefficient by up to 20% while shrinking the deployable model." },
+      { "title": "Interpretability", "body": "Applied Grad-CAM to verify the models were attending to actual cracks rather than background texture; achieved 96% classification accuracy on the test set." }
+    ],
+    "stack": ["Python", "TensorFlow", "Keras", "Grad-CAM", "LaTeX"]
+  }
+]

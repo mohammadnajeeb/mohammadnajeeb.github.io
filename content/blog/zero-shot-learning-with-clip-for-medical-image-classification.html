@@ -1,0 +1,145 @@
+<p>Medical image classification traditionally requires large labeled datasets—expensive and time-consuming
+                to create. <strong>Zero-shot learning</strong> offers an alternative: classifying images without
+                task-specific training data. In this post, I'll share findings from comparing <strong>OpenAI's
+                    CLIP</strong> against supervised models for OCT and retinal image classification.</p>
+
+            <h2>What is Zero-Shot Learning?</h2>
+            <p>Zero-shot learning enables models to recognize classes they've never explicitly seen during training.
+                CLIP (Contrastive Language-Image Pre-training) achieves this by learning a shared embedding space for
+                images and text descriptions.</p>
+
+            <pre><code class="language-python">import torch
+import clip
+from PIL import Image
+
+# Load CLIP model
+device = "cuda" if torch.cuda.is_available() else "cpu"
+model, preprocess = clip.load("ViT-B/32", device=device)
+
+# Define class descriptions for OCT images
+class_prompts = [
+    "an OCT scan showing choroidal neovascularization",
+    "an OCT scan showing diabetic macular edema", 
+    "an OCT scan showing drusen deposits",
+    "a normal healthy OCT retinal scan"
+]
+
+def classify_oct_image(image_path):
+    """Zero-shot classification of OCT images."""
+    image = preprocess(Image.open(image_path)).unsqueeze(0).to(device)
+    text = clip.tokenize(class_prompts).to(device)
+
+    with torch.no_grad():
+        image_features = model.encode_image(image)
+        text_features = model.encode_text(text)
+
+        # Compute similarity
+        similarity = (100.0 * image_features @ text_features.T).softmax(dim=-1)
+
+    return similarity[0].cpu().numpy()</code></pre>
+
+            <h2>Experimental Setup</h2>
+            <p>We compared three approaches on the OCT2017 and RFMiD datasets:</p>
+            <ul>
+                <li><strong>CLIP ViT-B/32:</strong> Zero-shot with custom medical prompts</li>
+                <li><strong>Vision Transformer (ViT):</strong> Fine-tuned on training set</li>
+                <li><strong>ResNet-50:</strong> Fine-tuned baseline</li>
+            </ul>
+
+            <h3>Prompt Engineering for Medical Images</h3>
+            <p>CLIP's performance heavily depends on prompt quality. We tested multiple prompt strategies:</p>
+
+            <pre><code class="language-python"># Basic prompts
+basic_prompts = ["CNV", "DME", "Drusen", "Normal"]
+
+# Descriptive prompts  
+descriptive_prompts = [
+    "choroidal neovascularization with fluid accumulation",
+    "diabetic macular edema with retinal thickening",
+    "drusen deposits in the retinal pigment epithelium",
+    "healthy retina with normal foveal contour"
+]
+
+# Template-based prompts
+template_prompts = [
+    f"a retinal OCT scan of {condition}" 
+    for condition in ["CNV", "DME", "drusen", "healthy tissue"]
+]</code></pre>
+
+            <h2>Results and Analysis</h2>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Model</th>
+                        <th>Accuracy</th>
+                        <th>F1-Score</th>
+                        <th>ROC-AUC</th>
+                        <th>MCC</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ResNet-50 (Fine-tuned)</td>
+                        <td>94.2%</td>
+                        <td>0.941</td>
+                        <td>0.987</td>
+                        <td>0.922</td>
+                    </tr>
+                    <tr>
+                        <td>ViT-B/16 (Fine-tuned)</td>
+                        <td>96.1%</td>
+                        <td>0.960</td>
+                        <td>0.992</td>
+                        <td>0.948</td>
+                    </tr>
+                    <tr>
+                        <td>CLIP (Zero-shot, basic)</td>
+                        <td>67.3%</td>
+                        <td>0.654</td>
+                        <td>0.821</td>
+                        <td>0.564</td>
+                    </tr>
+                    <tr>
+                        <td>CLIP (Zero-shot, descriptive)</td>
+                        <td>78.9%</td>
+                        <td>0.775</td>
+                        <td>0.889</td>
+                        <td>0.718</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Key Findings</h3>
+            <ol>
+                <li><strong>Domain gap:</strong> CLIP's web-trained knowledge doesn't fully transfer to medical imaging
+                </li>
+                <li><strong>Prompt sensitivity:</strong> Descriptive prompts improved accuracy by 11.6%</li>
+                <li><strong>Few-shot potential:</strong> Even 10 labeled examples significantly boost CLIP's performance
+                </li>
+            </ol>
+
+            <h2>When to Use Zero-Shot vs. Fine-Tuned Models</h2>
+            <p><strong>Use CLIP zero-shot when:</strong></p>
+            <ul>
+                <li>No labeled data available for new conditions</li>
+                <li>Rapid prototyping and feasibility testing</li>
+                <li>Classes are well-described by natural language</li>
+            </ul>
+
+            <p><strong>Use fine-tuned models when:</strong></p>
+            <ul>
+                <li>Sufficient labeled data exists</li>
+                <li>High accuracy is critical (clinical deployment)</li>
+                <li>Classes have subtle visual differences</li>
+            </ul>
+
+            <h2>Conclusion</h2>
+            <p>CLIP demonstrates impressive zero-shot generalization but faces domain adaptation challenges in medical
+                imaging. Hybrid approaches—combining CLIP's flexibility with limited fine-tuning—offer a promising
+                direction for scenarios with scarce labeled data.</p>
+
+            <div class="mt-4 p-3 bg-light rounded">
+                <strong>Related Project:</strong> <a href="../index.html#projects">Zero-Shot Medical Image
+                    Classification with CLIP</a>
+            </div>

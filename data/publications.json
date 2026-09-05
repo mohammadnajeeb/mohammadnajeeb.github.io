@@ -1,0 +1,18 @@
+[
+  {
+    "key": "zim2024zeamays",
+    "type": "inproceedings",
+    "title": "Zea Mays Leaf Disease Classification Using Swin Transformer",
+    "authors": ["Zim, A. H.", "Ashraf, A.", "Iqbal, A.", "Najeeb, M.", "Malik, A.", "Kuribayashi, M.", "Khan, A."],
+    "me": "Najeeb, M.",
+    "booktitle": "International Conference on Signal, Machines, Automation, and Algorithm (SIGMAA 2024)",
+    "publisher": "Springer",
+    "year": "2024",
+    "pages": "827--838",
+    "doi": "10.1007/978-981-97-6352-8_59",
+    "url": "https://doi.org/10.1007/978-981-97-6352-8_59",
+    "cite_url": "https://link.springer.com/chapter/10.1007/978-981-97-6352-8_59#citeas",
+    "badge": "Conference Paper",
+    "abstract": "Applies the Swin Transformer's hierarchical shifted-window attention to leaf-disease classification in Zea mays (maize), comparing it against convolutional baselines for agricultural disease diagnosis from field imagery."
+  }
+]

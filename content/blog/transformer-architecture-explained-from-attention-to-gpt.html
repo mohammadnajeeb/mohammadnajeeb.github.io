@@ -1,0 +1,201 @@
+<p>The Transformer architecture, introduced in "Attention Is All You Need" (2017), revolutionized NLP and
+                beyond. Understanding Transformers is essential for working with modern LLMs like GPT, BERT, and their
+                successors. Let's build intuition from the ground up.</p>
+
+            <h2>The Core Insight: Attention</h2>
+            <p>Attention allows models to focus on relevant parts of the input when producing each output. Unlike RNNs
+                that process sequentially, attention computes relationships between all positions simultaneously.</p>
+
+            <h3>Scaled Dot-Product Attention</h3>
+            <pre><code class="language-python">import torch
+import torch.nn as nn
+import torch.nn.functional as F
+import math
+
+def scaled_dot_product_attention(query, key, value, mask=None):
+    """
+    Compute attention weights and output.
+
+    Args:
+        query: (batch, seq_len, d_k)
+        key: (batch, seq_len, d_k)
+        value: (batch, seq_len, d_v)
+        mask: Optional attention mask
+
+    Returns:
+        output: (batch, seq_len, d_v)
+        attention_weights: (batch, seq_len, seq_len)
+    """
+    d_k = query.size(-1)
+
+    # Compute attention scores
+    scores = torch.matmul(query, key.transpose(-2, -1)) / math.sqrt(d_k)
+
+    # Apply mask (for decoder self-attention)
+    if mask is not None:
+        scores = scores.masked_fill(mask == 0, -1e9)
+
+    # Softmax to get attention weights
+    attention_weights = F.softmax(scores, dim=-1)
+
+    # Weighted sum of values
+    output = torch.matmul(attention_weights, value)
+
+    return output, attention_weights</code></pre>
+
+            <h3>Intuition: Q, K, V</h3>
+            <ul>
+                <li><strong>Query (Q):</strong> "What am I looking for?"</li>
+                <li><strong>Key (K):</strong> "What do I contain?"</li>
+                <li><strong>Value (V):</strong> "What information do I provide?"</li>
+            </ul>
+            <p>Attention scores measure how well each query matches each key, then use those scores to weight the
+                values.</p>
+
+            <h2>Multi-Head Attention</h2>
+            <p>Instead of single attention, use multiple "heads" to capture different relationship types:</p>
+
+            <pre><code class="language-python">class MultiHeadAttention(nn.Module):
+    def __init__(self, d_model, num_heads):
+        super().__init__()
+        assert d_model % num_heads == 0
+
+        self.d_model = d_model
+        self.num_heads = num_heads
+        self.d_k = d_model // num_heads
+
+        # Linear projections for Q, K, V
+        self.W_q = nn.Linear(d_model, d_model)
+        self.W_k = nn.Linear(d_model, d_model)
+        self.W_v = nn.Linear(d_model, d_model)
+        self.W_o = nn.Linear(d_model, d_model)
+
+    def forward(self, query, key, value, mask=None):
+        batch_size = query.size(0)
+
+        # Linear projections and reshape for multi-head
+        Q = self.W_q(query).view(batch_size, -1, self.num_heads, self.d_k).transpose(1, 2)
+        K = self.W_k(key).view(batch_size, -1, self.num_heads, self.d_k).transpose(1, 2)
+        V = self.W_v(value).view(batch_size, -1, self.num_heads, self.d_k).transpose(1, 2)
+
+        # Apply attention
+        attn_output, _ = scaled_dot_product_attention(Q, K, V, mask)
+
+        # Concatenate heads and project
+        attn_output = attn_output.transpose(1, 2).contiguous().view(batch_size, -1, self.d_model)
+        output = self.W_o(attn_output)
+
+        return output</code></pre>
+
+            <h2>Positional Encoding</h2>
+            <p>Transformers have no inherent sense of position. We add positional information using sinusoidal
+                functions:</p>
+
+            <pre><code class="language-python">class PositionalEncoding(nn.Module):
+    def __init__(self, d_model, max_len=5000):
+        super().__init__()
+
+        # Create positional encoding matrix
+        pe = torch.zeros(max_len, d_model)
+        position = torch.arange(0, max_len, dtype=torch.float).unsqueeze(1)
+        div_term = torch.exp(torch.arange(0, d_model, 2).float() * (-math.log(10000.0) / d_model))
+
+        pe[:, 0::2] = torch.sin(position * div_term)  # Even indices
+        pe[:, 1::2] = torch.cos(position * div_term)  # Odd indices
+
+        pe = pe.unsqueeze(0)  # Add batch dimension
+        self.register_buffer('pe', pe)
+
+    def forward(self, x):
+        return x + self.pe[:, :x.size(1), :]</code></pre>
+
+            <h2>Transformer Encoder Block</h2>
+            <pre><code class="language-python">class TransformerEncoderBlock(nn.Module):
+    def __init__(self, d_model, num_heads, d_ff, dropout=0.1):
+        super().__init__()
+
+        # Multi-head self-attention
+        self.self_attn = MultiHeadAttention(d_model, num_heads)
+        self.norm1 = nn.LayerNorm(d_model)
+
+        # Feed-forward network
+        self.ffn = nn.Sequential(
+            nn.Linear(d_model, d_ff),
+            nn.ReLU(),
+            nn.Dropout(dropout),
+            nn.Linear(d_ff, d_model)
+        )
+        self.norm2 = nn.LayerNorm(d_model)
+
+        self.dropout = nn.Dropout(dropout)
+
+    def forward(self, x, mask=None):
+        # Self-attention with residual connection
+        attn_output = self.self_attn(x, x, x, mask)
+        x = self.norm1(x + self.dropout(attn_output))
+
+        # Feed-forward with residual connection
+        ffn_output = self.ffn(x)
+        x = self.norm2(x + self.dropout(ffn_output))
+
+        return x</code></pre>
+
+            <h2>From Transformers to GPT</h2>
+            <p><strong>GPT (Generative Pre-trained Transformer)</strong> uses only the decoder part with <strong>causal
+                    masking</strong>—each position can only attend to previous positions:</p>
+
+            <pre><code class="language-python">def create_causal_mask(seq_len):
+    """Create mask to prevent attending to future tokens."""
+    mask = torch.triu(torch.ones(seq_len, seq_len), diagonal=1)
+    return mask == 0  # True where attention is allowed</code></pre>
+
+            <h3>GPT Architecture</h3>
+            <ol>
+                <li><strong>Token Embedding:</strong> Convert tokens to vectors</li>
+                <li><strong>Positional Encoding:</strong> Add position information</li>
+                <li><strong>N Transformer Blocks:</strong> Self-attention + FFN</li>
+                <li><strong>Output Layer:</strong> Project to vocabulary size</li>
+            </ol>
+
+            <h2>BERT vs GPT</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>BERT</th>
+                        <th>GPT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Architecture</td>
+                        <td>Encoder only</td>
+                        <td>Decoder only</td>
+                    </tr>
+                    <tr>
+                        <td>Attention</td>
+                        <td>Bidirectional</td>
+                        <td>Causal (left-to-right)</td>
+                    </tr>
+                    <tr>
+                        <td>Pre-training</td>
+                        <td>Masked Language Modeling</td>
+                        <td>Next Token Prediction</td>
+                    </tr>
+                    <tr>
+                        <td>Best for</td>
+                        <td>Understanding tasks</td>
+                        <td>Generation tasks</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Conclusion</h2>
+            <p>The Transformer's elegance lies in its simplicity: attention mechanisms replace complex recurrent
+                structures, enabling parallelization and capturing long-range dependencies. Understanding these
+                fundamentals is key to working with—and improving upon—modern LLMs.</p>
+
+            <div class="mt-4 p-3 bg-light rounded">
+                <strong>Related Project:</strong> <a href="../index.html#projects">Skill Lyft: AI-Powered Learning
+                    Prototype</a> - Simplifying ML concepts like Transformers and LLMs.
+            </div>

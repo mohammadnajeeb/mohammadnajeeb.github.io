@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Mohammad Najeeb — AI, LLM & Dev</title>
+
+    <!-- Meta Tags for SEO -->
+    <meta name="description"
+        content="Technical blog by Mohammad Najeeb covering LLMs, RAG pipelines, generative AI, ETL systems, Docker, CI/CD, MLOps, and modern machine learning engineering practices.">
+    <meta name="keywords"
+        content="Mohammad Najeeb blog, LLM tutorial, RAG pipeline, generative AI, ETL pipeline, Docker, CI/CD, MLOps, machine learning blog, full-stack AI">
+    <meta name="theme-color" content="#005555">
+    <meta name="author" content="Mohammad Najeeb">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://mohammadnajeeb.github.io/blog/index.html">
+
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta property="og:title" content="Blog | Mohammad Najeeb — AI, LLM & Dev">
+    <meta property="og:description"
+        content="Technical blog covering LLMs, RAG pipelines, generative AI, ETL systems, Docker, CI/CD, and modern ML engineering.">
+    <meta property="og:image" content="../assets/images/profile-photo.JPG">
+    <meta property="og:url" content="https://mohammadnajeeb.github.io/blog/index.html">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blog | Mohammad Najeeb — AI, LLM & Dev">
+    <meta name="twitter:description"
+        content="Technical blog covering LLMs, RAG pipelines, generative AI, ETL systems, Docker, CI/CD, and modern ML engineering.">
+    <meta name="twitter:image" content="../assets/images/profile-photo.JPG">
+
+    <!-- Google Site Verification Meta Tag -->
+    <meta name="google-site-verification" content="s9wkPDxJlx_Dvk8KiR2W2GkyQGBKSCU_EGImxA7Zmn0">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WVBGG8N5CE"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-WVBGG8N5CE');
+    </script>
+
+    <!-- Apply saved theme before render to avoid flash -->
+    <script>(function(){const t=localStorage.getItem('theme')||'light';document.documentElement.setAttribute('data-theme',t);})();</script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&display=swap" rel="stylesheet">
+    <!-- MD Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/main.css">
+
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "url": "https://mohammadnajeeb.github.io/blog/index.html",
+  "name": "Mohammad Najeeb's Blog",
+  "description": "Technical blog covering LLMs, RAG pipelines, generative AI, ETL systems, Docker, CI/CD, and modern ML engineering.",
+  "author": {
+    "@type": "Person",
+    "name": "Mohammad Najeeb",
+    "url": "https://mohammadnajeeb.github.io"
+  }
+}
+    </script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg sticky-top">
+            <div class="container">
+                <!-- Add navbar-dark class to make toggler icon visible -->
+                <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item"><a class="nav-link" href="../pages/publications.html">Publications</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../pages/projects.html">Projects</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../pages/experience.html">Experience</a></li>
+                        <li class="nav-item"><a class="nav-link" href="blog_home.html">Blog</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../assets/Najeeb_Resume.pdf"
+                                target="_blank">Download Profile</a></li>
+                    </ul>
+                    <button id="darkModeToggle" class="btn btn-outline-light btn-sm ms-2" title="Toggle dark mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <!-- Add breadcrumb -->
+        <nav aria-label="breadcrumb" class="container mt-3">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Blog</li>
+            </ol>
+        </nav>
+    </header>
+    <main class="container my-5">
+        <section id="blog">
+            <div class="row g-4">
+                <!-- Pinned Blog Post Najeeb -->
+                <!-- <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">About Me</h5>
+                            <p class="card-text">:-! SOON</p>
+                            <a href="blog_post_najeeb.html" class="btn btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- Pinned Blog Post 1 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Academic Integrity and the Role of AI in Assignments</h5>
+                            <p class="card-text">Explore the importance of academic integrity, the role of AI in
+                                assignments, and a brief introduction to LaTeX. Learn how to maintain integrity while
+                                leveraging AI tools and discover useful resources for LaTeX.</p>
+                            <a href="blog_post_0_pinned_1.html" class="btn btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pinned Blog Post 2 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Promoting LaTeX Among Students: A Must for Academic Excellence</h5>
+                            <p class="card-text">Discover why LaTeX should be promoted among students starting from
+                                their Bachelor's degree. Learn about its benefits, features, and how it enhances
+                                academic writing and research.</p>
+                            <a href="blog_post_0_pinned_2.html" class="btn btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pinned Blog Post 3 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">University Shortlisting and Application Process for Germany: A Guide
+                                for Indian Students</h5>
+                            <p class="card-text">A comprehensive guide for Indian students on university shortlisting
+                                and the application process for studying in Germany. Learn about the steps,
+                                requirements, and tips for a successful application.</p>
+                            <a href="blog_post_0_pinned_3.html" class="btn btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Blog Post 1 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Advancements in Machine Learning for Computer Vision</h5>
+                            <p class="card-text">Explore the latest advancements in Machine Learning for Computer
+                                Vision, including deep learning techniques, applications, and future trends.</p>
+                            <a href="blog_post_1.html" class="btn btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Blog Post 2 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Revolutionizing Computer Vision with Machine Learning</h5>
+                            <p class="card-text">Discover how Machine Learning is revolutionizing Computer Vision with
+                                cutting-edge techniques, real-world applications, and future trends.</p>
+                            <a href="blog_post_2.html" class="btn btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Blog Post 3 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">The Future of Human-Computer Interaction</h5>
+                            <p class="card-text">Explore the future of Human-Computer Interaction (HCI) with insights
+                                into emerging technologies, user experience design, and innovative applications.</p>
+                            <a href="blog_post_3.html" class="btn btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Blog Post 4 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">The Rise of Generative AI: Transforming Creativity and Innovation
+                            </h5>
+                            <p class="card-text">Explore the rise of Generative AI and its impact on creativity and
+                                innovation. Discover how Generative Adversarial Networks (GANs) and other AI models are
+                                transforming various industries.</p>
+                            <a href="blog_post_4.html" class="btn btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Blog Post 5 - MCP Bioinformatics -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Building Model Context Protocol (MCP) Clients for Bioinformatics APIs
+                            </h5>
+                            <p class="card-text">Learn how to build MCP clients for bioinformatics APIs like NCBI
+                                Entrez. A practical guide to integrating genomic data retrieval with modern AI workflows
+                                using FastAPI and JSON-RPC.</p>
+                            <a href="blog_post_5.html" class="btn btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Blog Post 6 - ETL Pipelines -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Scalable ETL Pipelines for Research Data: Lessons from HCI Studies
+                            </h5>
+                            <p class="card-text">Building scalable ETL pipelines for research data processing. Learn
+                                from processing 50k+ events using MediaPipe, OpenCV, and automated validation achieving
+                                95% accuracy.</p>
+                            <a href="blog_post_6.html" class="btn btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Blog Post 7 - RAG Chatbots -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Building RAG-Powered Chatbots with LangChain and Vector Databases
+                            </h5>
+                            <p class="card-text">A practical guide to building Retrieval-Augmented Generation (RAG)
+                                chatbots using LangChain, ChromaDB, and HuggingFace. Achieve 35% improvement in query
+                                relevance with semantic search.</p>
+                            <a href="blog_post_7.html" class="btn btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Blog Post 8 - Knowledge Distillation -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Knowledge Distillation for Edge Deployment: Compressing CNNs</h5>
+                            <p class="card-text">Learn how to compress deep learning models using knowledge distillation
+                                for edge deployment. Case study: Improving MCC by 20% while reducing model size for
+                                embedded crack detection.</p>
+                            <a href="blog_post_8.html" class="btn btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Blog Post 9 - Zero-Shot Learning CLIP -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Zero-Shot Learning with CLIP for Medical Imaging</h5>
+                            <p class="card-text">Apply CLIP's zero-shot classification to medical imaging. Learn prompt
+                                engineering, multi-label classification, and how to achieve 78% accuracy without
+                                domain-specific training data.</p>
+                            <a href="blog_post_9.html" class="btn btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Blog Post 10 - Time Series SARIMAX -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Time Series Forecasting with SARIMAX: Climate Data Analysis</h5>
+                            <p class="card-text">Master time series forecasting using SARIMAX models for climate data.
+                                Includes stationarity testing, ACF/PACF analysis, and model diagnostics with Python
+                                statsmodels.</p>
+                            <a href="blog_post_10.html" class="btn btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Blog Post 11 - MLOps Best Practices -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">MLOps Best Practices: From Experimentation to Production</h5>
+                            <p class="card-text">Learn MLOps fundamentals with MLflow tracking, model versioning, and
+                                reproducible experiments. Practical guide for transitioning ML projects from notebooks
+                                to production.</p>
+                            <a href="blog_post_11.html" class="btn btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Blog Post 12 - Face Recognition OpenCV -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Real-Time Face Recognition Systems with OpenCV and Deep Learning</h5>
+                            <p class="card-text">Build a real-time face recognition attendance system using OpenCV,
+                                dlib, and face_recognition library. From face detection to embedding-based recognition
+                                with 98% accuracy.</p>
+                            <a href="blog_post_12.html" class="btn btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Blog Post 13 - Docker for Data Scientists -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Docker for Data Scientists: Containerizing ML Workflows</h5>
+                            <p class="card-text">Master Docker for reproducible ML environments. Learn Dockerfiles,
+                                multi-stage builds, GPU support, and Docker Compose for data science workflows.</p>
+                            <a href="blog_post_13.html" class="btn btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Blog Post 14 - User-Centered Design -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">User-Centered Design: Conducting Effective Usability Studies</h5>
+                            <p class="card-text">Conduct effective usability studies using NASA-TLX workload analysis,
+                                semi-structured interviews, and iterative design. Improve UX by 30% with user-centered
+                                methods.</p>
+                            <a href="blog_post_14.html" class="btn btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Blog Post 15 - AWS vs Azure vs GCP -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">AWS vs Azure vs GCP: Choosing the Right Cloud for ML</h5>
+                            <p class="card-text">Compare AWS SageMaker, Azure ML, and GCP Vertex AI for machine learning
+                                workloads. Pricing, features, and when to choose each cloud platform.</p>
+                            <a href="blog_post_15.html" class="btn btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Blog Post 16 - Transformer Architecture -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Transformer Architecture Explained: From Attention to GPT</h5>
+                            <p class="card-text">Understand Transformers from scratch. Learn self-attention, multi-head
+                                attention, positional encoding, and how GPT and BERT build on these fundamentals.</p>
+                            <a href="blog_post_16.html" class="btn btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Blog Post 17 - Plotly Dash Dashboards -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Building Interactive Dashboards with Plotly and Dash</h5>
+                            <p class="card-text">Create interactive data dashboards using Plotly and Dash. Learn
+                                callbacks, real-time updates, and deploy analytics web apps with pure Python.</p>
+                            <a href="blog_post_17.html" class="btn btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Blog Post 18 - CI/CD for ML -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">CI/CD Pipelines for Machine Learning Projects</h5>
+                            <p class="card-text">Implement CI/CD for ML using GitHub Actions. Automate testing, model
+                                training, validation, and deployment for reproducible machine learning workflows.</p>
+                            <a href="blog_post_18.html" class="btn btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add more blog posts as needed -->
+            </div>
+        </section>
+    </main>
+    <footer class="text-white text-center py-4">
+        <p>Connect with me:</p>
+        <ul class="list-inline mb-0">
+            <li class="list-inline-item"><a href="https://github.com/mohammadnajeeb" class="text-white"><i
+                        class="fab fa-github fa-lg"></i></a></li>
+            <li class="list-inline-item"><a href="https://linkedin.com/in/mohammadnajeeb" class="text-white"><i
+                        class="fab fa-linkedin fa-lg"></i></a></li>
+            <li class="list-inline-item"><a href="https://twitter.com/pixellements" class="text-white"><i
+                        class="fab fa-twitter fa-lg"></i></a></li>
+            <li class="list-inline-item"><a href="https://instagram.com/yourusername" class="text-white"><i
+                        class="fab fa-instagram fa-lg"></i></a></li>
+        </ul>
+    </footer>
+
+    <!-- MDB JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.js"></script>
+    <script src="../assets/js/main.js"></script>
+</body>
+
+</html>

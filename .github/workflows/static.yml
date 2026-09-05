@@ -33,6 +33,11 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      - name: Prune non-deployable directories
+        # Kept in git, but never published: _backup is the pre-2026 site,
+        # tools/ and content/ are build inputs already baked into the HTML.
+        # data/ stays — the page fetches search-index.json and skills.json.
+        run: rm -rf _backup tools content
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

@@ -1,0 +1,39 @@
+{
+  "name": "Mohammad Najeeb",
+  "handle": "mohammadnajeeb",
+  "role": "AI Engineer",
+  "headline": "AI Engineer | M.Sc. Computer Science @ Saarland University | Generative AI & LLMs | RAG Systems | Agentic Workflows | AI Applications",
+  "tagline": "I build production AI systems.",
+  "summary": "I build production AI systems combining Generative AI, agentic systems, LLM pipelines (RAG, fine-tuning), vector databases, and full-stack engineering.",
+  "long_summary": [
+    "Right now I split my time between two things. At **ignite AI GmbH** I work on the unglamorous half of enterprise AI — governance policies, PII anonymisation layers, and on-premise LLM deployments for clients who cannot let their data leave the building. At **EduTech UdS** I am lead developer on the SRL Course Platform, an adaptive learning system built on React 19, Node/Express and PostgreSQL with pgvector.",
+    "The thread connecting them is retrieval. Most of my work ends up being some variant of the same question: how do you get the right context in front of a model, cheaply, provably, and without leaking anything you shouldn't. Hybrid search, Medallion ETL, semantic chunking, HNSW indexes, RRF — these are the tools I reach for most.",
+    "Before Saarbrücken I read Mathematics at Aligarh Muslim University, which is where the interest in the underlying statistics came from, and spent two years shipping front-ends professionally. I co-founded **Olympia Academia** in 2018 — now a ~200-member student scientific community that has hosted speakers from Caltech and NASA — and I still sit on its advisory board as technical lead."
+  ],
+  "location": "Saarbrücken, Saarland, Germany",
+  "location_short": "Saarbrücken, DE",
+  "available": "Open to AI/ML engineering roles and research collaboration",
+  "email": "mdnajeeb.cs@gmail.com",
+  "email_uni": "mona00002@uni-saarland.de",
+  "site": "https://mohammadnajeeb.github.io",
+  "resume": "assets/Najeeb_Resume.pdf",
+  "top_skills": ["Sovereign AI", "AI Security", "Multi-agent Systems"],
+  "languages": [
+    { "name": "English", "level": "Native or Bilingual", "cefr": "C1" },
+    { "name": "German", "level": "Elementary", "cefr": "A2" },
+    { "name": "Hindi / Urdu", "level": "Native", "cefr": "" }
+  ],
+  "certifications": [
+    { "name": "Deep Learning Specialization", "issuer": "Coursera / deeplearning.ai" },
+    { "name": "Data Processing using Python (DP-03)", "issuer": "NPTEL" }
+  ],
+  "links": [
+    { "id": "github",   "label": "GitHub",         "handle": "mohammadnajeeb",  "url": "https://github.com/mohammadnajeeb",        "icon": "github" },
+    { "id": "linkedin", "label": "LinkedIn",       "handle": "mohammadnajeeb",  "url": "https://www.linkedin.com/in/mohammadnajeeb/", "icon": "linkedin" },
+    { "id": "x",        "label": "X",              "handle": "md__najeeb",      "url": "https://x.com/md__najeeb",                 "icon": "x" },
+    { "id": "scholar",  "label": "DOI",            "handle": "Swin Transformer paper", "url": "https://doi.org/10.1007/978-981-97-6352-8_59", "icon": "doc" },
+    { "id": "kaggle",   "label": "Kaggle",         "handle": "mohammadnajeeb",  "url": "https://kaggle.com/mohammadnajeeb",        "icon": "kaggle" },
+    { "id": "medium",   "label": "Medium",         "handle": "@mdnajeeb",       "url": "https://medium.com/@mdnajeeb",             "icon": "medium" },
+    { "id": "instagram","label": "Instagram",      "handle": "pixellements",    "url": "https://instagram.com/pixellements",       "icon": "instagram" }
+  ]
+}

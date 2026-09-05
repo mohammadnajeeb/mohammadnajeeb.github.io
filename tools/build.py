@@ -441,11 +441,13 @@ def build_skills():
         out += f'<h2>{e(cat["name"])}</h2><div class="cards">'
         for s in cat["items"]:
             stars = "★" * s["level"] + "☆" * (5 - s["level"])
+            icon = (f'<img src="assets/img/skills/{e(s["icon"])}.svg" alt="" width="18" height="18">'
+                    if s.get("icon") else e(s["name"][0]))
             out += (
                 '<div class="card"><div class="card__body">'
                 f'<div style="display:flex;gap:10px">'
                 f'<span class="ext__icon" style="background:{e(s["color"])}">'
-                f'{e(s["name"][0])}</span>'
+                f'{icon}</span>'
                 f'<div style="min-width:0"><div class="card__title">{e(s["name"])}</div>'
                 f'<div class="ext__foot"><span class="ext__pub">{e(s["publisher"])}</span></div></div></div>'
                 f'<p class="card__desc" style="margin-top:8px">{e(s["desc"])}</p>'

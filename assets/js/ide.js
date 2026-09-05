@@ -29,6 +29,13 @@
   var docs = {};
   $$('.doc').forEach(function (el) { docs[el.getAttribute('data-doc')] = el; });
 
+  /* ------------------------------------------------------- breakpoint
+     Below this width the sidebar is an overlay drawer and the activity bar
+     docks at the bottom. The drawer must never be left open across the
+     boundary, so the state is synced on every crossing, not just at boot. */
+  var DRAWER = window.matchMedia('(max-width: 820px)');
+  function isNarrow() { return DRAWER.matches; }
+
   /* ------------------------------------------------------------ toast */
   var toastEl = $('#toast'), toastT;
   function toast(msg) {
@@ -176,7 +183,16 @@
     scroller.scrollTop = p * scroller.scrollHeight - scroller.clientHeight / 2;
   });
 
-  window.addEventListener('resize', render);
+  var renderRAF = 0;
+  function renderSoon() {
+    if (renderRAF) return;
+    renderRAF = requestAnimationFrame(function () {
+      renderRAF = 0;
+      syncLayout();
+      render();
+    });
+  }
+  window.addEventListener('resize', renderSoon);
 
   /* ------------------------------------------------------------ tree */
   document.addEventListener('click', function (ev) {
@@ -197,7 +213,7 @@
         ev.preventDefault();
         activate(id);
         markOpen(id);
-        if (window.innerWidth <= 820) vsc.classList.add('is-sidebar-hidden');
+        if (isNarrow()) vsc.classList.add('is-sidebar-hidden');
       }
     }
   });
@@ -242,8 +258,7 @@
   $$('.activity__btn[data-view]').forEach(function (b) {
     b.addEventListener('click', function () {
       var v = b.getAttribute('data-view');
-      if (b.getAttribute('aria-selected') === 'true' && !vsc.classList.contains('is-sidebar-hidden')
-          && window.innerWidth > 820) {
+      if (b.getAttribute('aria-selected') === 'true' && !vsc.classList.contains('is-sidebar-hidden')) {
         vsc.classList.add('is-sidebar-hidden');
       } else { showView(v); }
     });
@@ -263,9 +278,12 @@
           return '<div class="ext__group">' + escapeHtml(cat.name) + '</div>' +
             cat.items.map(function (s) {
               var stars = '\u2605'.repeat(s.level) + '\u2606'.repeat(5 - s.level);
+              var icon = s.icon
+                ? '<img src="' + UP + 'assets/img/skills/' + escapeHtml(s.icon) + '.svg" alt="" width="18" height="18">'
+                : escapeHtml(s.name.charAt(0));
               return '<a class="ext__card" href="' + (DEPTH ? UP + 'index.html#skills' : '#skills') + '">' +
                 '<span class="ext__icon" style="background:' + escapeHtml(s.color) + '">' +
-                escapeHtml(s.name.charAt(0)) + '</span><span>' +
+                icon + '</span><span>' +
                 '<span class="ext__name">' + escapeHtml(s.name) + '</span>' +
                 '<span class="ext__desc">' + escapeHtml(s.desc) + '</span>' +
                 '<span class="ext__foot"><span class="ext__stars">' + stars + '</span>' +
@@ -798,6 +816,7 @@
     if (ev.key === 'Escape') {
       if (overlay.classList.contains('is-open')) { closePalette(); return; }
       closeMenus();
+      if (isNarrow()) vsc.classList.add('is-sidebar-hidden');
       return;
     }
     if (mod && ev.shiftKey && (ev.key === 'P' || ev.key === 'p')) {
@@ -841,15 +860,54 @@
   }
   tick(); setInterval(tick, 20000);
 
+  /* --------------------------------------------- drawer scrim + sync */
+  var scrim = document.createElement('div');
+  scrim.className = 'sidebar-scrim';
+  scrim.setAttribute('aria-hidden', 'true');
+  var vscBody = $('.vsc__body');
+  if (vscBody) vscBody.appendChild(scrim);
+  scrim.addEventListener('click', function () { vsc.classList.add('is-sidebar-hidden'); });
+
+  /* Remember how the workbench was arranged on the wide layout so that
+     collapsing to the drawer and back restores it instead of stranding the
+     visitor with a hidden sidebar or an open drawer over the document. */
+  var wideState = null;
+  var lastNarrow = null;
+
+  /* Only act on an actual crossing. Driven from both the resize handler and
+     the media-query listener: 'change' alone is not dependable in every
+     embedding, and resize alone would fight the remembered wide state. */
+  function syncLayout() {
+    var narrow = isNarrow();
+    if (narrow === lastNarrow) return;
+    lastNarrow = narrow;
+    applyBreakpoint(narrow);
+  }
+
+  function applyBreakpoint(narrow) {
+    if (narrow) {
+      if (!wideState) wideState = {
+        sidebar: vsc.classList.contains('is-sidebar-hidden'),
+        panel:   vsc.classList.contains('is-panel-hidden')
+      };
+      vsc.classList.add('is-sidebar-hidden', 'is-panel-hidden');
+    } else if (wideState) {
+      vsc.classList.toggle('is-sidebar-hidden', wideState.sidebar);
+      vsc.classList.toggle('is-panel-hidden', wideState.panel);
+      wideState = null;
+    }
+    render();
+  }
+  if (DRAWER.addEventListener) DRAWER.addEventListener('change', syncLayout);
+  else DRAWER.addListener(syncLayout);
+
   /* ----------------------------------------------------------- boot */
   function boot() {
     var start = (location.hash || '').replace(/^#/, '');
     start = decodeURIComponent(start);
     if (start && docs[start]) { activate(start, false); markOpen(start); }
     else { activate(body.getAttribute('data-active') || 'welcome', false); }
-    if (window.innerWidth <= 820) {
-      vsc.classList.add('is-sidebar-hidden', 'is-panel-hidden');
-    }
+    syncLayout();
     render();
     loadSearch(function (data) {
       window.__POSTS = data.filter(function (d) { return d.id.indexOf('blog/') === 0; });

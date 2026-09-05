@@ -11,8 +11,8 @@
         { "name": "Vector Databases",     "publisher": "pgvector · ChromaDB · FAISS", "desc": "HNSW indexing, embedding storage, similarity search at document scale.", "used_in": 5, "level": 5, "color": "#4EC9B0" },
         { "name": "Prompt Engineering",   "publisher": "self-taught", "desc": "Structured output, few-shot scaffolding, Socratic probing for formative assessment.", "used_in": 6, "level": 4, "color": "#CE9178" },
         { "name": "Fine-tuning",          "publisher": "Hugging Face", "desc": "Domain adaptation and on-premise model optimisation for sovereign deployments.", "used_in": 3, "level": 3, "color": "#DCDCAA" },
-        { "name": "LangChain",            "publisher": "LangChain Inc.", "desc": "Retrieval chains, document loaders and context assembly for university-scale knowledge bases.", "used_in": 3, "level": 4, "color": "#4EC9B0" },
-        { "name": "Model Context Protocol","publisher": "Anthropic", "desc": "JSON-RPC MCP servers exposing external APIs as first-class LLM tools.", "used_in": 1, "level": 4, "color": "#CE9178" }
+        { "name": "LangChain",            "publisher": "LangChain Inc.", "desc": "Retrieval chains, document loaders and context assembly for university-scale knowledge bases.", "used_in": 3, "level": 4, "color": "#4EC9B0", "icon": "langchain" },
+        { "name": "Model Context Protocol","publisher": "Anthropic", "desc": "JSON-RPC MCP servers exposing external APIs as first-class LLM tools.", "used_in": 1, "level": 4, "color": "#CE9178", "icon": "modelcontextprotocol" }
       ]
     },
     {
@@ -28,43 +28,43 @@
       "name": "Languages",
       "id": "lang",
       "items": [
-        { "name": "Python",     "publisher": "Python Software Foundation", "desc": "Primary language. FastAPI services, ML pipelines, data processing, CLI tooling.", "used_in": 12, "level": 5, "color": "#3572A5", "featured": true },
-        { "name": "TypeScript", "publisher": "Microsoft", "desc": "React 19 front-ends and Node/Express backends, with types shared across the monorepo boundary.", "used_in": 5, "level": 5, "color": "#3178C6", "featured": true },
-        { "name": "JavaScript", "publisher": "ECMA", "desc": "Where the front-end work started, and still the fallback for anything that has to run in a browser.", "used_in": 6, "level": 4, "color": "#F1E05A" },
+        { "name": "Python",     "publisher": "Python Software Foundation", "desc": "Primary language. FastAPI services, ML pipelines, data processing, CLI tooling.", "used_in": 12, "level": 5, "color": "#3572A5", "featured": true, "icon": "python" },
+        { "name": "TypeScript", "publisher": "Microsoft", "desc": "React 19 front-ends and Node/Express backends, with types shared across the monorepo boundary.", "used_in": 5, "level": 5, "color": "#3178C6", "featured": true, "icon": "typescript" },
+        { "name": "JavaScript", "publisher": "ECMA", "desc": "Where the front-end work started, and still the fallback for anything that has to run in a browser.", "used_in": 6, "level": 4, "color": "#F1E05A", "icon": "javascript" },
         { "name": "SQL",        "publisher": "ISO", "desc": "PostgreSQL schema design, GIN/HNSW indexing, query optimisation for retrieval workloads.", "used_in": 6, "level": 4, "color": "#E38C00" },
-        { "name": "C++",        "publisher": "ISO", "desc": "Embedded work — WS2812b LED control with FastLED on Arduino.", "used_in": 1, "level": 2, "color": "#F34B7D" }
+        { "name": "C++",        "publisher": "ISO", "desc": "Embedded work — WS2812b LED control with FastLED on Arduino.", "used_in": 1, "level": 2, "color": "#F34B7D", "icon": "cplusplus" }
       ]
     },
     {
       "name": "ML & Computer Vision",
       "id": "ml",
       "items": [
-        { "name": "PyTorch",      "publisher": "Meta AI", "desc": "CLIP zero-shot evaluation, transformer fine-tuning, model comparison studies.", "used_in": 4, "level": 4, "color": "#EE4C2C", "featured": true },
-        { "name": "TensorFlow / Keras", "publisher": "Google", "desc": "CNN benchmarking and knowledge distillation across nine architectures on SDNET2018.", "used_in": 3, "level": 4, "color": "#FF6F00" },
-        { "name": "OpenCV",       "publisher": "OpenCV.org", "desc": "Video pipelines, Haar cascades, frame extraction at 5M+ frame scale.", "used_in": 3, "level": 4, "color": "#5C3EE8" },
-        { "name": "MediaPipe",    "publisher": "Google", "desc": "Hand-landmark tracking for touchscreen typing research — 96% posture classification accuracy.", "used_in": 1, "level": 4, "color": "#00A6A6" },
-        { "name": "scikit-learn", "publisher": "scikit-learn devs", "desc": "Classical modelling, SARIMAX forecasting, evaluation metrics and model selection.", "used_in": 4, "level": 4, "color": "#F7931E" },
-        { "name": "NumPy / Pandas","publisher": "NumFOCUS", "desc": "The substrate under everything else. 1.6B-record climate series down to per-frame landmark tables.", "used_in": 8, "level": 5, "color": "#4DABCF" }
+        { "name": "PyTorch",      "publisher": "Meta AI", "desc": "CLIP zero-shot evaluation, transformer fine-tuning, model comparison studies.", "used_in": 4, "level": 4, "color": "#EE4C2C", "featured": true, "icon": "pytorch" },
+        { "name": "TensorFlow / Keras", "publisher": "Google", "desc": "CNN benchmarking and knowledge distillation across nine architectures on SDNET2018.", "used_in": 3, "level": 4, "color": "#FF6F00", "icon": "tensorflow" },
+        { "name": "OpenCV",       "publisher": "OpenCV.org", "desc": "Video pipelines, Haar cascades, frame extraction at 5M+ frame scale.", "used_in": 3, "level": 4, "color": "#5C3EE8", "icon": "opencv" },
+        { "name": "MediaPipe",    "publisher": "Google", "desc": "Hand-landmark tracking for touchscreen typing research — 96% posture classification accuracy.", "used_in": 1, "level": 4, "color": "#00A6A6", "icon": "mediapipe" },
+        { "name": "scikit-learn", "publisher": "scikit-learn devs", "desc": "Classical modelling, SARIMAX forecasting, evaluation metrics and model selection.", "used_in": 4, "level": 4, "color": "#F7931E", "icon": "scikitlearn" },
+        { "name": "NumPy / Pandas","publisher": "NumFOCUS", "desc": "The substrate under everything else. 1.6B-record climate series down to per-frame landmark tables.", "used_in": 8, "level": 5, "color": "#4DABCF", "icon": "numpy" }
       ]
     },
     {
       "name": "Backend & APIs",
       "id": "backend",
       "items": [
-        { "name": "FastAPI",       "publisher": "Sebastián Ramírez", "desc": "Retrieval endpoints at sub-200 ms, MCP servers, multi-agent platforms.", "used_in": 5, "level": 5, "color": "#009688", "featured": true },
-        { "name": "Node.js / Express", "publisher": "OpenJS Foundation", "desc": "JWT auth, adaptive routing, BKT scoring and the LLM abstraction layer for the SRL platform.", "used_in": 3, "level": 4, "color": "#68A063" },
+        { "name": "FastAPI",       "publisher": "Sebastián Ramírez", "desc": "Retrieval endpoints at sub-200 ms, MCP servers, multi-agent platforms.", "used_in": 5, "level": 5, "color": "#009688", "featured": true, "icon": "fastapi" },
+        { "name": "Node.js / Express", "publisher": "OpenJS Foundation", "desc": "JWT auth, adaptive routing, BKT scoring and the LLM abstraction layer for the SRL platform.", "used_in": 3, "level": 4, "color": "#68A063", "icon": "nodedotjs" },
         { "name": "WebSockets",    "publisher": "IETF", "desc": "Real-time gaze streaming from Pupil Labs glasses with end-to-end latency tuning.", "used_in": 2, "level": 4, "color": "#569CD6" },
         { "name": "REST APIs",     "publisher": "—", "desc": "Design and integration, including rate-limit-compliant clients for public scientific APIs.", "used_in": 8, "level": 5, "color": "#DCDCAA" },
-        { "name": "Celery / Redis","publisher": "—", "desc": "Background task queues and caching for ingestion workloads.", "used_in": 2, "level": 3, "color": "#D82C20" }
+        { "name": "Celery / Redis","publisher": "—", "desc": "Background task queues and caching for ingestion workloads.", "used_in": 2, "level": 3, "color": "#D82C20", "icon": "redis" }
       ]
     },
     {
       "name": "Frontend",
       "id": "frontend",
       "items": [
-        { "name": "React 19",      "publisher": "Meta", "desc": "Adaptive dashboards, Monaco-based exercise editors, tutor chat panels.", "used_in": 5, "level": 5, "color": "#61DAFB", "featured": true },
-        { "name": "Tailwind CSS",  "publisher": "Tailwind Labs", "desc": "Design-system-driven styling for Skill Lyft and internal tooling.", "used_in": 2, "level": 4, "color": "#38BDF8" },
-        { "name": "Figma",         "publisher": "Figma Inc.", "desc": "Interface design and prototyping — and running the handoff from the other side too.", "used_in": 4, "level": 4, "color": "#F24E1E" },
+        { "name": "React 19",      "publisher": "Meta", "desc": "Adaptive dashboards, Monaco-based exercise editors, tutor chat panels.", "used_in": 5, "level": 5, "color": "#61DAFB", "featured": true, "icon": "react" },
+        { "name": "Tailwind CSS",  "publisher": "Tailwind Labs", "desc": "Design-system-driven styling for Skill Lyft and internal tooling.", "used_in": 2, "level": 4, "color": "#38BDF8", "icon": "tailwindcss" },
+        { "name": "Figma",         "publisher": "Figma Inc.", "desc": "Interface design and prototyping — and running the handoff from the other side too.", "used_in": 4, "level": 4, "color": "#F24E1E", "icon": "figma" },
         { "name": "Accessibility", "publisher": "W3C", "desc": "Semantic markup, keyboard navigation, WCAG contrast. Including this site.", "used_in": 3, "level": 4, "color": "#4EC9B0" }
       ]
     },
@@ -72,10 +72,10 @@
       "name": "Data & DevOps",
       "id": "devops",
       "items": [
-        { "name": "PostgreSQL",  "publisher": "PGDG", "desc": "16 with pgvector. HNSW vector indexes, GIN full-text, Medallion-layered schemas.", "used_in": 5, "level": 5, "color": "#336791", "featured": true },
-        { "name": "Docker",      "publisher": "Docker Inc.", "desc": "Compose stacks wiring frontend, backend, KB API and database for reproducible local dev.", "used_in": 5, "level": 4, "color": "#2496ED" },
-        { "name": "Git / CI-CD", "publisher": "—", "desc": "GitHub Actions pipelines, ADR-driven change management, automated test gates.", "used_in": 10, "level": 4, "color": "#F05032" },
-        { "name": "Linux",       "publisher": "—", "desc": "Deployment target for everything above. EC2, Apache path routing, service management.", "used_in": 8, "level": 4, "color": "#FCC624" },
+        { "name": "PostgreSQL",  "publisher": "PGDG", "desc": "16 with pgvector. HNSW vector indexes, GIN full-text, Medallion-layered schemas.", "used_in": 5, "level": 5, "color": "#336791", "featured": true, "icon": "postgresql" },
+        { "name": "Docker",      "publisher": "Docker Inc.", "desc": "Compose stacks wiring frontend, backend, KB API and database for reproducible local dev.", "used_in": 5, "level": 4, "color": "#2496ED", "icon": "docker" },
+        { "name": "Git / CI-CD", "publisher": "—", "desc": "GitHub Actions pipelines, ADR-driven change management, automated test gates.", "used_in": 10, "level": 4, "color": "#F05032", "icon": "git" },
+        { "name": "Linux",       "publisher": "—", "desc": "Deployment target for everything above. EC2, Apache path routing, service management.", "used_in": 8, "level": 4, "color": "#FCC624", "icon": "linux" },
         { "name": "NLP Tooling", "publisher": "Whisper · pyannote", "desc": "Speech-to-text, speaker diarisation and entity extraction over 45+ hours of lecture audio.", "used_in": 2, "level": 4, "color": "#C586C0" }
       ]
     }
